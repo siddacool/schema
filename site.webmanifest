@@ -1,0 +1,62 @@
+{
+  "name": "Schema - plan, schedule, manage",
+  "short_name": "Schema",
+  "start_url": "/",
+  "scope": "/",
+  "id": "com.siddheshmangela.schema",
+  "description": "Schema - plan, schedule, manage",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
+  "orientation": "portrait-primary",
+  "theme_color": "#ddd6ff",
+  "background_color": "#8e51ff",
+  "categories": ["planning", "schedule", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "file_handlers": [
+     {
+       "action": "/actions/import",
+       "accept": {
+         "application/vnd.triptop": [".schema"]
+       }
+     }
+   ],
+  "shortcuts": [
+    {
+      "name": "Create plan",
+      "short_name": "Create plan",
+      "url": "/plans/create",
+      "icons": [
+         {
+           "src": "/assets/icons/shortcut-icon-plus.png",
+           "sizes": "96x96",
+           "type": "image/png"
+         }
+       ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "/assets/icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -4,9 +4,12 @@ export interface Activity {
   description: string;
   createdAt: number;
   updatedAt: number;
-  level: number;
   planId: string;
   parentId?: string;
 }
 
 export type ActivityCreateData = Omit<Activity, 'id' | '_id' | 'createdAt' | 'updatedAt'>;
+
+export interface ActivityExtended extends Activity {
+  level: number;
+}

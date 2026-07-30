@@ -4,7 +4,7 @@
 </script>
 
 <div class="SettingsCard">
-  <Grid gap={2}>
+  <Grid gap={3}>
     <UserInterface />
   </Grid>
 </div>

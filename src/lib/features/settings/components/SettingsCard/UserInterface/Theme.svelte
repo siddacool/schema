@@ -39,6 +39,7 @@
       onValueChange={(val) => applyTheme(val as ThemeMode)}
       attached
       inactiveButtonProps={{ outline: true }}
+      buttonProps={{ color: 'neutral' }}
     />
   </FormField>
 </Column>

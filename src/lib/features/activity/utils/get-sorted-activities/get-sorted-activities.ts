@@ -5,8 +5,6 @@ function getRelatedActivites(data: Activity[], activity: ActivityExtended): Acti
 
   sortedData.push(activity);
 
-  console.log('debug:', data);
-
   for (let i = 0; i < data.length; i++) {
     const target = data[i];
 

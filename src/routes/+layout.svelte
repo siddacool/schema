@@ -9,6 +9,7 @@
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
   import ThemeSetter from '$lib/features/settings/components/SettingsCard/ThemeSetter.svelte';
+  import '$lib/features/shared/styles/dodo-ui-customized.scss';
 
   let { children } = $props();
 </script>
@@ -50,9 +51,15 @@
     height: 100%;
     width: 100%;
     flex-direction: column;
+    background-color: var(--dodo-color-white);
+    color: var(--dodo-color-neutral-800);
   }
 
   :global(.dodo-theme--dark) {
     color-scheme: dark;
+  }
+
+  :global(.dodo-theme--dark .App) {
+    background-color: var(--dodo-color-neutral-50);
   }
 </style>

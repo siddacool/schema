@@ -1,1 +1,0 @@
-import{E as e,j as t,mt as n}from"../chunks/CzWLWUbc.js";import"../chunks/xihTtKlq.js";function r(r){n(),e(r,t(`yo`))}export{r as component};

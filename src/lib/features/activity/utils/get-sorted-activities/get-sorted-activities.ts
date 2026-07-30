@@ -3,16 +3,12 @@ import type { Activity, ActivityExtended } from '../../types';
 function getRelatedActivites(data: Activity[], activity: ActivityExtended): ActivityExtended[] {
   const sortedData: ActivityExtended[] = [];
 
-  sortedData.push(activity);
-
   for (let i = 0; i < data.length; i++) {
     const target = data[i];
 
     if (target.parentId !== activity._id) {
       continue;
     }
-
-    console.log('debug:', activity.level);
 
     const level = activity.level + 1;
 
@@ -42,6 +38,8 @@ export function getSortedActivities(data: Activity[]): ActivityExtended[] {
       ...rootActivities[i],
       level: 1,
     };
+
+    sortedData.push(activityExtended);
 
     const children = getRelatedActivites(data, activityExtended);
 

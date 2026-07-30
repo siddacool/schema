@@ -9,7 +9,7 @@
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
   import ThemeSetter from '$lib/features/settings/components/SettingsCard/ThemeSetter.svelte';
-  import '$lib/features/shared/styles/dodo-ui-customized.scss';
+  import '$lib/styles/dodo-ui-customized.scss';
 
   let { children } = $props();
 </script>

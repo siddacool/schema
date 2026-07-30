@@ -1,6 +1,6 @@
 <script lang="ts">
   import Box from '$lib/components/Box/Box.svelte';
-  import TheHeader from '$lib/features/shared/TheHeader/TheHeader.svelte';
+  import TheHeader from '$lib/features/shared/components/TheHeader/TheHeader.svelte';
 
   let { children } = $props();
 </script>

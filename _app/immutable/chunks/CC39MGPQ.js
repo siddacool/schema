@@ -1,0 +1,1 @@
+import{$ as e,L as t,tt as n}from"./CDo0HGR8.js";import{r}from"./CJzqfhiS.js";function i(){let i=n(void 0);return{get plan(){return t(i)},async load(t){e(i,await r(t),!0)},clear(){e(i,void 0)}}}var a=i();export{a as t};

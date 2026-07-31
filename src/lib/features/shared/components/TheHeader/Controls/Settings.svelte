@@ -7,12 +7,12 @@
   aria-label="Settings"
   class="SiteSettingsButton"
   variant="text"
-  roundness="pill"
+  roundness={1}
   title="Settings"
   href="/settings"
   compact
   color="neutral"
-  background="none"
+  outline
 >
   <Icon icon="material-symbols:settings-outline" />
 </Button>

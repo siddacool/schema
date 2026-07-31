@@ -1,21 +1,25 @@
 <script lang="ts">
   import { Button, Column, FormField, Grid, TextInput } from '@flightlesslabs/dodo-ui';
-  import { Select, toasts } from '@flightlesslabs/dodo-ui-bits';
-  import { planTypeOptions } from '../../config';
-  import type { PlanCreateData } from '../../types';
+  import { toasts } from '@flightlesslabs/dodo-ui-bits';
+  import type { Plan } from '../../types';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { savePlan } from '../../logic/crud.svelte';
+  import { planDetailStore } from '../../store/detail.svelte';
 
-  let name = $state('');
-  let type = $state(planTypeOptions[0].value);
-  const isDataValid = $derived(name && type ? true : false);
+  const plan = $derived(planDetailStore.plan);
+  let name = $derived(plan?.name || '');
+  const isDataValid = $derived(name ? true : false);
   let loading = $state(false);
 
   async function submit(event: SubmitEvent) {
     try {
       loading = true;
       event.preventDefault();
+
+      if (!plan) {
+        return;
+      }
 
       if (!isDataValid) {
         return;
@@ -27,15 +31,15 @@
         return;
       }
 
-      const formData: PlanCreateData = {
+      const formData: Plan = {
+        ...plan,
         name,
-        type,
       };
 
       const planId = await savePlan(formData);
 
       toasts.add({
-        title: 'Plan created',
+        title: 'Plan updated',
         color: 'safe',
       });
 
@@ -44,7 +48,7 @@
       const message = e instanceof Error ? e.message : String(e);
 
       toasts.add({
-        title: 'Failed to create plan',
+        title: 'Failed to update plan',
         description: message,
         color: 'danger',
       });
@@ -54,7 +58,7 @@
   }
 </script>
 
-<div class="CreatePlan">
+<div class="UpdatePlan">
   <form onsubmit={submit}>
     <Grid gap={2}>
       <Column>
@@ -68,19 +72,8 @@
         </FormField>
       </Column>
       <Column>
-        <FormField label="Type:" for="type">
-          <Select
-            placeholder="Select plan type"
-            name="type"
-            bind:value={type}
-            options={planTypeOptions}
-            disabled={loading}
-          />
-        </FormField>
-      </Column>
-      <Column>
         <Button type="submit" disabled={!isDataValid || loading} class="event-submitter">
-          Create
+          Save
         </Button>
       </Column>
     </Grid>
@@ -88,7 +81,7 @@
 </div>
 
 <style lang="scss">
-  .CreatePlan {
+  .UpdatePlan {
     margin-top: calc(var(--dodo-ui-space) * 2);
   }
 </style>

@@ -1,13 +1,23 @@
 <script lang="ts">
-  import { activityListMockData } from '$lib/features/activity/mocks/activity-list-mock-data';
-  import { getSortedActivities } from '$lib/features/activity/utils/get-sorted-activities/get-sorted-activities';
+  import PlanList from '$lib/features/plan/components/PlanList/PlanList.svelte';
+  import { planListStore } from '$lib/features/plan/store/list.svelte';
 
-  const data = $derived(getSortedActivities(activityListMockData));
+  let loading = $derived(true);
+  const plans = $derived(planListStore.plans);
+
+  async function load() {
+    await planListStore.load();
+    loading = false;
+  }
 
   $effect(() => {
-    console.log('debug:', data);
+    load();
   });
 </script>
+
+{#if plans.length && !loading}
+  <PlanList {plans} />
+{/if}
 
 <div></div>
 

@@ -8,7 +8,7 @@
 </script>
 
 <a href={resolve('/plans')} class={classes.join(' ')}>
-  <img src="assets/social/logo.svg" alt="logo" />
+  <img src="/assets/social/logo.svg" alt="logo" />
 </a>
 
 <style lang="scss">

@@ -7,12 +7,12 @@
   aria-label="Create plan"
   class="TheHeaderCreatePlanButton"
   variant="text"
-  roundness="pill"
+  roundness={1}
   title="Create a plan"
   href="/plans/create"
   compact
   color="neutral"
-  background="none"
+  outline
 >
   <Icon icon="material-symbols:add-rounded" />
 </Button>

@@ -9,4 +9,7 @@ export interface Plan {
   type: PlanType;
 }
 
-export type PlanCreateData = Omit<Plan, 'id' | '_id' | 'createdAt' | 'updatedAt'>;
+export interface PlanCreateData {
+  name: string;
+  type: PlanType;
+}

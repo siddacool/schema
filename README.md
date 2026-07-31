@@ -1,6 +1,8 @@
 # Schema
 
-Schema - plan, schedule, manage
+**Plan, schedule, manage**
+
+Create workout routines, travel itineraries, habbit calendars with ease and flexibility
 
 ![img](https://schema.siddheshmangela.com/assets/social/og_image.png)
 

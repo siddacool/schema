@@ -4,7 +4,7 @@
   "start_url": "/",
   "scope": "/",
   "id": "com.siddheshmangela.schema",
-  "description": "Schema - plan, schedule, manage",
+  "description": "Create workout routines, travel itineraries, habbit calendars with ease and flexibility",
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",
@@ -17,14 +17,6 @@
   "lang": "en-US",
   "dir": "ltr",
   "prefer_related_applications": false,
-  "file_handlers": [
-     {
-       "action": "/actions/import",
-       "accept": {
-         "application/vnd.triptop": [".schema"]
-       }
-     }
-   ],
   "shortcuts": [
     {
       "name": "Create plan",

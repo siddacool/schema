@@ -5,7 +5,9 @@ export interface Activity {
   createdAt: number;
   updatedAt: number;
   planId: string;
-  parentId?: string;
+
+  // Tree View params
+  path: string;
 }
 
 export type ActivityCreateData = Omit<Activity, 'id' | '_id' | 'createdAt' | 'updatedAt'>;

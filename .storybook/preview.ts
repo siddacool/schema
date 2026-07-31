@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/sveltekit';
 import './global.scss';
+import '../src/lib/styles/dodo-ui-customized.scss';
 
 const preview: Preview = {
   parameters: {

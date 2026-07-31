@@ -44,6 +44,7 @@
     }
 
     .content {
+      overflow: hidden;
       padding: 0 var(--dodo-ui-space);
 
       &:empty {

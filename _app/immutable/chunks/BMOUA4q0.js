@@ -1,1 +1,0 @@
-import{$ as e,L as t,tt as n}from"./DU9IO1uC.js";function r(){let r=n(null);return{get _activeModal(){return t(r)},add(t,n){e(r,{type:t,config:n},!0)},clear(){e(r,null)}}}var i=r();export{i as t};

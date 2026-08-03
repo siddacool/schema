@@ -1,1 +1,0 @@
-import{G as e,dt as t,ut as n}from"../chunks/DU9IO1uC.js";import{c as r,t as i}from"../chunks/Cxl9fC9Q.js";import"../chunks/xihTtKlq.js";import"../chunks/COo-OMpY.js";function a(a,o){t(o,!0),e(()=>{i(r(`/plans`),{replaceState:!0})}),n()}export{a as component};

@@ -10,8 +10,10 @@ export interface Activity {
   path: string;
 }
 
-export type ActivityCreateData = Omit<Activity, 'id' | '_id' | 'createdAt' | 'updatedAt'>;
+export type ActivityCreateData = Omit<Activity, 'id' | 'createdAt' | 'updatedAt'>;
 
-export interface ActivityExtended extends Activity {
-  level: number;
-}
+export type ActivityCreateFormData = {
+  description: string;
+  path: string;
+  _id: string;
+};

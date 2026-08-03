@@ -5,8 +5,8 @@ export function validateActivityCreate(data: ActivityCreateData) {
     throw new Error('tripId is required.');
   }
 
-  if (!data.level) {
-    throw new Error('Level is required.');
+  if (!data.path) {
+    throw new Error('Path is required.');
   }
 
   if (!data.description.trim()) {
@@ -19,8 +19,8 @@ export function validateActivityUpdate(data: Activity) {
     throw new Error('tripId is required.');
   }
 
-  if (!data.level) {
-    throw new Error('Level is required.');
+  if (!data.path) {
+    throw new Error('Path is required.');
   }
 
   if (!data.description.trim()) {

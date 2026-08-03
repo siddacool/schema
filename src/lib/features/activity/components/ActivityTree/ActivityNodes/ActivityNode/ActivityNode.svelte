@@ -6,24 +6,36 @@
   import type { Activity } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
   import type { LTreeNode } from '@keenmate/svelte-treeview';
+  import Controls from './Controls.svelte';
+  import type { ActivityTreeOnCreate, ActivityTreeOnUpdate } from '../../ActivityTree.svelte';
 
   type Props = {
     value: ActivityNodeValue;
     planType: PlanType;
+    maxLevels: number;
+    oncreate?: ActivityTreeOnCreate;
+    onupdate?: ActivityTreeOnUpdate;
   };
 
-  let { value, planType }: Props = $props();
-
-  $effect(() => {
-    console.log('debug:', value);
-  });
+  let { value, planType, maxLevels, oncreate, onupdate }: Props = $props();
 </script>
 
-<div class="ActivityNode">{value.data?.description}</div>
+<div class="ActivityNode">
+  {value.data?.description}
+
+  {#if value.level && value.level <= maxLevels}
+    <Controls {value} {planType} {oncreate} {onupdate} />
+  {/if}
+</div>
 
 <style lang="scss">
   .ActivityNode {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
     padding-left: calc(var(--dodo-ui-space) / 2);
     margin-bottom: calc(var(--dodo-ui-space) / 2);
+    font-size: 1rem;
+    font-weight: 400;
   }
 </style>

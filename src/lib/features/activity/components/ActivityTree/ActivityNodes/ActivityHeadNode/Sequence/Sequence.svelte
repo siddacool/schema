@@ -1,26 +1,31 @@
 <script lang="ts">
+  import { PlanType } from '$lib/features/plan/types/plan-type';
+  import type { ActivityTreeOnCreate, ActivityTreeOnUpdate } from '../../../ActivityTree.svelte';
   import type { ActivityNodeValue } from '../../ActivityNode/ActivityNode.svelte';
+  import Controls from './Controls.svelte';
 
   type Props = {
     value: ActivityNodeValue;
+    oncreate?: ActivityTreeOnCreate;
+    onupdate?: ActivityTreeOnUpdate;
   };
 
-  let { value }: Props = $props();
-
-  $effect(() => {
-    console.log('debug:', value);
-  });
+  let { value, oncreate, onupdate }: Props = $props();
 </script>
 
 <div class="Sequence">
   {value.data?.description}
+  <Controls {value} planType={PlanType.SEQUENCE} {oncreate} {onupdate} />
 </div>
 
 <style lang="scss">
   .Sequence {
-    font-size: 1.1rem;
-    font-weight: 400;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
     padding-left: calc(var(--dodo-ui-space) / 2);
     margin-bottom: calc(var(--dodo-ui-space) / 2);
+    font-size: 1.1rem;
+    font-weight: 400;
   }
 </style>

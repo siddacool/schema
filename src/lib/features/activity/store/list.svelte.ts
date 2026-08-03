@@ -8,8 +8,8 @@ function createActivityListStore() {
     get activitys() {
       return activitys;
     },
-    async load() {
-      activitys = await listActivity();
+    async load(planId: string) {
+      activitys = await listActivity(planId);
     },
   };
 }

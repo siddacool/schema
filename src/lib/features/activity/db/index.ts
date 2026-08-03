@@ -23,13 +23,14 @@ export async function getActivityById(id: string) {
 }
 
 export async function createActivity(data: ActivityCreateData) {
-  const newId = nanoid();
+  const { _id, ...restData } = data;
+  const newId = _id || nanoid();
 
   const now = Date.now();
 
   await db.activity.add({
     _id: newId,
-    ...data,
+    ...restData,
     createdAt: now,
     updatedAt: now,
   });

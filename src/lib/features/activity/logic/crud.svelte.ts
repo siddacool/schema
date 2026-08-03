@@ -4,10 +4,9 @@ import {
   deleteBulkActivity,
   getActivityById,
   listActivity,
-  listActivityByParentId,
   updateActivity,
 } from '../db';
-import { activityDetailStore } from '../store/detail.svelte';
+import { activityListStore } from '../store/list.svelte';
 import type { Activity, ActivityCreateData } from '../types';
 import {
   validateActivityCreate,
@@ -16,7 +15,7 @@ import {
 } from '../validation';
 
 export async function saveActivity(data: ActivityCreateData | Activity) {
-  if ('_id' in data) {
+  if ('updatedAt' in data) {
     const { description, ...restData } = data;
 
     const newData: Activity = {
@@ -28,7 +27,7 @@ export async function saveActivity(data: ActivityCreateData | Activity) {
 
     const id = await updateActivity(newData);
 
-    activityDetailStore.load(data._id);
+    await activityListStore.load(data.planId);
 
     return id;
   } else {
@@ -41,25 +40,35 @@ export async function saveActivity(data: ActivityCreateData | Activity) {
 
     validateActivityCreate(newData);
 
-    return await createActivity(newData);
+    const id = await createActivity(newData);
+
+    await activityListStore.load(newData.planId);
+
+    return id;
   }
 }
 
 export async function deleteActivity(id: string) {
   await deleteActivityDb(id);
 
-  const activityByParentId = await listActivityByParentId(id);
+  return id;
+}
 
-  if (activityByParentId.length) {
-    const activityFiltred = activityByParentId.filter((item) => item.id);
-    const activityKeys = activityFiltred.map((item) => item.id) as number[];
+export async function deleteActivityNodes(planId: string, ids: string[]) {
+  const allActivitys = await listActivity(planId);
+  const idsForDeletion = allActivitys
+    .filter((item) => ids.includes(item._id))
+    .map((item) => item.id);
 
-    if (activityKeys.length) {
-      await deleteBulkActivity(activityKeys);
-    }
+  if (!idsForDeletion.length) {
+    throw 'No ids found';
   }
 
-  return id;
+  await deleteBulkActivity(idsForDeletion as number[]);
+
+  await activityListStore.load(planId);
+
+  return ids;
 }
 
 export async function deleteActivityByPlanId(planId: string) {

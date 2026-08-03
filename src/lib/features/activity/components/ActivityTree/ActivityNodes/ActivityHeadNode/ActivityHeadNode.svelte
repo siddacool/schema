@@ -9,9 +9,10 @@
     planType: PlanType;
     oncreate?: ActivityTreeOnCreate;
     onupdate?: ActivityTreeOnUpdate;
+    readonly: boolean;
   };
 
-  let { value, planType, oncreate, onupdate }: Props = $props();
+  let { value, planType, oncreate, onupdate, readonly }: Props = $props();
 
   const classes = $derived(
     [
@@ -24,7 +25,7 @@
 
 <div class={classes.join(' ')}>
   {#if planType === PlanType.SEQUENCE}
-    <Sequence {value} {oncreate} {onupdate} />
+    <Sequence {value} {oncreate} {onupdate} {readonly} />
   {:else}
     yo
   {/if}
@@ -37,7 +38,7 @@
     align-items: flex-start;
     padding-left: calc(var(--dodo-ui-space));
     margin-bottom: calc(var(--dodo-ui-space) * 3);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 400;
 
     &.isExpanded {

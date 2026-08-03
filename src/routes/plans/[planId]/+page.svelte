@@ -40,10 +40,14 @@
 </script>
 
 {#if plan && !loading}
-  <div>
+  <div class="planIdPage">
     <ActivityTree planType={plan.type} data={activityList} {oncreate} {onupdate} />
   </div>
 {/if}
 
 <style lang="scss">
+  .planIdPage {
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
 </style>

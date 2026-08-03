@@ -6,13 +6,16 @@
   type Props = {
     planType: PlanType;
     oncreate?: ActivityTreeOnCreate;
+    readonly: boolean;
   };
 
-  let { planType, oncreate }: Props = $props();
+  let { planType, oncreate, readonly }: Props = $props();
 </script>
 
-{#if planType === PlanType.SEQUENCE}
-  <Sequence {oncreate} />
-{:else}
-  yo
+{#if !readonly}
+  {#if planType === PlanType.SEQUENCE}
+    <Sequence {oncreate} />
+  {:else}
+    yo
+  {/if}
 {/if}

@@ -20,6 +20,7 @@
     oncreate?: ActivityTreeOnCreate;
     onupdate?: ActivityTreeOnUpdate;
     maxLevels?: number;
+    readonly?: boolean;
   };
 
   const {
@@ -29,6 +30,7 @@
     oncreate,
     onupdate,
     maxLevels = 5,
+    readonly = false,
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));
@@ -47,14 +49,14 @@
   >
     {#snippet nodeTemplate(node: ActivityNodeValue | undefined)}
       {#if node?.level === 1}
-        <ActivityHeadNode value={node} {planType} {oncreate} {onupdate} />
+        <ActivityHeadNode value={node} {planType} {oncreate} {onupdate} {readonly} />
       {:else if node}
-        <ActivityNode value={node} {planType} {maxLevels} {oncreate} {onupdate} />
+        <ActivityNode value={node} {planType} {maxLevels} {oncreate} {onupdate} {readonly} />
       {/if}
     {/snippet}
   </Tree>
 
-  <CreateHeadNode {oncreate} {planType} />
+  <CreateHeadNode {oncreate} {planType} {readonly} />
 </div>
 
 <style lang="scss">

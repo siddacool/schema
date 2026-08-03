@@ -16,6 +16,11 @@
   const isDataValid = $derived(description ? true : false);
   let loading = $state(false);
 
+  function onclear() {
+    open = false;
+    description = '';
+  }
+
   async function submit() {
     loading = true;
 
@@ -36,7 +41,7 @@
   }
 </script>
 
-<Modal bind:open title="Create activity">
+<Modal bind:open title="Create activity" {onclear}>
   <Grid gap={2}>
     <Column>
       <FormField label="Description:" for="description">

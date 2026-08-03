@@ -11,6 +11,7 @@
   import type { ActivityNodeValue } from './ActivityNodes/ActivityNode/ActivityNode.svelte';
   import ActivityHeadNode from './ActivityNodes/ActivityHeadNode/ActivityHeadNode.svelte';
   import ActivityNode from './ActivityNodes/ActivityNode/ActivityNode.svelte';
+  import CreateHeadNode from './ActivityNodes/CreateHeadNode/CreateHeadNode.svelte';
 
   type Props = {
     class?: string;
@@ -52,6 +53,8 @@
       {/if}
     {/snippet}
   </Tree>
+
+  <CreateHeadNode {oncreate} {planType} />
 </div>
 
 <style lang="scss">

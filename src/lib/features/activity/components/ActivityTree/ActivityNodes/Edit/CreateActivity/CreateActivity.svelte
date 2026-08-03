@@ -11,6 +11,12 @@
 
   let { oncreate, path }: Props = $props();
   let open = $state(false);
+
+  function handleClick(e: MouseEvent) {
+    e.stopPropagation();
+
+    open = true;
+  }
 </script>
 
 <div class="CreateActivity">
@@ -23,7 +29,7 @@
     color="neutral"
     outline
     size="small"
-    onclick={() => (open = true)}
+    onclick={handleClick}
   >
     <Icon icon="material-symbols:add-rounded" />
   </UtilityButton>

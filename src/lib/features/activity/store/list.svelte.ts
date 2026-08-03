@@ -2,14 +2,14 @@ import { listActivity } from '../db';
 import type { Activity } from '../types';
 
 function createActivityListStore() {
-  let activitys = $state<Activity[]>([]);
+  let activity = $state<Activity[]>([]);
 
   return {
-    get activitys() {
-      return activitys;
+    get activity() {
+      return activity;
     },
     async load(planId: string) {
-      activitys = await listActivity(planId);
+      activity = await listActivity(planId);
     },
   };
 }

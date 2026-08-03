@@ -1,60 +1,85 @@
 .ActivityTreeMain {
   color: var(--dodo-color-neutral-800);
   --tree-node-indent-per-level: 1rem;
-}
 
-.ltree-node {
+  .ltree-node-row {
+    display: flex;
+    align-items: center;
+  }
+
   .ltree-toggle-icon {
-    width: 20px;
-    display: inline-block;
-    text-align: center;
-    margin-right: 8px;
-    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
     color: var(--dodo-color-neutral-700);
-    transition: transform 0.2s;
     flex-shrink: 0;
+    height: 100%;
 
-    &.expanded {
-      transform: rotate(0);
+    &.ltree-clickable {
+      width: 26px;
+      min-height: 20px;
+      font-size: 0.8rem;
+      transition:
+        background-color 70ms,
+        color 70ms,
+        border-color 70ms,
+        transform 0.2s;
+      cursor: pointer;
+      padding: 0;
+
+      &:hover {
+        color: var(--dodo-color-primary-800);
+      }
+
+      &:active {
+        color: var(--dodo-color-primary-800);
+      }
+
+      &.expanded {
+        transform: rotate(0);
+      }
     }
   }
-}
 
-.ltree-icon {
-  &-expand::before {
-    content: '▶';
-  }
+  .ltree-icon {
+    &-expand::before {
+      content: '▶';
+    }
 
-  &-collapse::before {
-    content: '▼';
-  }
+    &-collapse::before {
+      content: '▼';
+    }
 
-  &-leaf::before {
-    content: '•';
-    font-size: 1.2rem;
-  }
+    &-leaf {
+      font-size: 1.2rem;
+      &::before {
+        content: '•';
+      }
+    }
 
-  &-expand-alt::before {
-    content: '⯈';
-  }
+    &-expand-alt::before {
+      content: '⯈';
+    }
 
-  &-collapse-alt::before {
-    content: '⯆';
-  }
+    &-collapse-alt::before {
+      content: '⯆';
+    }
 
-  &-expand-plus::before {
-    content: '+';
-  }
+    &-expand-plus::before {
+      content: '+';
+    }
 
-  &-collapse-minus::before {
-    content: '−';
-  }
+    &-collapse-minus::before {
+      content: '−';
+    }
 
-  &-expand-arrow::before {
-    content: '→';
-  }
+    &-expand-arrow::before {
+      content: '→';
+    }
 
-  &-collapse-arrow::before {
-    content: '↓';
+    &-collapse-arrow::before {
+      content: '↓';
+    }
   }
 }

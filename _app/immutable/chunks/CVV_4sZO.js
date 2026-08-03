@@ -1,1 +1,0 @@
-import{$ as e,L as t,tt as n}from"./CDo0HGR8.js";function r(){let r=n(`light`);return{get theme(){return t(r)},updateSystemTheme(t){e(r,t,!0)}}}var i=r();export{i as t};

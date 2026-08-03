@@ -19,7 +19,11 @@
   });
 </script>
 
-<div>yo</div>
+<div class="ActivityNode">{value.data?.description}</div>
 
 <style lang="scss">
+  .ActivityNode {
+    padding-left: calc(var(--dodo-ui-space) / 2);
+    margin-bottom: calc(var(--dodo-ui-space) / 2);
+  }
 </style>

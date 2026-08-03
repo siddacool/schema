@@ -22,10 +22,6 @@
   .Sequence {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    padding-left: calc(var(--dodo-ui-space) / 2);
-    margin-bottom: calc(var(--dodo-ui-space) / 2);
-    font-size: 1.1rem;
-    font-weight: 400;
+    align-items: center;
   }
 </style>

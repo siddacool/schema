@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { UtilityButton } from '@flightlesslabs/dodo-ui';
+  import { Button, UtilityButton } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import type { ActivityTreeOnCreate } from '../../../ActivityTree.svelte';
   import CreateActivityModal from './CreateActivityModal.svelte';
@@ -20,26 +20,27 @@
 </script>
 
 <div class="CreateActivity">
-  <UtilityButton
+  <Button
     aria-label="Create activity"
     class="CreateActivityButton"
     roundness={1}
     title="Create activity"
     compact
-    color="neutral"
-    outline
+    color="primary"
     size="small"
     onclick={handleClick}
+    variant="text"
+    background="none"
   >
     <Icon icon="material-symbols:add-rounded" />
-  </UtilityButton>
+  </Button>
 </div>
 
 <CreateActivityModal bind:open {path} {oncreate} />
 
 <style lang="scss">
   .CreateActivity {
-    :global(.dodo-ui-UtilityButton.size--small.CreateActivityButton) {
+    :global(.dodo-ui-Button.size--small.CreateActivityButton) {
       font-size: 1.4rem;
     }
   }

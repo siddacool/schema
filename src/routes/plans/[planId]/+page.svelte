@@ -3,7 +3,11 @@
   import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
   import { saveActivity } from '$lib/features/activity/logic/crud.svelte';
   import { activityListStore } from '$lib/features/activity/store/list.svelte';
-  import type { ActivityCreateData, ActivityCreateFormData } from '$lib/features/activity/types';
+  import type {
+    Activity,
+    ActivityCreateData,
+    ActivityCreateFormData,
+  } from '$lib/features/activity/types';
   import { planDetailStore } from '$lib/features/plan/store/detail.svelte';
 
   let loading = $derived(true);
@@ -26,6 +30,10 @@
     await saveActivity(dataFormatted);
   }
 
+  async function onupdate(data: Activity) {
+    await saveActivity(data);
+  }
+
   $effect(() => {
     load();
   });
@@ -33,7 +41,7 @@
 
 {#if plan && !loading}
   <div>
-    <ActivityTree planType={plan.type} data={activityList} {oncreate} />
+    <ActivityTree planType={plan.type} data={activityList} {oncreate} {onupdate} />
   </div>
 {/if}
 

@@ -23,18 +23,16 @@
 <div class="ActivityNode">
   {value.data?.description}
 
-  {#if value.level && value.level <= maxLevels}
-    <Controls {value} {planType} {oncreate} {onupdate} />
-  {/if}
+  <Controls {value} {planType} {oncreate} {onupdate} {maxLevels} />
 </div>
 
 <style lang="scss">
   .ActivityNode {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     padding-left: calc(var(--dodo-ui-space) / 2);
-    margin-bottom: calc(var(--dodo-ui-space) / 2);
+    margin-bottom: calc(var(--dodo-ui-space) / 1.5);
     font-size: 1rem;
     font-weight: 400;
   }

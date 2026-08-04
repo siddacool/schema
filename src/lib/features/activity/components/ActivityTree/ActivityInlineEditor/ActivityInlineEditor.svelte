@@ -1,9 +1,11 @@
 <script lang="ts">
+  import type { Activity } from '$lib/features/activity/types';
   import ActivityEdit from '../ActivityEdit/ActivityEdit.svelte';
   import type {
     ActivityTreeOnCreate,
     ActivityTreeOnUpdate,
     ActivityNodeValue,
+    ActivityTreeOnDelete,
   } from '../ActivityTree.svelte';
   import Controls from './Controls/Controls.svelte';
 
@@ -11,11 +13,21 @@
     value: ActivityNodeValue;
     onupdate?: ActivityTreeOnUpdate;
     oncreate?: ActivityTreeOnCreate;
+    ondelete?: ActivityTreeOnDelete;
     editMode: boolean;
     allowCreate?: boolean;
+    data: Activity[];
   };
 
-  const { value, onupdate, oncreate, editMode, allowCreate = true }: Props = $props();
+  const {
+    value,
+    onupdate,
+    oncreate,
+    editMode,
+    allowCreate = true,
+    ondelete,
+    data,
+  }: Props = $props();
 
   let showEditor = $state(false);
 
@@ -36,6 +48,6 @@
   </p>
 
   {#if editMode}
-    <Controls {oncreate} {value} {displayEditor} {allowCreate} />
+    <Controls {oncreate} {value} {displayEditor} {allowCreate} {ondelete} {data} />
   {/if}
 {/if}

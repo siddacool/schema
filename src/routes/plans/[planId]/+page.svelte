@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
-  import { saveActivity } from '$lib/features/activity/logic/crud.svelte';
+  import { deleteActivityNodes, saveActivity } from '$lib/features/activity/logic/crud.svelte';
   import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import type {
     Activity,
@@ -34,6 +34,14 @@
     await saveActivity(data);
   }
 
+  async function ondelete(data: string[]) {
+    if (!planId) {
+      return;
+    }
+
+    await deleteActivityNodes(planId, data);
+  }
+
   $effect(() => {
     load();
   });
@@ -41,7 +49,14 @@
 
 {#if plan && !loading}
   <div class="planIdPage">
-    <ActivityTree planType={plan.type} data={activityList} {oncreate} {onupdate} editMode />
+    <ActivityTree
+      planType={plan.type}
+      data={activityList}
+      {oncreate}
+      {onupdate}
+      editMode
+      {ondelete}
+    />
   </div>
 {/if}
 

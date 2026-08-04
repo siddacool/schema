@@ -1,1 +1,0 @@
-import{R as e,et as t,nt as n}from"./CCp5_TYL.js";import{r}from"./C2EZy_mv2.js";function i(){let i=n(void 0);return{get plan(){return e(i)},async load(e){t(i,await r(e),!0)},clear(){t(i,void 0)}}}var a=i();export{a as t};

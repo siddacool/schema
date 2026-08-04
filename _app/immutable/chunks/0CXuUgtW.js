@@ -1,1 +1,0 @@
-import{Q as e,R as t,et as n,nt as r}from"./CCp5_TYL.js";import{t as i}from"./Do3fB2V2.js";function a(){let a=r(e([]));return{get _toastsList(){return t(a)},add(e){let r={...e,id:i(),createdAt:new Date};n(a,[...t(a),r],!0)},clear(e){n(a,t(a).filter(t=>t.id!==e),!0)},_multiClear(e){n(a,t(a).filter(t=>!e.includes(t.id)),!0)},clearAll(){n(a,[],!0)}}}var o=a();export{o as t};

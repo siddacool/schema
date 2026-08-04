@@ -14,6 +14,7 @@
     args: {
       planType: PlanType.SEQUENCE,
       data: activityListMockData,
+      editMode: true,
     },
   });
 </script>

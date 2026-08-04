@@ -15,16 +15,16 @@
     maxLevels: number;
     oncreate?: ActivityTreeOnCreate;
     onupdate?: ActivityTreeOnUpdate;
-    readonly: boolean;
+    editMode: boolean;
   };
 
-  let { value, planType, maxLevels, oncreate, onupdate, readonly }: Props = $props();
+  let { value, planType, maxLevels, oncreate, onupdate, editMode }: Props = $props();
 </script>
 
 <div class="ActivityNode">
   {value.data?.description}
 
-  {#if !readonly}
+  {#if editMode}
     <Controls {value} {planType} {oncreate} {onupdate} {maxLevels} />
   {/if}
 </div>

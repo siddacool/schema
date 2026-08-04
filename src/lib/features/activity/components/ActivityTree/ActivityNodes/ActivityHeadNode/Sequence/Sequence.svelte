@@ -8,16 +8,16 @@
     value: ActivityNodeValue;
     oncreate?: ActivityTreeOnCreate;
     onupdate?: ActivityTreeOnUpdate;
-    readonly: boolean;
+    editMode: boolean;
   };
 
-  let { value, oncreate, onupdate, readonly }: Props = $props();
+  let { value, oncreate, onupdate, editMode }: Props = $props();
 </script>
 
 <div class="Sequence">
   {value.data?.description}
 
-  {#if !readonly}
+  {#if editMode}
     <Controls {value} planType={PlanType.SEQUENCE} {oncreate} {onupdate} />
   {/if}
 </div>

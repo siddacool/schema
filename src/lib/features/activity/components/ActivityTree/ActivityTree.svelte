@@ -1,17 +1,17 @@
 <script lang="ts" module>
   export type ActivityTreeOnCreate = (data: ActivityCreateFormData) => Promise<void>;
   export type ActivityTreeOnUpdate = (data: Activity) => Promise<void>;
+  export type ActivityNodeValue = LTreeNode<Activity>;
 </script>
 
 <script lang="ts">
   import './ActivityTree.scss';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import { Tree } from '@keenmate/svelte-treeview';
+  import { Tree, type LTreeNode } from '@keenmate/svelte-treeview';
   import type { Activity, ActivityCreateFormData } from '../../types';
-  import type { ActivityNodeValue } from './ActivityNodes/ActivityNode/ActivityNode.svelte';
-  import ActivityHeadNode from './ActivityNodes/ActivityHeadNode/ActivityHeadNode.svelte';
-  import ActivityNode from './ActivityNodes/ActivityNode/ActivityNode.svelte';
-  import CreateHeadNode from './ActivityNodes/CreateHeadNode/CreateHeadNode.svelte';
+  import ActivityNode from './ActivityNode/ActivityNode.svelte';
+  import Head from './Head.svelte';
+  import MainCreate from './MainCreate.svelte';
 
   type Props = {
     class?: string;
@@ -20,7 +20,7 @@
     oncreate?: ActivityTreeOnCreate;
     onupdate?: ActivityTreeOnUpdate;
     maxLevels?: number;
-    readonly?: boolean;
+    editMode?: boolean;
   };
 
   const {
@@ -30,7 +30,7 @@
     oncreate,
     onupdate,
     maxLevels = 5,
-    readonly = false,
+    editMode = false,
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));
@@ -49,14 +49,14 @@
   >
     {#snippet nodeTemplate(node: ActivityNodeValue | undefined)}
       {#if node?.level === 1}
-        <ActivityHeadNode value={node} {planType} {oncreate} {onupdate} {readonly} />
+        <Head value={node} {planType} {oncreate} {onupdate} {editMode} />
       {:else if node}
-        <ActivityNode value={node} {planType} {maxLevels} {oncreate} {onupdate} {readonly} />
+        <ActivityNode value={node} {maxLevels} {oncreate} {onupdate} {editMode} />
       {/if}
     {/snippet}
   </Tree>
 
-  <CreateHeadNode {oncreate} {planType} {readonly} />
+  <MainCreate {oncreate} {planType} {editMode} />
 </div>
 
 <style lang="scss">

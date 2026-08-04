@@ -1,7 +1,8 @@
 <script lang="ts">
+  import './ActivityTree.scss';
   import { PlanType } from '$lib/features/plan/types/plan-type';
-  import type { ActivityTreeOnCreate } from '../../ActivityTree.svelte';
-  import Sequence from './Sequence/Sequence.svelte';
+  import type { ActivityTreeOnCreate } from './ActivityTree.svelte';
+  import CreateHeadNode from './PlanTypes/Sequence/CreateHeadNode/CreateHeadNode.svelte';
 
   type Props = {
     planType: PlanType;
@@ -9,12 +10,12 @@
     editMode: boolean;
   };
 
-  let { planType, oncreate, editMode }: Props = $props();
+  const { planType, oncreate, editMode }: Props = $props();
 </script>
 
 {#if editMode}
   {#if planType === PlanType.SEQUENCE}
-    <Sequence {oncreate} />
+    <CreateHeadNode {oncreate} />
   {:else}
     yo
   {/if}

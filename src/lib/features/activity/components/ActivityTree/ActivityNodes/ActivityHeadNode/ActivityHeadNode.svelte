@@ -9,10 +9,10 @@
     planType: PlanType;
     oncreate?: ActivityTreeOnCreate;
     onupdate?: ActivityTreeOnUpdate;
-    readonly: boolean;
+    editMode: boolean;
   };
 
-  let { value, planType, oncreate, onupdate, readonly }: Props = $props();
+  let { value, planType, oncreate, onupdate, editMode }: Props = $props();
 
   const classes = $derived(
     [
@@ -25,7 +25,7 @@
 
 <div class={classes.join(' ')}>
   {#if planType === PlanType.SEQUENCE}
-    <Sequence {value} {oncreate} {onupdate} {readonly} />
+    <Sequence {value} {oncreate} {onupdate} {editMode} />
   {:else}
     yo
   {/if}

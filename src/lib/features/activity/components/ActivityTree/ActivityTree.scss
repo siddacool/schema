@@ -7,6 +7,12 @@
     align-items: center;
   }
 
+  .ltree-node-content {
+    &.isSelected {
+      background-color: var(--dodo-color-primary-50);
+    }
+  }
+
   .ltree-toggle-icon {
     display: inline-flex;
     align-items: flex-start;

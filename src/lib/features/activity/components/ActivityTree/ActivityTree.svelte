@@ -51,7 +51,7 @@
     idMember="_id"
     pathMember="path"
     displayValueMember="description"
-    expandLevel={5}
+    expandLevel={maxLevels}
     bodyClass="ActivityTreeMain"
     shouldToggleOnNodeClick={false}
     {sortCallback}
@@ -67,6 +67,3 @@
 
   <MainCreate {oncreate} {planType} {editMode} />
 </div>
-
-<style lang="scss">
-</style>

@@ -1,11 +1,6 @@
 <script lang="ts">
   import CreateActivity from '../../ActivityControls/CreateActivity/CreateActivity.svelte';
-  import DeleteActivity from '../../ActivityControls/DeleteActivity.svelte';
-  import type {
-    ActivityTreeOnCreate,
-    ActivityNodeValue,
-    ActivityTreeOnDelete,
-  } from '../../ActivityTree.svelte';
+  import type { ActivityTreeOnCreate, ActivityNodeValue } from '../../ActivityTree.svelte';
   import UpdateActivity from './UpdateActivity.svelte';
 
   type Props = {
@@ -13,10 +8,9 @@
     oncreate?: ActivityTreeOnCreate;
     displayEditor: () => void;
     allowCreate: boolean;
-    ondelete?: ActivityTreeOnDelete;
   };
 
-  let { oncreate, value, displayEditor, allowCreate, ondelete }: Props = $props();
+  let { oncreate, value, displayEditor, allowCreate }: Props = $props();
 </script>
 
 <div class="Controls">
@@ -25,17 +19,15 @@
   {#if allowCreate}
     <CreateActivity {oncreate} path={value.path} />
   {/if}
-
-  <DeleteActivity {ondelete} {value} />
 </div>
 
 <style lang="scss">
   .Controls {
-    margin-left: var(--dodo-ui-space);
     display: flex;
+    margin: 0 -6px;
 
     :global(.dodo-ui-Button) {
-      margin: 0 4px;
+      margin: 0 6px;
     }
   }
 </style>

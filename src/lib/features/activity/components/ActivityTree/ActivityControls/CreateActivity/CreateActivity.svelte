@@ -27,10 +27,8 @@
     title="Create activity"
     compact
     color="primary"
-    size="small"
+    size="normal"
     onclick={handleClick}
-    variant="text"
-    background="none"
   >
     <Icon icon="material-symbols:add-rounded" />
   </Button>
@@ -40,8 +38,8 @@
 
 <style lang="scss">
   .CreateActivity {
-    :global(.dodo-ui-Button.size--small.CreateActivityButton) {
-      font-size: 1.4rem;
+    :global(.dodo-ui-Button.size--normal.CreateActivityButton) {
+      font-size: 1.5rem;
     }
   }
 </style>

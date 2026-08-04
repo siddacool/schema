@@ -1,14 +1,18 @@
 <script lang="ts">
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
+  import type { ActivityNodeValue, ActivityTreeOnDelete } from '../ActivityTree.svelte';
+  import DeleteActivity from '../ActivityControls/DeleteActivity.svelte';
 
   type Props = {
     onsubmit: (e: MouseEvent) => void;
     onclear: (e: MouseEvent) => void;
+    ondelete?: ActivityTreeOnDelete;
     disabled: boolean;
+    value: ActivityNodeValue;
   };
 
-  const { disabled, onsubmit, onclear }: Props = $props();
+  const { disabled, onsubmit, onclear, ondelete, value }: Props = $props();
 </script>
 
 <div class="Controls">
@@ -39,12 +43,18 @@
   >
     <Icon icon="material-symbols:close-rounded" />
   </Button>
+
+  <DeleteActivity {ondelete} {value} />
 </div>
 
 <style lang="scss">
   .Controls {
     margin: 0 -6px;
     display: flex;
+
+    :global(.DeleteActivity) {
+      margin-left: auto;
+    }
 
     :global(.dodo-ui-Button) {
       margin: 0 6px;

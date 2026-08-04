@@ -52,9 +52,8 @@
     title="Delete activity"
     compact
     color="danger"
-    size="small"
+    size="normal"
     onclick={deleteConfirmation}
-    background="none"
     variant="text"
     disabled={loading}
   >
@@ -64,7 +63,7 @@
 
 <style lang="scss">
   .DeleteActivity {
-    :global(.dodo-ui-Button.size--small.DeleteActivityButton) {
+    :global(.dodo-ui-Button.size--normal.DeleteActivityButton) {
       font-size: 1.3rem;
     }
   }

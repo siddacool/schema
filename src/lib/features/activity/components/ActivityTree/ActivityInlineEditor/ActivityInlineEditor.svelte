@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Column, Grid } from '@flightlesslabs/dodo-ui';
+  import ActivityDescription from '../ActivityControls/ActivityDescription/ActivityDescription.svelte';
   import ActivityEdit from '../ActivityEdit/ActivityEdit.svelte';
   import type {
     ActivityTreeOnCreate,
@@ -20,6 +22,7 @@
   const { value, onupdate, oncreate, editMode, allowCreate = true, ondelete }: Props = $props();
 
   let showEditor = $state(false);
+  let showControls = $state(false);
 
   function hideEditor() {
     showEditor = false;
@@ -30,14 +33,20 @@
   }
 </script>
 
-{#if showEditor && value.data}
-  <ActivityEdit data={value.data} onsubmit={onupdate} onclose={hideEditor} />
+{#if showEditor}
+  <ActivityEdit {value} onsubmit={onupdate} onclose={hideEditor} {ondelete} />
 {:else}
-  <p>
-    {value.data?.description}
-  </p>
+  <Grid>
+    <Column>
+      <ActivityDescription onclick={() => (showControls = !showControls)}>
+        {value.data?.description}
+      </ActivityDescription>
+    </Column>
 
-  {#if editMode}
-    <Controls {oncreate} {value} {displayEditor} {allowCreate} {ondelete} />
-  {/if}
+    {#if editMode && showControls}
+      <Column>
+        <Controls {oncreate} {value} {displayEditor} {allowCreate} />
+      </Column>
+    {/if}
+  </Grid>
 {/if}

@@ -1,27 +1,33 @@
 <script lang="ts">
   import { Column, Grid, TextArea } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
+  import type {
+    ActivityNodeValue,
+    ActivityTreeOnDelete,
+    ActivityTreeOnUpdate,
+  } from '../ActivityTree.svelte';
   import type { Activity } from '$lib/features/activity/types';
-  import type { ActivityTreeOnUpdate } from '../ActivityTree.svelte';
 
   type Props = {
     class?: string;
-    data: Activity;
+    value: ActivityNodeValue;
     onsubmit?: ActivityTreeOnUpdate;
+    ondelete?: ActivityTreeOnDelete;
     onclose: () => void;
   };
 
-  const { class: className = '', data, onsubmit, onclose }: Props = $props();
+  const { class: className = '', value, onsubmit, onclose, ondelete }: Props = $props();
 
   const classes = $derived(['ActivityEdit', className].filter(Boolean));
 
-  let description = $derived(data.description);
+  const data = $derived((value?.data || {}) as Activity);
+  let description = $derived(data?.description);
   const isDataValid = $derived(description ? true : false);
   let loading = $state(false);
 
   function onclear(e: MouseEvent) {
     e.stopPropagation();
-    description = data.description;
+    description = data?.description;
     onclose();
   }
 
@@ -57,7 +63,7 @@
       />
     </Column>
     <Column>
-      <Controls {onclear} onsubmit={submit} disabled={!isDataValid || loading} />
+      <Controls {onclear} onsubmit={submit} disabled={!isDataValid || loading} {ondelete} {value} />
     </Column>
   </Grid>
 </div>

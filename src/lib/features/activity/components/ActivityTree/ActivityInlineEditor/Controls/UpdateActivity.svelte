@@ -23,9 +23,8 @@
     title="Edit activity"
     compact
     color="neutral"
-    size="small"
+    size="normal"
     onclick={handleClick}
-    background="none"
     variant="text"
   >
     <Icon icon="material-symbols:edit-outline" />
@@ -34,7 +33,7 @@
 
 <style lang="scss">
   .UpdateActivity {
-    :global(.dodo-ui-Button.size--small.UpdateActivityButton) {
+    :global(.dodo-ui-Button.size--normal.UpdateActivityButton) {
       font-size: 1.3rem;
     }
   }

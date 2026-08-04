@@ -36,7 +36,7 @@
       margin-bottom: calc(var(--dodo-ui-space) / 1.5);
     }
 
-    :global(p) {
+    :global(.ActivityDescription) {
       font-size: 1.2rem;
       font-weight: 400;
       margin: 0;

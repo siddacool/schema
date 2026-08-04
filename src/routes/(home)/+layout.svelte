@@ -16,6 +16,7 @@
 <style lang="scss">
   .container {
     padding: calc(var(--dodo-ui-space) * 3) 0;
+    height: calc(100vh - 60px);
     overflow-y: auto;
     overflow-x: hidden;
   }

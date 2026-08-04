@@ -48,21 +48,12 @@
 </script>
 
 {#if plan && !loading}
-  <div class="planIdPage">
-    <ActivityTree
-      planType={plan.type}
-      data={activityList}
-      {oncreate}
-      {onupdate}
-      editMode
-      {ondelete}
-    />
-  </div>
+  <ActivityTree
+    planType={plan.type}
+    data={activityList}
+    {oncreate}
+    {onupdate}
+    editMode
+    {ondelete}
+  />
 {/if}
-
-<style lang="scss">
-  .planIdPage {
-    height: calc(100vh - 100px);
-    overflow-y: auto;
-  }
-</style>

@@ -8,6 +8,7 @@ export interface Activity {
 
   // Tree View params
   path: string;
+  sortOrder?: number;
 }
 
 export type ActivityCreateData = Omit<Activity, 'id' | 'createdAt' | 'updatedAt'>;

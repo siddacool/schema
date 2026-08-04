@@ -55,6 +55,20 @@ export async function updateActivity(data: Activity) {
   return data._id;
 }
 
+export async function updateActivityBulk(data: Activity[]) {
+  const now = Date.now();
+
+  const formatedData = data.map((activity) => ({
+    key: activity.id,
+    changes: {
+      ...activity,
+      updatedAt: now,
+    },
+  }));
+
+  return db.activity.bulkUpdate(formatedData);
+}
+
 export async function deleteActivity(id: string) {
   const activity = await getActivityById(id);
 

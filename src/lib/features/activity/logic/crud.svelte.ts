@@ -1,6 +1,7 @@
 import {
   createActivity,
   deleteActivity as deleteActivityDb,
+  updateActivityBulk as updateActivityBulkDb,
   deleteBulkActivity,
   getActivityById,
   listActivity,
@@ -96,4 +97,14 @@ export async function updateActivityFields(id: string, data: Partial<Activity>) 
     ...activity,
     ...data,
   });
+}
+
+export async function updateActivityBulk(data: Activity[]) {
+  if (!data.length) {
+    return;
+  }
+
+  const ids = await updateActivityBulkDb(data);
+
+  return ids;
 }

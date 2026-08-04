@@ -7,7 +7,7 @@
     ActivityTreeOnSelect,
     ActivityTreeOnUpdate,
   } from '../ActivityTree.svelte';
-  import ActivityInlineEditor from '../ActivityInlineEditor/ActivityInlineEditor.svelte';
+  import ActivityBaseNode from '../ActivityBaseNode/ActivityBaseNode.svelte';
 
   type Props = {
     value: ActivityNodeValue;
@@ -34,22 +34,20 @@
     onInlineEditorShow,
     showInlineEditor,
   }: Props = $props();
-
-  const allowCreate = $derived(value.level && value.level <= maxLevels ? true : false);
 </script>
 
 <div class="ActivityNode">
-  <ActivityInlineEditor
+  <ActivityBaseNode
     {editMode}
-    {allowCreate}
     {value}
     {oncreate}
-    {onupdate}
     {ondelete}
+    {onupdate}
     {selectedNode}
     {onselect}
     {onInlineEditorShow}
     {showInlineEditor}
+    {maxLevels}
   />
 </div>
 

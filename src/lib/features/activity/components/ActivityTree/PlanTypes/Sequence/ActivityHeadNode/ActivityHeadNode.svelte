@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ActivityInlineEditor from '../../../ActivityInlineEditor/ActivityInlineEditor.svelte';
+  import ActivityBaseNode from '../../../ActivityBaseNode/ActivityBaseNode.svelte';
   import type {
     ActivityNodeValue,
     ActivityTreeOnCreate,
@@ -36,7 +36,7 @@
 </script>
 
 <ActivityHeadNodeBase class="ActivityHeadNodeSequence" {value}>
-  <ActivityInlineEditor
+  <ActivityBaseNode
     {editMode}
     {value}
     {oncreate}
@@ -46,5 +46,6 @@
     {onselect}
     {onInlineEditorShow}
     {showInlineEditor}
+    maxLevels={5}
   />
 </ActivityHeadNodeBase>

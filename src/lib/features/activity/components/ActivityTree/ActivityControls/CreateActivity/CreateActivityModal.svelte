@@ -2,15 +2,16 @@
   import { Button, Column, FormField, Grid, TextArea } from '@flightlesslabs/dodo-ui';
   import { Modal } from '@flightlesslabs/dodo-ui-bits';
   import { nanoid } from 'nanoid';
-  import type { ActivityTreeOnCreate } from '../../ActivityTree.svelte';
+  import type { ActivityTreeOnCreate, ActivityTreeOnSelect } from '../../ActivityTree.svelte';
 
   type Props = {
     oncreate?: ActivityTreeOnCreate;
     open: boolean;
     path: string | undefined;
+    onselect: ActivityTreeOnSelect;
   };
 
-  let { oncreate, open = $bindable(), path }: Props = $props();
+  let { oncreate, open = $bindable(), path, onselect }: Props = $props();
 
   let description = $state('');
   const isDataValid = $derived(description ? true : false);
@@ -19,6 +20,7 @@
   function onclear() {
     open = false;
     description = '';
+    onselect(undefined);
   }
 
   async function submit() {
@@ -38,6 +40,7 @@
     loading = false;
     open = false;
     description = '';
+    onselect(undefined);
   }
 </script>
 

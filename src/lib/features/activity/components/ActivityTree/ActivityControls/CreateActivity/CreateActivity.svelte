@@ -2,14 +2,15 @@
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import CreateActivityModal from './CreateActivityModal.svelte';
-  import type { ActivityTreeOnCreate } from '../../ActivityTree.svelte';
+  import type { ActivityTreeOnCreate, ActivityTreeOnSelect } from '../../ActivityTree.svelte';
 
   type Props = {
     path: string | undefined;
     oncreate?: ActivityTreeOnCreate;
+    onselect: ActivityTreeOnSelect;
   };
 
-  let { oncreate, path }: Props = $props();
+  let { oncreate, path, onselect }: Props = $props();
   let open = $state(false);
 
   function handleClick(e: MouseEvent) {
@@ -34,7 +35,7 @@
   </Button>
 </div>
 
-<CreateActivityModal bind:open {path} {oncreate} />
+<CreateActivityModal bind:open {path} {oncreate} {onselect} />
 
 <style lang="scss">
   .CreateActivity {

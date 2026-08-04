@@ -62,7 +62,7 @@
 
     {#if editMode && showControls}
       <Column>
-        <Controls {oncreate} {value} {displayEditor} {allowCreate} />
+        <Controls {oncreate} {value} {displayEditor} {allowCreate} {onselect} />
       </Column>
     {/if}
   </Grid>

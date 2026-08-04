@@ -1,6 +1,10 @@
 <script lang="ts">
   import CreateActivity from '../../ActivityControls/CreateActivity/CreateActivity.svelte';
-  import type { ActivityTreeOnCreate, ActivityNodeValue } from '../../ActivityTree.svelte';
+  import type {
+    ActivityTreeOnCreate,
+    ActivityNodeValue,
+    ActivityTreeOnSelect,
+  } from '../../ActivityTree.svelte';
   import UpdateActivity from './UpdateActivity.svelte';
 
   type Props = {
@@ -8,16 +12,17 @@
     oncreate?: ActivityTreeOnCreate;
     displayEditor: () => void;
     allowCreate: boolean;
+    onselect: ActivityTreeOnSelect;
   };
 
-  let { oncreate, value, displayEditor, allowCreate }: Props = $props();
+  let { oncreate, value, displayEditor, allowCreate, onselect }: Props = $props();
 </script>
 
 <div class="Controls">
   <UpdateActivity onclick={displayEditor} />
 
   {#if allowCreate}
-    <CreateActivity {oncreate} path={value.path} />
+    <CreateActivity {oncreate} path={value.path} {onselect} />
   {/if}
 </div>
 

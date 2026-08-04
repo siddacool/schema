@@ -1,0 +1,1 @@
+import{K as e,ft as t,pt as n}from"../chunks/CCp5_TYL.js";import{c as r,t as i}from"../chunks/CLUEk-sy.js";import"../chunks/xihTtKlq.js";import"../chunks/DOsIHoM0.js";function a(a,o){n(o,!0),e(()=>{i(r(`/plans`),{replaceState:!0})}),t()}export{a as component};

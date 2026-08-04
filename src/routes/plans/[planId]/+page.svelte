@@ -1,11 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
-  import {
-    deleteActivityNodes,
-    saveActivity,
-    updateActivityBulk,
-  } from '$lib/features/activity/logic/crud.svelte';
+  import { deleteActivityNodes, saveActivity } from '$lib/features/activity/logic/crud.svelte';
   import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import type {
     Activity,
@@ -46,10 +42,6 @@
     await deleteActivityNodes(planId, data);
   }
 
-  function ondragndrop(data: Activity[]) {
-    updateActivityBulk(data);
-  }
-
   $effect(() => {
     load();
   });
@@ -63,6 +55,5 @@
     {onupdate}
     editMode
     {ondelete}
-    {ondragndrop}
   />
 {/if}

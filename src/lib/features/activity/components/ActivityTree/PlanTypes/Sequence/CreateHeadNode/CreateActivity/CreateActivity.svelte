@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from '@flightlesslabs/dodo-ui';
   import type { ActivityTreeOnCreate } from '../../../../ActivityTree.svelte';
-  import CreateActivityModal from '../../../../ActivityInlineEditor/Controls/CreateActivity/CreateActivityModal.svelte';
+  import CreateActivityModal from '../../../../ActivityControls/CreateActivity/CreateActivityModal.svelte';
 
   type Props = {
     path: string | undefined;

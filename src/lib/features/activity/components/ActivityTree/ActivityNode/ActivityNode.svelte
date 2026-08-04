@@ -6,7 +6,6 @@
     ActivityTreeOnUpdate,
   } from '../ActivityTree.svelte';
   import ActivityInlineEditor from '../ActivityInlineEditor/ActivityInlineEditor.svelte';
-  import type { Activity } from '$lib/features/activity/types';
 
   type Props = {
     value: ActivityNodeValue;
@@ -15,15 +14,15 @@
     onupdate?: ActivityTreeOnUpdate;
     ondelete?: ActivityTreeOnDelete;
     editMode: boolean;
-    data: Activity[];
   };
 
-  let { value, maxLevels, oncreate, onupdate, ondelete, editMode, data }: Props = $props();
+  let { value, maxLevels, oncreate, onupdate, ondelete, editMode }: Props = $props();
+
   const allowCreate = $derived(value.level && value.level <= maxLevels ? true : false);
 </script>
 
 <div class="ActivityNode">
-  <ActivityInlineEditor {editMode} {allowCreate} {value} {oncreate} {onupdate} {ondelete} {data} />
+  <ActivityInlineEditor {editMode} {allowCreate} {value} {oncreate} {onupdate} {ondelete} />
 </div>
 
 <style lang="scss">

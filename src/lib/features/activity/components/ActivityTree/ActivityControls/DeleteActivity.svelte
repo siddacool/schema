@@ -2,29 +2,23 @@
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
-  import type { ActivityNodeValue, ActivityTreeOnDelete } from '../../ActivityTree.svelte';
-  import type { Activity } from '$lib/features/activity/types';
+  import type { ActivityNodeValue, ActivityTreeOnDelete } from '../ActivityTree.svelte';
 
   type Props = {
     ondelete?: ActivityTreeOnDelete;
     value: ActivityNodeValue;
-    data: Activity[];
   };
 
-  let { ondelete, value, data }: Props = $props();
+  let { ondelete, value }: Props = $props();
 
   let loading = $state(false);
 
   async function handleDelete() {
     try {
       loading = true;
-      const ids = data
-        .filter((item) => item.path.includes(value.id as string))
-        .filter((n) => n)
-        .map((item) => item._id);
 
       if (ondelete) {
-        ondelete(ids);
+        ondelete(value.id as string);
       }
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);

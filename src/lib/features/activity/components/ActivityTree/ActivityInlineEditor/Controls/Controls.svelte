@@ -1,12 +1,11 @@
 <script lang="ts">
-  import type { Activity } from '$lib/features/activity/types';
+  import CreateActivity from '../../ActivityControls/CreateActivity/CreateActivity.svelte';
+  import DeleteActivity from '../../ActivityControls/DeleteActivity.svelte';
   import type {
     ActivityTreeOnCreate,
     ActivityNodeValue,
     ActivityTreeOnDelete,
   } from '../../ActivityTree.svelte';
-  import CreateActivity from './CreateActivity/CreateActivity.svelte';
-  import DeleteActivity from './DeleteActivity.svelte';
   import UpdateActivity from './UpdateActivity.svelte';
 
   type Props = {
@@ -15,10 +14,9 @@
     displayEditor: () => void;
     allowCreate: boolean;
     ondelete?: ActivityTreeOnDelete;
-    data: Activity[];
   };
 
-  let { oncreate, value, displayEditor, allowCreate, ondelete, data }: Props = $props();
+  let { oncreate, value, displayEditor, allowCreate, ondelete }: Props = $props();
 </script>
 
 <div class="Controls">
@@ -28,7 +26,7 @@
     <CreateActivity {oncreate} path={value.path} />
   {/if}
 
-  <DeleteActivity {ondelete} {value} {data} />
+  <DeleteActivity {ondelete} {value} />
 </div>
 
 <style lang="scss">

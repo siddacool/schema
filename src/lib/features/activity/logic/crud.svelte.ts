@@ -54,17 +54,18 @@ export async function deleteActivity(id: string) {
   return id;
 }
 
-export async function deleteActivityNodes(planId: string, ids: string[]) {
+export async function deleteActivityNodes(planId: string, id: string) {
   const allActivitys = await listActivity(planId);
-  const idsForDeletion = allActivitys
-    .filter((item) => ids.includes(item._id))
+  const ids = allActivitys
+    .filter((item) => item.path.includes(id))
+    .filter((n) => n)
     .map((item) => item.id);
 
-  if (!idsForDeletion.length) {
+  if (!ids.length) {
     throw 'No ids found';
   }
 
-  await deleteBulkActivity(idsForDeletion as number[]);
+  await deleteBulkActivity(ids as number[]);
 
   await activityListStore.load(planId);
 

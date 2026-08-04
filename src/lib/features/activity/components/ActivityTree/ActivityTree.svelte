@@ -1,7 +1,7 @@
 <script lang="ts" module>
   export type ActivityTreeOnCreate = (data: ActivityCreateFormData) => Promise<void>;
   export type ActivityTreeOnUpdate = (data: Activity) => Promise<void>;
-  export type ActivityTreeOnDelete = (data: string[]) => Promise<void>;
+  export type ActivityTreeOnDelete = (data: string) => Promise<void>;
   export type ActivityNodeValue = LTreeNode<Activity>;
   export type ActivityTreeRefvalue = Tree<Activity>;
 </script>
@@ -58,9 +58,9 @@
   >
     {#snippet nodeTemplate(node: ActivityNodeValue | undefined)}
       {#if node?.level === 1}
-        <Head value={node} {planType} {oncreate} {onupdate} {ondelete} {editMode} {data} />
+        <Head value={node} {planType} {oncreate} {onupdate} {ondelete} {editMode} />
       {:else if node}
-        <ActivityNode value={node} {maxLevels} {oncreate} {ondelete} {onupdate} {editMode} {data} />
+        <ActivityNode value={node} {maxLevels} {oncreate} {ondelete} {onupdate} {editMode} />
       {/if}
     {/snippet}
   </Tree>

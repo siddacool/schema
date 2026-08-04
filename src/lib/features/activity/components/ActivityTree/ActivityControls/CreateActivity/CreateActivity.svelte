@@ -2,7 +2,7 @@
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import CreateActivityModal from './CreateActivityModal.svelte';
-  import type { ActivityTreeOnCreate } from '../../../ActivityTree.svelte';
+  import type { ActivityTreeOnCreate } from '../../ActivityTree.svelte';
 
   type Props = {
     path: string | undefined;

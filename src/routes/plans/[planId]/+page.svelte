@@ -34,7 +34,7 @@
     await saveActivity(data);
   }
 
-  async function ondelete(data: string[]) {
+  async function ondelete(data: string) {
     if (!planId) {
       return;
     }

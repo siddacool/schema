@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Button, Column, FormField, Grid, TextArea } from '@flightlesslabs/dodo-ui';
-  import type { ActivityTreeOnCreate } from '../../../ActivityTree.svelte';
   import { Modal } from '@flightlesslabs/dodo-ui-bits';
   import { nanoid } from 'nanoid';
+  import type { ActivityTreeOnCreate } from '../../ActivityTree.svelte';
 
   type Props = {
     oncreate?: ActivityTreeOnCreate;

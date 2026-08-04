@@ -19,7 +19,6 @@
     title="Save"
     compact
     color="safe"
-    size="small"
     onclick={onsubmit}
     variant="text"
     {disabled}
@@ -34,7 +33,6 @@
     title="Clear"
     compact
     color="neutral"
-    size="small"
     onclick={onclear}
     variant="text"
     {disabled}
@@ -45,18 +43,18 @@
 
 <style lang="scss">
   .Controls {
-    margin-left: var(--dodo-ui-space);
+    margin: 0 -6px;
     display: flex;
 
     :global(.dodo-ui-Button) {
-      margin: 0 4px;
+      margin: 0 6px;
     }
 
-    :global(.dodo-ui-Button.size--small.ActivityEditSaveButton) {
+    :global(.dodo-ui-Button.size--normal.ActivityEditSaveButton) {
       font-size: 1.6rem;
     }
 
-    :global(.dodo-ui-Button.size--small.ActivityEditClearButton) {
+    :global(.dodo-ui-Button.size--normal.ActivityEditClearButton) {
       font-size: 1.3rem;
     }
   }

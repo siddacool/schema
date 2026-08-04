@@ -3,7 +3,9 @@ import { nanoid } from 'nanoid/non-secure';
 import type { Activity, ActivityCreateData } from '../types';
 
 export async function listActivity(planId: string) {
-  return db.activity.where({ planId }).toArray();
+  const data = await db.activity.where({ planId }).toArray();
+
+  return data.sort((a, b) => a.createdAt - b.createdAt);
 }
 
 export async function listActivityByParentId(parentId: string) {

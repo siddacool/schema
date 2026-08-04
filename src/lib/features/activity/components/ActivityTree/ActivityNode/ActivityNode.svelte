@@ -15,11 +15,11 @@
   };
 
   let { value, maxLevels, oncreate, onupdate, editMode }: Props = $props();
-  const levelAllowed = $derived(value.level && value.level <= maxLevels ? true : false);
+  const allowCreate = $derived(value.level && value.level <= maxLevels ? true : false);
 </script>
 
 <div class="ActivityNode">
-  <ActivityInlineEditor editMode={editMode && levelAllowed} {value} {oncreate} {onupdate} />
+  <ActivityInlineEditor {editMode} {allowCreate} {value} {oncreate} {onupdate} />
 </div>
 
 <style lang="scss">

@@ -7,14 +7,18 @@
     value: ActivityNodeValue;
     oncreate?: ActivityTreeOnCreate;
     displayEditor: () => void;
+    allowCreate: boolean;
   };
 
-  let { oncreate, value, displayEditor }: Props = $props();
+  let { oncreate, value, displayEditor, allowCreate }: Props = $props();
 </script>
 
 <div class="Controls">
   <UpdateActivity onclick={displayEditor} />
-  <CreateActivity {oncreate} path={value.path} />
+
+  {#if allowCreate}
+    <CreateActivity {oncreate} path={value.path} />
+  {/if}
 </div>
 
 <style lang="scss">

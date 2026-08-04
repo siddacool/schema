@@ -46,7 +46,7 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <Grid>
+  <Grid gap={1}>
     <Column>
       <TextArea
         placeholder="Enter description"

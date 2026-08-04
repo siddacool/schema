@@ -34,6 +34,10 @@
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));
+
+  const sortCallback = (items: ActivityNodeValue[]) => {
+    return items;
+  };
 </script>
 
 <div class={classes.join(' ')}>
@@ -46,6 +50,7 @@
     expandLevel={5}
     bodyClass="ActivityTreeMain"
     shouldToggleOnNodeClick={false}
+    {sortCallback}
   >
     {#snippet nodeTemplate(node: ActivityNodeValue | undefined)}
       {#if node?.level === 1}

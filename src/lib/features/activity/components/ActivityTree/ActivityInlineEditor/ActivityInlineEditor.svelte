@@ -12,9 +12,10 @@
     onupdate?: ActivityTreeOnUpdate;
     oncreate?: ActivityTreeOnCreate;
     editMode: boolean;
+    allowCreate?: boolean;
   };
 
-  const { value, onupdate, oncreate, editMode }: Props = $props();
+  const { value, onupdate, oncreate, editMode, allowCreate = true }: Props = $props();
 
   let showEditor = $state(false);
 
@@ -35,6 +36,6 @@
   </p>
 
   {#if editMode}
-    <Controls {oncreate} {value} {displayEditor} />
+    <Controls {oncreate} {value} {displayEditor} {allowCreate} />
   {/if}
 {/if}

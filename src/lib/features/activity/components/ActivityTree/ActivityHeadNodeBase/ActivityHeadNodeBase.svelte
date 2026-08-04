@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import type { ActivityNodeValue } from '../../ActivityTree.svelte';
+  import type { ActivityNodeValue } from '../ActivityTree.svelte';
 
   type Props = {
     value: ActivityNodeValue;
@@ -32,7 +32,7 @@
     padding-left: calc(var(--dodo-ui-space));
     margin-bottom: calc(var(--dodo-ui-space) * 3);
 
-    &.isExpanded {
+    &.isExpanded.hasChildren {
       margin-bottom: calc(var(--dodo-ui-space) / 1.5);
     }
 

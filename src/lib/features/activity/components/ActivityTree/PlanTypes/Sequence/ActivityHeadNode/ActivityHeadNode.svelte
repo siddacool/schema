@@ -8,7 +8,7 @@
     ActivityTreeOnSelect,
     ActivityTreeOnUpdate,
   } from '../../../ActivityTree.svelte';
-  import ActivityHeadNodeBase from '../../ActivityHeadNodeBase/ActivityHeadNodeBase.svelte';
+  import ActivityHeadNodeBase from '../../../ActivityHeadNodeBase/ActivityHeadNodeBase.svelte';
 
   type Props = {
     value: ActivityNodeValue;

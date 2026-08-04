@@ -1,7 +1,10 @@
 <script lang="ts">
-  import type { ActivityTreeOnCreate, ActivityTreeOnUpdate } from '../ActivityTree.svelte';
+  import type {
+    ActivityNodeValue,
+    ActivityTreeOnCreate,
+    ActivityTreeOnUpdate,
+  } from '../ActivityTree.svelte';
   import ActivityInlineEditor from '../ActivityInlineEditor/ActivityInlineEditor.svelte';
-  import type { ActivityNodeValue } from '../ActivityNodes/ActivityNode/ActivityNode.svelte';
 
   type Props = {
     value: ActivityNodeValue;

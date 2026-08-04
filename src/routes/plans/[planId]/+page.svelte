@@ -41,7 +41,7 @@
 
 {#if plan && !loading}
   <div class="planIdPage">
-    <ActivityTree planType={plan.type} data={activityList} {oncreate} {onupdate} />
+    <ActivityTree planType={plan.type} data={activityList} {oncreate} {onupdate} editMode />
   </div>
 {/if}
 

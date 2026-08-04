@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import type { ActivityNodeValue } from '../../ActivityNodes/ActivityNode/ActivityNode.svelte';
+  import type { ActivityNodeValue } from '../../ActivityTree.svelte';
 
   type Props = {
     value: ActivityNodeValue;

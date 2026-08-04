@@ -1,9 +1,12 @@
 <script lang="ts">
   import './ActivityTree.scss';
   import { PlanType } from '$lib/features/plan/types/plan-type';
-  import type { ActivityTreeOnCreate, ActivityTreeOnUpdate } from './ActivityTree.svelte';
+  import type {
+    ActivityTreeOnCreate,
+    ActivityTreeOnUpdate,
+    ActivityNodeValue,
+  } from './ActivityTree.svelte';
   import ActivityHeadNode from './PlanTypes/Sequence/ActivityHeadNode/ActivityHeadNode.svelte';
-  import type { ActivityNodeValue } from './ActivityNodes/ActivityNode/ActivityNode.svelte';
 
   type Props = {
     planType: PlanType;

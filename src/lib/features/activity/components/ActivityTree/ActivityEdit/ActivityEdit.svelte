@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Column, FormField, Grid, TextArea } from '@flightlesslabs/dodo-ui';
+  import { Column, Grid, TextArea } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
   import type { Activity } from '$lib/features/activity/types';
   import type { ActivityTreeOnUpdate } from '../ActivityTree.svelte';

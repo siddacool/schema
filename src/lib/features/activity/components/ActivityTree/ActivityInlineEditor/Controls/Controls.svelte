@@ -1,20 +1,19 @@
 <script lang="ts">
-  import type { ActivityNodeValue } from '../../ActivityNodes/ActivityNode/ActivityNode.svelte';
-  import type { ActivityTreeOnCreate } from '../../ActivityTree.svelte';
+  import type { ActivityTreeOnCreate, ActivityNodeValue } from '../../ActivityTree.svelte';
   import CreateActivity from './CreateActivity/CreateActivity.svelte';
   import UpdateActivity from './UpdateActivity.svelte';
 
   type Props = {
     value: ActivityNodeValue;
     oncreate?: ActivityTreeOnCreate;
-    showEditor: boolean;
+    displayEditor: () => void;
   };
 
-  let { oncreate, value, showEditor = $bindable() }: Props = $props();
+  let { oncreate, value, displayEditor }: Props = $props();
 </script>
 
 <div class="Controls">
-  <UpdateActivity onclick={() => (showEditor = true)} />
+  <UpdateActivity onclick={displayEditor} />
   <CreateActivity {oncreate} path={value.path} />
 </div>
 

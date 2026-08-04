@@ -4,6 +4,7 @@
     ActivityNodeValue,
     ActivityTreeOnCreate,
     ActivityTreeOnDelete,
+    ActivityTreeOnInlineEditorShow,
     ActivityTreeOnSelect,
     ActivityTreeOnUpdate,
   } from '../../../ActivityTree.svelte';
@@ -17,9 +18,21 @@
     editMode: boolean;
     selectedNode: ActivityNodeValue | undefined;
     onselect: ActivityTreeOnSelect;
+    onInlineEditorShow: ActivityTreeOnInlineEditorShow;
+    showInlineEditor: boolean;
   };
 
-  let { value, oncreate, onupdate, ondelete, editMode, selectedNode, onselect }: Props = $props();
+  let {
+    value,
+    oncreate,
+    onupdate,
+    ondelete,
+    editMode,
+    selectedNode,
+    onselect,
+    onInlineEditorShow,
+    showInlineEditor,
+  }: Props = $props();
 </script>
 
 <ActivityHeadNodeBase class="ActivityHeadNodeSequence" {value}>
@@ -31,5 +44,7 @@
     {onupdate}
     {selectedNode}
     {onselect}
+    {onInlineEditorShow}
+    {showInlineEditor}
   />
 </ActivityHeadNodeBase>

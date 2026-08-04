@@ -8,6 +8,7 @@
     ActivityNodeValue,
     ActivityTreeOnDelete,
     ActivityTreeOnSelect,
+    ActivityTreeOnInlineEditorShow,
   } from '../ActivityTree.svelte';
   import Controls from './Controls/Controls.svelte';
 
@@ -20,6 +21,8 @@
     allowCreate?: boolean;
     selectedNode: ActivityNodeValue | undefined;
     onselect: ActivityTreeOnSelect;
+    onInlineEditorShow: ActivityTreeOnInlineEditorShow;
+    showInlineEditor: boolean;
   };
 
   const {
@@ -31,22 +34,23 @@
     ondelete,
     selectedNode,
     onselect,
+    onInlineEditorShow,
+    showInlineEditor,
   }: Props = $props();
 
-  let showEditor = $state(false);
   let showControls = $derived(selectedNode?.id === value.id);
 
   function hideEditor() {
-    showEditor = false;
+    onInlineEditorShow(value);
     onselect(undefined);
   }
 
   function displayEditor() {
-    showEditor = true;
+    onInlineEditorShow(value);
   }
 </script>
 
-{#if showEditor && showControls}
+{#if showInlineEditor && showControls}
   <ActivityEdit {value} onsubmit={onupdate} onclose={hideEditor} {ondelete} />
 {:else}
   <Grid>

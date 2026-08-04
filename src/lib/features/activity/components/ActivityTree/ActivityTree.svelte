@@ -3,6 +3,7 @@
   export type ActivityTreeOnUpdate = (data: Activity) => Promise<void>;
   export type ActivityTreeOnDelete = (data: string) => Promise<void>;
   export type ActivityTreeOnSelect = (node: ActivityNodeValue | undefined) => void;
+  export type ActivityTreeOnInlineEditorShow = (node: ActivityNodeValue) => void;
   export type ActivityNodeValue = LTreeNode<Activity>;
   export type ActivityTreeRefvalue = Tree<Activity>;
 </script>
@@ -41,12 +42,16 @@
   const classes = $derived(['ActivityTree', className].filter(Boolean));
 
   let selectedNode = $derived<ActivityNodeValue | undefined>(undefined);
+  let inlineEditorOn = $derived<boolean>(false);
+  let showInlineEditor = $derived<boolean>(inlineEditorOn ? true : false);
 
   const sortCallback = (items: ActivityNodeValue[]) => {
     return items;
   };
 
   function onselect(node: ActivityNodeValue | undefined) {
+    inlineEditorOn = false;
+
     if (!node) {
       selectedNode = undefined;
       return;
@@ -64,6 +69,22 @@
 
     if (ondeleteRaw) {
       ondeleteRaw(data);
+    }
+  }
+
+  function onInlineEditorShow(node: ActivityNodeValue) {
+    if (inlineEditorOn) {
+      inlineEditorOn = false;
+      return;
+    }
+
+    if (!selectedNode) {
+      inlineEditorOn = false;
+      return;
+    }
+
+    if (selectedNode.id === node.id) {
+      inlineEditorOn = true;
     }
   }
 </script>
@@ -91,6 +112,8 @@
           {editMode}
           {selectedNode}
           {onselect}
+          {showInlineEditor}
+          {onInlineEditorShow}
         />
       {:else if node}
         <ActivityNode
@@ -102,6 +125,8 @@
           {editMode}
           {selectedNode}
           {onselect}
+          {showInlineEditor}
+          {onInlineEditorShow}
         />
       {/if}
     {/snippet}

@@ -3,6 +3,7 @@
     ActivityNodeValue,
     ActivityTreeOnCreate,
     ActivityTreeOnDelete,
+    ActivityTreeOnInlineEditorShow,
     ActivityTreeOnSelect,
     ActivityTreeOnUpdate,
   } from '../ActivityTree.svelte';
@@ -17,10 +18,22 @@
     editMode: boolean;
     selectedNode: ActivityNodeValue | undefined;
     onselect: ActivityTreeOnSelect;
+    onInlineEditorShow: ActivityTreeOnInlineEditorShow;
+    showInlineEditor: boolean;
   };
 
-  let { value, maxLevels, oncreate, onupdate, ondelete, editMode, selectedNode, onselect }: Props =
-    $props();
+  let {
+    value,
+    maxLevels,
+    oncreate,
+    onupdate,
+    ondelete,
+    editMode,
+    selectedNode,
+    onselect,
+    onInlineEditorShow,
+    showInlineEditor,
+  }: Props = $props();
 
   const allowCreate = $derived(value.level && value.level <= maxLevels ? true : false);
 </script>
@@ -35,6 +48,8 @@
     {ondelete}
     {selectedNode}
     {onselect}
+    {onInlineEditorShow}
+    {showInlineEditor}
   />
 </div>
 

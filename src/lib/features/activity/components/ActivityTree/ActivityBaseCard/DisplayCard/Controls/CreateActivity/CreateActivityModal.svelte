@@ -8,7 +8,7 @@
     oncreate?: ActivityTreeOnCreate;
     open: boolean;
     path: string | undefined;
-    onselect: ActivityTreeOnSelect;
+    onselect?: ActivityTreeOnSelect;
   };
 
   let { oncreate, open = $bindable(), path, onselect }: Props = $props();
@@ -20,7 +20,10 @@
   function onclear() {
     open = false;
     description = '';
-    onselect(undefined);
+
+    if (onselect) {
+      onselect(undefined);
+    }
   }
 
   async function submit() {
@@ -40,7 +43,10 @@
     loading = false;
     open = false;
     description = '';
-    onselect(undefined);
+
+    if (onselect) {
+      onselect(undefined);
+    }
   }
 </script>
 

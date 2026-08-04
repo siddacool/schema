@@ -7,6 +7,7 @@
     ActivityTreeOnUpdate,
     ActivityNodeValue,
     ActivityTreeOnDelete,
+    ActivityTreeOnSelect,
   } from '../ActivityTree.svelte';
   import Controls from './Controls/Controls.svelte';
 
@@ -17,15 +18,27 @@
     ondelete?: ActivityTreeOnDelete;
     editMode: boolean;
     allowCreate?: boolean;
+    selectedNode: ActivityNodeValue | undefined;
+    onselect: ActivityTreeOnSelect;
   };
 
-  const { value, onupdate, oncreate, editMode, allowCreate = true, ondelete }: Props = $props();
+  const {
+    value,
+    onupdate,
+    oncreate,
+    editMode,
+    allowCreate = true,
+    ondelete,
+    selectedNode,
+    onselect,
+  }: Props = $props();
 
   let showEditor = $state(false);
-  let showControls = $state(false);
+  let showControls = $derived(selectedNode?.id === value.id);
 
   function hideEditor() {
     showEditor = false;
+    onselect(undefined);
   }
 
   function displayEditor() {
@@ -33,12 +46,12 @@
   }
 </script>
 
-{#if showEditor}
+{#if showEditor && showControls}
   <ActivityEdit {value} onsubmit={onupdate} onclose={hideEditor} {ondelete} />
 {:else}
   <Grid>
     <Column>
-      <ActivityDescription onclick={() => (showControls = !showControls)}>
+      <ActivityDescription onclick={() => onselect(value)}>
         {value.data?.description}
       </ActivityDescription>
     </Column>

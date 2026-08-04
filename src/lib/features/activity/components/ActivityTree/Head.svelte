@@ -6,6 +6,7 @@
     ActivityTreeOnUpdate,
     ActivityNodeValue,
     ActivityTreeOnDelete,
+    ActivityTreeOnSelect,
   } from './ActivityTree.svelte';
   import ActivityHeadNode from './PlanTypes/Sequence/ActivityHeadNode/ActivityHeadNode.svelte';
 
@@ -16,13 +17,32 @@
     onupdate?: ActivityTreeOnUpdate;
     ondelete?: ActivityTreeOnDelete;
     editMode: boolean;
+    selectedNode: ActivityNodeValue | undefined;
+    onselect: ActivityTreeOnSelect;
   };
 
-  const { planType, value, oncreate, onupdate, ondelete, editMode }: Props = $props();
+  const {
+    planType,
+    value,
+    oncreate,
+    onupdate,
+    ondelete,
+    editMode,
+    selectedNode,
+    onselect,
+  }: Props = $props();
 </script>
 
 {#if planType === PlanType.SEQUENCE}
-  <ActivityHeadNode {value} {oncreate} {onupdate} {ondelete} {editMode} />
+  <ActivityHeadNode
+    {value}
+    {oncreate}
+    {onupdate}
+    {ondelete}
+    {editMode}
+    {selectedNode}
+    {onselect}
+  />
 {:else}
   yo
 {/if}

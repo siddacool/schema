@@ -9,7 +9,7 @@
   type Props = {
     class?: string;
     disabled?: boolean;
-    value: DateValue;
+    value?: DateValue;
     data: Activity[];
   };
 
@@ -34,9 +34,25 @@
 
     return false;
   }
+
+  function stopButtonPropagation(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (target.closest('button')) {
+      event.stopPropagation();
+    }
+
+    if (target.closest('span')) {
+      event.stopPropagation();
+    }
+
+    if (target.closest('div')) {
+      event.stopPropagation();
+    }
+  }
 </script>
 
-<div class={classes.join(' ')}>
+<div class={classes.join(' ')} onclick={stopButtonPropagation}>
   <DatePicker bind:value {isDateUnavailable} preventDeselect {disabled} {dateFormat} />
 </div>
 

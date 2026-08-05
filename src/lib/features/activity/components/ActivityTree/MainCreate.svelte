@@ -7,7 +7,6 @@
   import CreateHeadNodeCalendar from './PlanTypes/Calendar/CreateHeadNode/CreateHeadNode.svelte';
   import type { WeekDays } from '../../types/week';
   import type { Activity } from '../../types';
-  import type { SortOrder } from '$lib/share/types/sort-order';
 
   type Props = {
     planType: PlanType;
@@ -15,10 +14,9 @@
     editMode: boolean;
     startOfWeek: WeekDays;
     data: Activity[];
-    dateSortOrder: SortOrder;
   };
 
-  const { planType, oncreate, editMode, startOfWeek, data, dateSortOrder }: Props = $props();
+  const { planType, oncreate, editMode, startOfWeek, data }: Props = $props();
 </script>
 
 {#if editMode}
@@ -27,6 +25,6 @@
   {:else if planType === PlanType.WEEK}
     <CreateHeadNodeWeek {oncreate} {startOfWeek} {data} />
   {:else if planType === PlanType.CALENDAR}
-    <CreateHeadNodeCalendar {oncreate} {dateSortOrder} {data} />
+    <CreateHeadNodeCalendar {oncreate} {data} />
   {/if}
 {/if}

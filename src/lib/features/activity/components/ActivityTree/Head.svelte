@@ -11,6 +11,8 @@
   } from './ActivityTree.svelte';
   import ActivityHeadNodeSequence from './PlanTypes/Sequence/ActivityHeadNode/ActivityHeadNode.svelte';
   import ActivityHeadNodeWeek from './PlanTypes/Week/ActivityHeadNode/ActivityHeadNode.svelte';
+  import ActivityHeadNodeCalendar from './PlanTypes/Calendar/ActivityHeadNode/ActivityHeadNode.svelte';
+  import type { Activity } from '../../types';
 
   type Props = {
     planType: PlanType;
@@ -23,6 +25,7 @@
     onselect: ActivityTreeOnSelect;
     onInlineEditorShow: ActivityTreeOnInlineEditorShow;
     showInlineEditor: boolean;
+    data: Activity[];
   };
 
   const {
@@ -36,6 +39,7 @@
     onselect,
     onInlineEditorShow,
     showInlineEditor,
+    data,
   }: Props = $props();
 </script>
 
@@ -62,6 +66,17 @@
     {onInlineEditorShow}
     {showInlineEditor}
   />
-{:else}
-  yo
+{:else if planType === PlanType.CALENDAR}
+  <ActivityHeadNodeCalendar
+    {value}
+    {oncreate}
+    {onupdate}
+    {ondelete}
+    {editMode}
+    {selectedNode}
+    {onselect}
+    {onInlineEditorShow}
+    {showInlineEditor}
+    {data}
+  />
 {/if}

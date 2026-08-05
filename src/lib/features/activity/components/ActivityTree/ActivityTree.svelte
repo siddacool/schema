@@ -18,8 +18,6 @@
   import MainCreate from './MainCreate.svelte';
   import { WeekDays } from '../../types/week';
   import { DEFAULT_START_OF_WEEK } from '../../const/week';
-  import type { SortOrder } from '$lib/share/types/sort-order';
-  import { DEFAULT_DATE_SORT_ORDER } from '../../const/calendar';
 
   type Props = {
     class?: string;
@@ -31,7 +29,6 @@
     maxLevels?: number;
     editMode?: boolean;
     startOfWeek?: WeekDays;
-    dateSortOrder?: SortOrder;
   };
 
   const {
@@ -44,7 +41,6 @@
     maxLevels = 5,
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
-    dateSortOrder = DEFAULT_DATE_SORT_ORDER,
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));
@@ -122,6 +118,7 @@
           {onselect}
           {showInlineEditor}
           {onInlineEditorShow}
+          {data}
         />
       {:else if node}
         <ActivityNode
@@ -139,5 +136,5 @@
       {/if}
     {/snippet}
   </Tree>
-  <MainCreate {oncreate} {planType} {editMode} {startOfWeek} {data} {dateSortOrder} />
+  <MainCreate {oncreate} {planType} {editMode} {startOfWeek} {data} />
 </div>

@@ -1,0 +1,1 @@
+import{rt as e,tt as t,z as n}from"./xcOEIeed.js";function r(){let r=e(null);return{get _activeModal(){return n(r)},add(e,n){t(r,{type:e,config:n},!0)},clear(){t(r,null)}}}var i=r();export{i as t};

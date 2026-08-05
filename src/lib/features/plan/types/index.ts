@@ -1,4 +1,5 @@
 import type { WeekDays } from '$lib/features/activity/types/week';
+import type { SortOrder } from '$lib/share/types/sort-order';
 import type { PlanType } from './plan-type';
 
 export interface Plan {
@@ -10,6 +11,7 @@ export interface Plan {
   type: PlanType;
   editMode?: boolean;
   startOfWeek?: WeekDays;
+  dateSortOrder?: SortOrder;
 }
 
 export interface PlanCreateData {

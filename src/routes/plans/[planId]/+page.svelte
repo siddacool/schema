@@ -56,5 +56,6 @@
     {onupdate}
     {editMode}
     {ondelete}
+    startOfWeek={plan.startOfWeek}
   />
 {/if}

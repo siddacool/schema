@@ -5,6 +5,8 @@
 </script>
 
 <script lang="ts">
+  import Icon from '@iconify/svelte';
+
   import type { ListPickerOption } from './ListPicker.svelte';
   import { Card, type CardColor } from '@flightlesslabs/dodo-ui';
 
@@ -29,6 +31,12 @@
 <div class={classes.join(' ')}>
   <Card {color} outline class="ListPickerOptionCard" shadow={0} roundness={2}>
     <div class="label">
+      {#if checked}
+        <span class="checked">
+          <Icon icon="material-symbols:check-circle-outline-rounded" />
+        </span>
+      {/if}
+
       {label}
     </div>
 
@@ -67,6 +75,12 @@
       opacity: 0.8;
       line-height: 1.4;
       letter-spacing: 0.2px;
+    }
+
+    .checked {
+      font-size: 1.8rem;
+      display: inline-flex;
+      margin-right: 6px;
     }
   }
 </style>

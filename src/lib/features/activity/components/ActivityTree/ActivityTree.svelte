@@ -16,6 +16,7 @@
   import ActivityNode from './ActivityNode/ActivityNode.svelte';
   import Head from './Head.svelte';
   import MainCreate from './MainCreate.svelte';
+  import { WeekDays } from '../../types/week';
 
   type Props = {
     class?: string;
@@ -26,6 +27,7 @@
     ondelete?: ActivityTreeOnDelete;
     maxLevels?: number;
     editMode?: boolean;
+    startOfWeek?: WeekDays;
   };
 
   const {
@@ -37,6 +39,7 @@
     ondelete: ondeleteRaw,
     maxLevels = 5,
     editMode = false,
+    startOfWeek = WeekDays.MON,
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));
@@ -131,6 +134,5 @@
       {/if}
     {/snippet}
   </Tree>
-
-  <MainCreate {oncreate} {planType} {editMode} />
+  <MainCreate {oncreate} {planType} {editMode} {startOfWeek} {data} />
 </div>

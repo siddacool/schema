@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Column, FormField, Grid, TextInput } from '@flightlesslabs/dodo-ui';
+  import { Button, Column, Grid, TextInput } from '@flightlesslabs/dodo-ui';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import type { Plan } from '../../types';
   import { goto } from '$app/navigation';
@@ -62,14 +62,14 @@
   <form onsubmit={submit}>
     <Grid gap={2}>
       <Column>
-        <FormField label="Name:" for="name">
-          <TextInput
-            placeholder="Enter plan name"
-            name="name"
-            bind:value={name}
-            disabled={loading}
-          />
-        </FormField>
+        <p class="decoratedTitle">Change plan name</p>
+        <TextInput
+          placeholder="e.g. Gym routine"
+          name="name"
+          bind:value={name}
+          disabled={loading}
+          size="large"
+        />
       </Column>
       <Column>
         <Button type="submit" disabled={!isDataValid || loading} class="event-submitter">
@@ -82,6 +82,13 @@
 
 <style lang="scss">
   .UpdatePlan {
-    margin-top: calc(var(--dodo-ui-space) * 2);
+    margin-top: calc(var(--dodo-ui-space) * 1);
+
+    .decoratedTitle {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: calc(var(--dodo-ui-space) * 2);
+    }
   }
 </style>

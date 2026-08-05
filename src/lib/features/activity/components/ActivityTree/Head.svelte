@@ -9,7 +9,8 @@
     ActivityTreeOnSelect,
     ActivityTreeOnInlineEditorShow,
   } from './ActivityTree.svelte';
-  import ActivityHeadNode from './PlanTypes/Sequence/ActivityHeadNode/ActivityHeadNode.svelte';
+  import ActivityHeadNodeSequence from './PlanTypes/Sequence/ActivityHeadNode/ActivityHeadNode.svelte';
+  import ActivityHeadNodeWeek from './PlanTypes/Week/ActivityHeadNode/ActivityHeadNode.svelte';
 
   type Props = {
     planType: PlanType;
@@ -39,10 +40,21 @@
 </script>
 
 {#if planType === PlanType.SEQUENCE}
-  <ActivityHeadNode
+  <ActivityHeadNodeSequence
     {value}
     {oncreate}
     {onupdate}
+    {ondelete}
+    {editMode}
+    {selectedNode}
+    {onselect}
+    {onInlineEditorShow}
+    {showInlineEditor}
+  />
+{:else if planType === PlanType.WEEK}
+  <ActivityHeadNodeWeek
+    {value}
+    {oncreate}
     {ondelete}
     {editMode}
     {selectedNode}

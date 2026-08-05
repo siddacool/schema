@@ -1,5 +1,4 @@
 <script>
-  import PageHeadingNav from '$lib/components/PageHeadingNav/PageHeadingNav.svelte';
   import UpdatePlan from '$lib/features/plan/components/UpdatePlan/UpdatePlan.svelte';
 </script>
 
@@ -7,5 +6,4 @@
   <title>Edit plan</title>
 </svelte:head>
 
-<PageHeadingNav>Edit plan</PageHeadingNav>
 <UpdatePlan />

@@ -15,4 +15,5 @@ export interface Plan {
 export interface PlanCreateData {
   name: string;
   type: PlanType;
+  startOfWeek?: WeekDays;
 }

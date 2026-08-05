@@ -79,19 +79,25 @@
 
       {#if plan?.type === PlanType.WEEK}
         <Column>
-          <p class="decoratedTitle">Select start of the week</p>
+          <p class="decoratedTitle">Start the week from</p>
           <Select
             options={daysOptions}
             searchable
             disabled={loading}
             name="startOfWeek"
             bind:value={startOfWeek}
+            size="large"
           />
         </Column>
       {/if}
 
       <Column>
-        <Button type="submit" disabled={!isDataValid || loading} class="event-submitter">
+        <Button
+          type="submit"
+          disabled={!isDataValid || loading}
+          class="event-submitter"
+          size="large"
+        >
           Save
         </Button>
       </Column>

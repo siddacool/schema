@@ -7,4 +7,5 @@ export const enum PlanType {
 export type PlanTypeOption = {
   value: PlanType;
   label: string;
+  description?: string;
 };

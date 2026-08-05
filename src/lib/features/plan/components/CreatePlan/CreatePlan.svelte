@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { Button, Column, FormField, Grid, TextInput } from '@flightlesslabs/dodo-ui';
+  import { Button, Column, Grid, TextInput } from '@flightlesslabs/dodo-ui';
   import { Select, toasts } from '@flightlesslabs/dodo-ui-bits';
   import { planTypeOptions } from '../../config';
   import type { PlanCreateData } from '../../types';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { savePlan } from '../../logic/crud.svelte';
+  import ListPicker from '$lib/components/ListPicker/ListPicker.svelte';
 
   let name = $state('');
   let type = $state(planTypeOptions[0].value);
@@ -56,30 +57,28 @@
 
 <div class="CreatePlan">
   <form onsubmit={submit}>
-    <Grid gap={2}>
+    <Grid gap={3}>
       <Column>
-        <FormField label="Name:" for="name">
-          <TextInput
-            placeholder="Enter plan name"
-            name="name"
-            bind:value={name}
-            disabled={loading}
-          />
-        </FormField>
+        <p class="decoratedTitle">Name your plan</p>
+        <TextInput
+          placeholder="e.g. Gym routine"
+          name="name"
+          bind:value={name}
+          disabled={loading}
+          size="large"
+        />
       </Column>
       <Column>
-        <FormField label="Type:" for="type">
-          <Select
-            placeholder="Select plan type"
-            name="type"
-            bind:value={type}
-            options={planTypeOptions}
-            disabled={loading}
-          />
-        </FormField>
+        <p class="decoratedTitle">Pick a plan type</p>
+        <ListPicker options={planTypeOptions} bind:value={type} id="plan-type" disabled={loading} />
       </Column>
       <Column>
-        <Button type="submit" disabled={!isDataValid || loading} class="event-submitter">
+        <Button
+          type="submit"
+          disabled={!isDataValid || loading}
+          class="event-submitter"
+          size="large"
+        >
           Create
         </Button>
       </Column>
@@ -89,6 +88,13 @@
 
 <style lang="scss">
   .CreatePlan {
-    margin-top: calc(var(--dodo-ui-space) * 2);
+    margin-top: calc(var(--dodo-ui-space) * 1);
+
+    .decoratedTitle {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: calc(var(--dodo-ui-space) * 2);
+    }
   }
 </style>

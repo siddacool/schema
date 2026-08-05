@@ -14,6 +14,7 @@
   const planId = page.params.planId || '';
   const plan = $derived(planDetailStore.plan);
   const activityList = $derived(activityListStore.activity);
+  const editMode = $derived(planDetailStore.plan?.editMode === false ? false : true);
 
   async function load() {
     await planDetailStore.load(planId);
@@ -53,7 +54,7 @@
     data={activityList}
     {oncreate}
     {onupdate}
-    editMode
+    {editMode}
     {ondelete}
   />
 {/if}

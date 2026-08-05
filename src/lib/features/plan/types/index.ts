@@ -7,6 +7,7 @@ export interface Plan {
   createdAt: number;
   updatedAt: number;
   type: PlanType;
+  editMode?: boolean;
 }
 
 export interface PlanCreateData {

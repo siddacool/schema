@@ -66,6 +66,7 @@
       justify-content: flex-start;
       align-items: center;
       font-weight: 500;
+      min-height: 24px;
     }
 
     .description {
@@ -78,7 +79,7 @@
     }
 
     .checked {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       display: inline-flex;
       margin-right: 6px;
     }

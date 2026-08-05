@@ -54,6 +54,7 @@
       <Column>
         <Controls {oncreate} {value} {displayEditor} {allowCreate} {onselect} />
       </Column>
+      <Column></Column>
     {/if}
   </Grid>
 </div>

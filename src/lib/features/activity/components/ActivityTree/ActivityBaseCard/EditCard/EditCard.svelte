@@ -61,5 +61,6 @@
     <Column>
       <Controls {onclear} onsubmit={submit} disabled={loading} {ondelete} {value} />
     </Column>
+    <Column></Column>
   </Grid>
 </div>

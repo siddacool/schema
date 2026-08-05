@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button, Column, Grid, TextInput } from '@flightlesslabs/dodo-ui';
-  import { Select, toasts } from '@flightlesslabs/dodo-ui-bits';
+  import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import { planTypeOptions } from '../../config';
   import type { PlanCreateData } from '../../types';
   import { goto } from '$app/navigation';

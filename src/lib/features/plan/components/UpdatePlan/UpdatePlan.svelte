@@ -9,10 +9,12 @@
   import { daysOptions } from '$lib/features/activity/config/week';
   import { PlanType } from '../../types/plan-type';
   import { DEFAULT_START_OF_WEEK } from '$lib/features/activity/const/week';
+  import { dateSortOrderOptions } from '$lib/features/activity/config/calendar';
 
   const plan = $derived(planDetailStore.plan);
   let name = $derived(plan?.name || '');
   let startOfWeek = $derived(plan?.startOfWeek || DEFAULT_START_OF_WEEK);
+  let dateSortOrder = $state(dateSortOrderOptions[0].value);
   const isDataValid = $derived(name ? true : false);
   let loading = $state(false);
 
@@ -39,6 +41,7 @@
         ...plan,
         name,
         startOfWeek,
+        dateSortOrder,
       };
 
       const planId = await savePlan(formData);
@@ -86,6 +89,20 @@
             disabled={loading}
             name="startOfWeek"
             bind:value={startOfWeek}
+            size="large"
+          />
+        </Column>
+      {/if}
+
+      {#if plan?.type === PlanType.CALENDAR}
+        <Column>
+          <p class="decoratedTitle">Date order</p>
+          <Select
+            options={dateSortOrderOptions}
+            searchable
+            disabled={loading}
+            name="dateSortOrder"
+            bind:value={dateSortOrder}
             size="large"
           />
         </Column>

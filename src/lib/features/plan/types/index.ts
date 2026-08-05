@@ -18,4 +18,5 @@ export interface PlanCreateData {
   name: string;
   type: PlanType;
   startOfWeek?: WeekDays;
+  dateSortOrder?: SortOrder;
 }

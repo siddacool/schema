@@ -12,6 +12,7 @@
   import type { Activity } from '$lib/features/activity/types';
   import SelectiveDatePicker from '$lib/features/activity/components/SelectiveDatePicker/SelectiveDatePicker.svelte';
   import { parseDate, type DateValue } from '@internationalized/date';
+  import { createDate } from '$lib/utils/date-time/createDate';
 
   type Props = {
     value: ActivityNodeValue;
@@ -46,6 +47,11 @@
   );
   const isDataValid = $derived(date ? true : false);
   let loading = $state(false);
+  const formattedDate = $derived(
+    value.data?.description
+      ? createDate(value.data?.description).format('dddd - MMM, DD, YYYY')
+      : '',
+  );
 
   async function onupdateMod() {
     loading = true;
@@ -90,7 +96,7 @@
     {#if isEdit}
       <SelectiveDatePicker bind:value={date} {data} />
     {:else}
-      {value.data?.description}
+      {formattedDate}
     {/if}
   </ActivityBaseCard>
 </ActivityHeadNodeBase>

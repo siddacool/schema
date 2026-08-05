@@ -17,6 +17,7 @@
   import Head from './Head.svelte';
   import MainCreate from './MainCreate.svelte';
   import { WeekDays } from '../../types/week';
+  import { DEFAULT_START_OF_WEEK } from '../../const/week';
 
   type Props = {
     class?: string;
@@ -39,7 +40,7 @@
     ondelete: ondeleteRaw,
     maxLevels = 5,
     editMode = false,
-    startOfWeek = WeekDays.MON,
+    startOfWeek = DEFAULT_START_OF_WEEK,
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));

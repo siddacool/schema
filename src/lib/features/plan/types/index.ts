@@ -1,3 +1,4 @@
+import type { WeekDays } from '$lib/features/activity/types/week';
 import type { PlanType } from './plan-type';
 
 export interface Plan {
@@ -8,6 +9,7 @@ export interface Plan {
   updatedAt: number;
   type: PlanType;
   editMode?: boolean;
+  startOfWeek?: WeekDays;
 }
 
 export interface PlanCreateData {

@@ -3,6 +3,7 @@
   import { WeekDays } from '../../types/week';
   import { getDaysOfWeek } from '../../utils/get-days-of-week';
   import DayButton from './DayButton.svelte';
+  import { DEFAULT_START_OF_WEEK } from '../../const/week';
 
   type Props = {
     class?: string;
@@ -16,7 +17,7 @@
     class: className = '',
     onclick,
     excludeList = [],
-    startFrom = WeekDays.MON,
+    startFrom = DEFAULT_START_OF_WEEK,
     disabled,
   }: Props = $props();
 

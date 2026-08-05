@@ -1,10 +1,11 @@
+import { DEFAULT_START_OF_WEEK } from '../../const/week';
 import type { Activity } from '../../types';
 import { WeekDays } from '../../types/week';
 import { getDaysOfWeek } from '../get-days-of-week';
 
 export function sortWeekHeadings(
   headings: Activity[],
-  startFrom: WeekDays = WeekDays.MON,
+  startFrom: WeekDays = DEFAULT_START_OF_WEEK,
 ): Activity[] {
   const headingMap = new Map<WeekDays, Activity>();
 
@@ -17,7 +18,7 @@ export function sortWeekHeadings(
     .filter((heading): heading is Activity => Boolean(heading));
 }
 
-export function groupActivityByWeek(data: Activity[], startFrom: WeekDays = WeekDays.MON) {
+export function groupActivityByWeek(data: Activity[], startFrom: WeekDays = DEFAULT_START_OF_WEEK) {
   const headingsUnsorted: Activity[] = [];
   const activity: Activity[] = [];
 

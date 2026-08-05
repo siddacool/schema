@@ -1,14 +1,18 @@
 <script lang="ts">
   import { Button, Column, Grid, TextInput } from '@flightlesslabs/dodo-ui';
-  import { toasts } from '@flightlesslabs/dodo-ui-bits';
+  import { Select, toasts } from '@flightlesslabs/dodo-ui-bits';
   import type { Plan } from '../../types';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { savePlan } from '../../logic/crud.svelte';
   import { planDetailStore } from '../../store/detail.svelte';
+  import { daysOptions } from '$lib/features/activity/config/week';
+  import { PlanType } from '../../types/plan-type';
+  import { DEFAULT_START_OF_WEEK } from '$lib/features/activity/const/week';
 
   const plan = $derived(planDetailStore.plan);
   let name = $derived(plan?.name || '');
+  let startOfWeek = $derived(plan?.startOfWeek || DEFAULT_START_OF_WEEK);
   const isDataValid = $derived(name ? true : false);
   let loading = $state(false);
 
@@ -34,6 +38,7 @@
       const formData: Plan = {
         ...plan,
         name,
+        startOfWeek,
       };
 
       const planId = await savePlan(formData);
@@ -60,7 +65,7 @@
 
 <div class="UpdatePlan">
   <form onsubmit={submit}>
-    <Grid gap={2}>
+    <Grid gap={3}>
       <Column>
         <p class="decoratedTitle">Change plan name</p>
         <TextInput
@@ -71,6 +76,20 @@
           size="large"
         />
       </Column>
+
+      {#if plan?.type === PlanType.WEEK}
+        <Column>
+          <p class="decoratedTitle">Select start of the week</p>
+          <Select
+            options={daysOptions}
+            searchable
+            disabled={loading}
+            name="startOfWeek"
+            bind:value={startOfWeek}
+          />
+        </Column>
+      {/if}
+
       <Column>
         <Button type="submit" disabled={!isDataValid || loading} class="event-submitter">
           Save

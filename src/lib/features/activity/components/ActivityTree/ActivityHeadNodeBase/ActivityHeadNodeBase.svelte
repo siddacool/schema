@@ -41,6 +41,7 @@
       font-weight: 400;
       margin: 0;
       display: flex;
+      font-variation-settings: 'wdth' 114;
     }
   }
 </style>

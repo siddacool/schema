@@ -27,7 +27,7 @@
     roundness={1}
     title={editMode ? 'Edit mode' : 'Read mode'}
     compact
-    color={editMode ? 'primary' : 'neutral'}
+    color="neutral"
     onclick={toggleEditMode}
   >
     {#if editMode}

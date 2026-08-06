@@ -29,10 +29,6 @@
     planType,
   }: Props = $props();
 
-  $effect(() => {
-    console.log('debug:', 'data', data);
-  });
-
   const classes = $derived(['Toolbar', className].filter(Boolean));
 </script>
 

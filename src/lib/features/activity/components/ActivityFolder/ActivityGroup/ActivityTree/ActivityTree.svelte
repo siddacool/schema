@@ -46,10 +46,6 @@
   };
 
   const data = $derived(group.activity);
-
-  $effect(() => {
-    console.log('debug:', 'data', data);
-  });
 </script>
 
 <div class={classes.join(' ')}>
@@ -61,7 +57,7 @@
     displayValueMember="description"
     expandLevel={maxLevels}
     bodyClass="ActivityFolderActivityTree"
-    shouldToggleOnNodeClick={true}
+    shouldToggleOnNodeClick={false}
     {sortCallback}
   />
 </div>

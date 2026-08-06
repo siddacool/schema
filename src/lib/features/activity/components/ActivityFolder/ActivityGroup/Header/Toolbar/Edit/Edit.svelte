@@ -14,10 +14,6 @@
 
   const { class: className = '', data, onupdate, planType }: Props = $props();
 
-  $effect(() => {
-    console.log('debug:', 'data', data);
-  });
-
   const classes = $derived(['Edit', className].filter(Boolean));
 
   let open = $state(false);

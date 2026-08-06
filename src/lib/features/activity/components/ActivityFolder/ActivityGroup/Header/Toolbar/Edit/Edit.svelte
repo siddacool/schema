@@ -14,7 +14,7 @@
 
   const { class: className = '', data, onupdate, planType }: Props = $props();
 
-  const classes = $derived(['Edit', className].filter(Boolean));
+  const classes = $derived(['Edit', 'ToolbarAdvancedButton', className].filter(Boolean));
 
   let open = $state(false);
 </script>

@@ -63,6 +63,10 @@
     align-items: center;
     padding: calc(var(--dodo-ui-space)) calc(var(--dodo-ui-space) * 0.8);
     width: 100%;
+
+    &:hover {
+      background-color: var(--dodo-color-neutral-100);
+    }
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed']) {
@@ -73,7 +77,7 @@
     border-color: transparent;
   }
 
-  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .ToolbarAdvancedButton) {
     display: none;
   }
 

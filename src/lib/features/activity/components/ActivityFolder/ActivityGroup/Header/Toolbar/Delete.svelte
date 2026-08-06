@@ -7,9 +7,12 @@
   type Props = {
     ondelete?: (data: string) => Promise<void>;
     data: ActivityGroup;
+    class?: string;
   };
 
-  let { ondelete, data }: Props = $props();
+  let { class: className = '', ondelete, data }: Props = $props();
+
+  const classes = $derived(['Delete', 'ToolbarAdvancedButton', className].filter(Boolean));
 
   let loading = $state(false);
 
@@ -44,7 +47,7 @@
   }
 </script>
 
-<div class="Delete">
+<div class={classes.join(' ')}>
   <Button
     aria-label="Delete"
     class="DeleteButton"

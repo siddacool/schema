@@ -6,6 +6,7 @@
     ActivityGroup,
   } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../ActivityTree.svelte';
+  import Toolbar from './Toolbar/Toolbar.svelte';
 
   type Props = {
     class?: string;
@@ -36,6 +37,7 @@
 
 <div class={classes.join(' ')}>
   <p>{node.data?.description}</p>
+  <Toolbar data={group} {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} />
 </div>
 
 <style lang="scss">

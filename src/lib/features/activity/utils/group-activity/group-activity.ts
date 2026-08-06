@@ -46,7 +46,18 @@ export function groupActivity(
     const separatorIndex = item.path.indexOf('.');
     const headingId = separatorIndex === -1 ? item.path : item.path.slice(0, separatorIndex);
 
-    groupMap.get(headingId)?.activity.push(item);
+    const group = groupMap.get(headingId);
+    if (!group) continue;
+
+    group.activity.push(
+      separatorIndex === -1
+        ? item
+        : {
+            ...item,
+            pathOriginal: item.path,
+            path: item.path.slice(separatorIndex + 1),
+          },
+    );
   }
 
   return activityGroups;

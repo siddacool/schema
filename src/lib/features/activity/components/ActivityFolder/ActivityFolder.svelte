@@ -37,10 +37,6 @@
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
   }: Props = $props();
 
-  $effect(() => {
-    console.log('debug:', 'data', data);
-  });
-
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   const data = $derived(groupActivity(dataRaw, planType, { startOfWeek, dateSortOrder }));
   let accordianExpandedValues = $derived(

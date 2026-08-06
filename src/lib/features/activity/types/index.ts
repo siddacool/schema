@@ -9,6 +9,7 @@ export interface Activity {
 
   // Tree View params
   path: string;
+  pathOriginal?: string;
 }
 
 export type ActivityCreateData = Omit<Activity, 'id' | 'createdAt' | 'updatedAt'>;

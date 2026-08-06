@@ -1,0 +1,61 @@
+.ActivityFolderActivityTree {
+  color: var(--dodo-color-neutral-800);
+  --tree-node-indent-per-level: 1.5rem;
+
+  .ltree-node {
+    position: relative;
+
+    &::before {
+      content: '';
+      display: flex;
+      width: 1px;
+      height: 100%;
+      background-color: var(--dodo-color-neutral-300);
+      position: absolute;
+      left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
+    }
+  }
+
+  .ltree-node-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .ltree-toggle-icon {
+    display: inline-flex;
+    align-items: flex-start;
+    align-self: flex-start;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--dodo-color-neutral-700);
+    flex-shrink: 0;
+
+    &.ltree-clickable {
+      &.expanded {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  .ltree-icon {
+    &-expand::before {
+      content: '▶';
+      display: inline-block;
+      font-size: 1.2rem;
+    }
+
+    &-collapse::before {
+      content: '▼';
+      display: inline-block;
+      font-size: 1.2rem;
+    }
+
+    &-leaf {
+      font-size: 2rem;
+      display: inline-block;
+      &::before {
+        content: '•';
+      }
+    }
+  }
+}

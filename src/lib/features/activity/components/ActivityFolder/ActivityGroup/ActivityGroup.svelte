@@ -5,6 +5,7 @@
   import { WeekDays } from '../../../types/week';
   import Header from './Header/Header.svelte';
   import { Card } from '@flightlesslabs/dodo-ui';
+  import ActivityTree from './ActivityTree/ActivityTree.svelte';
 
   type Props = {
     class?: string;
@@ -39,6 +40,17 @@
       <Header {planType} {oncreate} {onupdate} {ondelete} {editMode} {data} />
     </Card>
   {/snippet}
+
+  <ActivityTree
+    {planType}
+    {oncreate}
+    {onupdate}
+    {ondelete}
+    {editMode}
+    group={data}
+    {startOfWeek}
+    {maxLevels}
+  />
 </AccordionItem>
 
 <style>

@@ -5,9 +5,9 @@
   import { createDate } from '$lib/utils/date-time/createDate';
   import { Button } from '@flightlesslabs/dodo-ui';
   import type { ActivityTreeOnCreate } from '../../../ActivityTree.svelte';
-  import { SortOrder } from '$lib/share/types/sort-order';
   import { groupActivityCalendar } from '$lib/features/activity/utils/plan-type-groups/group-activity-by-calendar';
   import SelectiveDatePicker from '$lib/features/activity/components/SelectiveDatePicker/SelectiveDatePicker.svelte';
+  import { SortOrder } from '$lib/features/shared/types/sort-order';
 
   type Props = {
     oncreate?: ActivityTreeOnCreate;

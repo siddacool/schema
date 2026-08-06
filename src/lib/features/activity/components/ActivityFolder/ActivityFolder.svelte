@@ -57,9 +57,10 @@
       updatedAt: now,
       planId: '',
       activity: [],
+      expanded: true,
     };
 
-    dataBase = [...dataBase, newHeader];
+    dataBase.push(newHeader);
 
     if (oncreate) {
       oncreate(data);

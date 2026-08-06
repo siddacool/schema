@@ -50,7 +50,7 @@
     margin-left: 4px;
 
     &:hover {
-      background-color: var(--dodo-color-primary-100);
+      background-color: var(--dodo-color-neutral-100);
     }
 
     p {

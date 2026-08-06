@@ -82,6 +82,7 @@
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
-    background-color: var(--dodo-color-primary-100);
+    background-color: var(--dodo-color-neutral-200);
+    font-weight: 600;
   }
 </style>

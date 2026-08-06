@@ -66,6 +66,24 @@
       oncreate(data);
     }
   }
+
+  async function onupdateMod(data: Activity) {
+    if (!data.pathOriginal) {
+      const cachedData = [...dataBase];
+      const dataIndex = cachedData.findIndex((item) => item._id === data._id);
+
+      cachedData[dataIndex] = {
+        ...data,
+        expanded: true,
+      };
+
+      dataBase = [...cachedData];
+    }
+
+    if (onupdate) {
+      onupdate(data);
+    }
+  }
 </script>
 
 <div class={classes.join(' ')}>
@@ -80,7 +98,7 @@
         data={activityGroup}
         {planType}
         {oncreate}
-        {onupdate}
+        onupdate={onupdateMod}
         {ondelete}
         {maxLevels}
         {editMode}

@@ -34,21 +34,19 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <Card class="HeaderCard" shadow={0}>
-    <Trigger />
-    <p>
-      {data.description}
-    </p>
+  <Trigger />
+  <p>
+    {data.description}
+  </p>
 
-    <Toolbar {data} {oncreate} {onupdate} {ondelete} {editMode} />
-  </Card>
+  <Toolbar {data} {oncreate} {onupdate} {ondelete} {editMode} />
 </div>
 
 <style lang="scss">
   .Header {
     display: flex;
     width: 100%;
-    flex-direction: column;
+    align-items: center;
 
     p {
       margin: 0;
@@ -58,12 +56,6 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-    }
-
-    :global(.HeaderCard) {
-      display: flex;
-      align-items: center;
-      padding: calc(var(--dodo-ui-space)) calc(var(--dodo-ui-space) * 0.8);
     }
   }
 </style>

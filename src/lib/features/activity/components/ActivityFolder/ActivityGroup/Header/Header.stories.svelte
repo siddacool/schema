@@ -23,7 +23,7 @@
 
 <Story name="Default" asChild>
   <Accordion type="multiple">
-    <AccordionItem>
+    <AccordionItem class="ActivityGroup">
       {#snippet customHeaderContent()}
         <Header data={sequenceData} planType={PlanType.SEQUENCE} editMode />
       {/snippet}

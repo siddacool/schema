@@ -4,6 +4,7 @@
   import type { Activity, ActivityCreateFormData, ActivityGroup } from '../../../types';
   import { WeekDays } from '../../../types/week';
   import Header from './Header/Header.svelte';
+  import { Card } from '@flightlesslabs/dodo-ui';
 
   type Props = {
     class?: string;
@@ -34,16 +35,26 @@
 
 <AccordionItem class={classes.join(' ')} value={data._id}>
   {#snippet customHeaderContent()}
-    <Header {planType} {oncreate} {onupdate} {ondelete} {editMode} {data} />
+    <Card class="ActivityGroupHeaderCard" shadow={0} outline>
+      <Header {planType} {oncreate} {onupdate} {ondelete} {editMode} {data} />
+    </Card>
   {/snippet}
 </AccordionItem>
 
 <style>
-  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {
-    display: none;
+  :global(.ActivityGroup.dodo-ui-AccordionItem .ActivityGroupHeaderCard) {
+    display: flex;
+    align-items: center;
+    padding: calc(var(--dodo-ui-space)) calc(var(--dodo-ui-space) * 0.8);
+    width: 100%;
   }
 
-  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .HeaderCard) {
-    background-color: var(--dodo-color-primary-50);
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .ActivityGroupHeaderCard) {
+    border-color: transparent;
+  }
+
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
+    background-color: var(--dodo-color-neutral-50);
+    border-color: var(--dodo-color-neutral-300);
   }
 </style>

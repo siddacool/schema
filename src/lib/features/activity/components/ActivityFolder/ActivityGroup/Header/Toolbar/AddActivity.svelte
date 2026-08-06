@@ -30,7 +30,7 @@
     color="primary"
     size="small"
     onclick={handleClick}
-    variant="text"
+    variant="solid"
   >
     <Icon icon="material-symbols:add-rounded" />
   </Button>
@@ -38,9 +38,8 @@
 
 <style lang="scss">
   .AddActivity {
-    margin-left: calc(var(--dodo-ui-space));
     :global(.dodo-ui-Button.size--small.AddActivityButton) {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
   }
 </style>

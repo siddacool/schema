@@ -31,7 +31,7 @@
 
 {#if editMode}
   <div class={classes.join(' ')}>
-    <Button id="ActivityFolderMainCreateButton" onclick={() => (open = true)}>Add</Button>
+    <Button id="ActivityFolderMainCreateButton" onclick={() => (open = true)}>Add activity</Button>
   </div>
 {/if}
 
@@ -40,3 +40,9 @@
 {:else}
   yo
 {/if}
+
+<style lang="scss">
+  .ActivityFolderMainCreate {
+    margin-bottom: calc(var(--dodo-ui-space) * 2);
+  }
+</style>

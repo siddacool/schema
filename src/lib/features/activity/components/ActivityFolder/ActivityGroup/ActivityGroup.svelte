@@ -42,11 +42,19 @@
 </AccordionItem>
 
 <style>
+  :global(.ActivityGroup.dodo-ui-AccordionItem) {
+    margin-bottom: calc(var(--dodo-ui-space) * 2);
+  }
+
   :global(.ActivityGroup.dodo-ui-AccordionItem .ActivityGroupHeaderCard) {
     display: flex;
     align-items: center;
     padding: calc(var(--dodo-ui-space)) calc(var(--dodo-ui-space) * 0.8);
     width: 100%;
+  }
+
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed']) {
+    padding-bottom: calc(var(--dodo-ui-space) * 1);
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .ActivityGroupHeaderCard) {

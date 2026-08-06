@@ -5,7 +5,7 @@
   import { groupActivity } from '$lib/features/activity/utils/group-activity/group-activity';
   import { activityListMockData } from '$lib/features/activity/mocks/activity-list-mock-data';
   import { DEFAULT_START_OF_WEEK } from '$lib/features/activity/const/week';
-  import { Accordion } from '@flightlesslabs/dodo-ui-bits';
+  import { Accordion, ModalManager } from '@flightlesslabs/dodo-ui-bits';
 
   // ------------------------------
   // Storybook Meta
@@ -32,4 +32,5 @@
       planType={PlanType.SEQUENCE}
     />
   </Accordion>
+  <ModalManager />
 </Story>

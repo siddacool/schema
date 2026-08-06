@@ -18,3 +18,8 @@
 <!-- ------------------------------ -->
 
 <Story name="Default" args={{ data: activityListMockData, planType: PlanType.SEQUENCE }} />
+
+<Story
+  name="EditMode"
+  args={{ data: activityListMockData, planType: PlanType.SEQUENCE, editMode: true }}
+/>

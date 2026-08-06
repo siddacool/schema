@@ -4,11 +4,13 @@
     ActivityCreateFormData,
     Activity,
   } from '$lib/features/activity/types';
+  import type { PlanType } from '$lib/features/plan/types/plan-type';
   import AddActivity from './AddActivity.svelte';
   import Delete from './Delete.svelte';
-  import Edit from './Edit.svelte';
+  import Edit from './Edit/Edit.svelte';
 
   type Props = {
+    planType: PlanType;
     class?: string;
     data: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
@@ -17,7 +19,15 @@
     editMode: boolean;
   };
 
-  const { class: className = '', data, oncreate, onupdate, ondelete, editMode }: Props = $props();
+  const {
+    class: className = '',
+    data,
+    oncreate,
+    onupdate,
+    ondelete,
+    editMode,
+    planType,
+  }: Props = $props();
 
   $effect(() => {
     console.log('debug:', 'data', data);
@@ -28,7 +38,7 @@
 
 {#if editMode}
   <div class={classes.join(' ')}>
-    <Edit {data} {onupdate} />
+    <Edit {data} {onupdate} {planType} />
     <Delete {data} {ondelete} />
     <AddActivity {data} {oncreate} />
   </div>

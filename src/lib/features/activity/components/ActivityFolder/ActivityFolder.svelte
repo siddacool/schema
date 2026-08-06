@@ -8,6 +8,7 @@
   import { groupActivity } from '../../utils/group-activity/group-activity';
   import type { SortOrder } from '$lib/features/shared/types/sort-order';
   import { DEFAULT_DATE_SORT_ORDER } from '../../const/calendar';
+  import Create from './Create/Create.svelte';
   type OnChangeFn<T> = (value: T) => void;
 
   type Props = {
@@ -54,6 +55,7 @@
 </script>
 
 <div class={classes.join(' ')}>
+  <Create {oncreate} {data} {editMode} {startOfWeek} {planType} />
   <Accordion
     type="multiple"
     value={accordianExpandedValues}

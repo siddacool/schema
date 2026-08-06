@@ -1,15 +1,18 @@
 <script lang="ts">
   import type { ActivityGroup, Activity } from '$lib/features/activity/types';
+  import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
+  import EditActivityFormSequence from './Sequence/EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
+    planType: PlanType;
     class?: string;
     data: ActivityGroup;
     onupdate?: (data: Activity) => Promise<void>;
   };
 
-  const { class: className = '', data, onupdate }: Props = $props();
+  const { class: className = '', data, onupdate, planType }: Props = $props();
 
   $effect(() => {
     console.log('debug:', 'data', data);
@@ -17,7 +20,7 @@
 
   const classes = $derived(['Edit', className].filter(Boolean));
 
-  function handleClick() {}
+  let open = $state(false);
 </script>
 
 <div class={classes.join(' ')}>
@@ -29,12 +32,18 @@
     compact
     color="neutral"
     size="small"
-    onclick={handleClick}
+    onclick={() => (open = true)}
     variant="text"
   >
     <Icon icon="material-symbols:edit-outline" />
   </Button>
 </div>
+
+{#if planType === PlanType.SEQUENCE}
+  <EditActivityFormSequence {onupdate} {data} bind:open />
+{:else}
+  yo
+{/if}
 
 <style lang="scss">
   .Edit {

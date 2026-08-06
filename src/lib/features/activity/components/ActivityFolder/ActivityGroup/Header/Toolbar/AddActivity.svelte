@@ -1,7 +1,12 @@
 <script lang="ts">
-  import type { ActivityGroup, ActivityCreateFormData } from '$lib/features/activity/types';
+  import type {
+    ActivityGroup,
+    ActivityCreateFormData,
+    Activity,
+  } from '$lib/features/activity/types';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
+  import AddActivityForm from '../../../AddActivityForm/AddActivityForm.svelte';
 
   type Props = {
     class?: string;
@@ -11,13 +16,9 @@
 
   const { class: className = '', data, oncreate }: Props = $props();
 
-  $effect(() => {
-    console.log('debug:', 'data', data);
-  });
-
   const classes = $derived(['AddActivity', className].filter(Boolean));
 
-  function handleClick() {}
+  let open = $state(false);
 </script>
 
 <div class={classes.join(' ')}>
@@ -29,12 +30,14 @@
     compact
     color="primary"
     size="small"
-    onclick={handleClick}
+    onclick={() => (open = true)}
     variant="solid"
   >
     <Icon icon="material-symbols:add-rounded" />
   </Button>
 </div>
+
+<AddActivityForm {oncreate} data={data as Activity} bind:open />
 
 <style lang="scss">
   .AddActivity {

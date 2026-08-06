@@ -53,6 +53,10 @@
     border-color: transparent;
   }
 
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {
+    display: none;
+  }
+
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
     background-color: var(--dodo-color-neutral-50);
     border-color: var(--dodo-color-neutral-300);

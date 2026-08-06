@@ -39,7 +39,7 @@
     {data.description}
   </p>
 
-  <Toolbar {data} {oncreate} {onupdate} {ondelete} {editMode} />
+  <Toolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} />
 </div>
 
 <style lang="scss">

@@ -3,6 +3,7 @@
   import ActivityFolder from './ActivityFolder.svelte';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { activityListMockData } from '../../mocks/activity-list-mock-data';
+  import { ModalManager } from '@flightlesslabs/dodo-ui-bits';
 
   // ------------------------------
   // Storybook Meta
@@ -19,7 +20,7 @@
 
 <Story name="Default" args={{ data: activityListMockData, planType: PlanType.SEQUENCE }} />
 
-<Story
-  name="EditMode"
-  args={{ data: activityListMockData, planType: PlanType.SEQUENCE, editMode: true }}
-/>
+<Story name="EditMode" asChild>
+  <ActivityFolder data={activityListMockData} planType={PlanType.SEQUENCE} editMode />
+  <ModalManager />
+</Story>

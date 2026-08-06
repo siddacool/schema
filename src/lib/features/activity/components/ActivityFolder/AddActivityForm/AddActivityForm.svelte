@@ -32,6 +32,7 @@
         description,
         _id: id,
         path: newPath,
+        headerActivityId: data?.headerActivityId,
       });
     }
 

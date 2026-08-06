@@ -17,9 +17,9 @@
     try {
       loading = true;
 
-      // if (ondelete) {
-      //   ondelete(value.id as string);
-      // }
+      if (ondelete) {
+        ondelete(data._id);
+      }
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 

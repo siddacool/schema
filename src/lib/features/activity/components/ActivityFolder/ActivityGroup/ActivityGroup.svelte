@@ -36,7 +36,7 @@
 
 <AccordionItem class={classes.join(' ')} value={data._id}>
   {#snippet customHeaderContent()}
-    <Card class="ActivityGroupHeaderCard" shadow={0} outline>
+    <Card class="ActivityGroupHeaderCard" shadow={0}>
       <Header {planType} {oncreate} {onupdate} {ondelete} {editMode} {data} />
     </Card>
   {/snippet}
@@ -78,7 +78,6 @@
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
-    background-color: var(--dodo-color-neutral-50);
-    border-color: var(--dodo-color-neutral-300);
+    background-color: var(--dodo-color-primary-100);
   }
 </style>

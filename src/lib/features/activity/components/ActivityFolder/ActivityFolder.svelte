@@ -44,15 +44,40 @@
     data.filter((item) => item.expanded).map((item) => item._id),
   );
 
-  function toggleAccordianExpanded(value: []) {
-    accordianExpandedValues = value;
+  function toggleAccordianExpanded(newArray: string[]) {
+    const added = newArray.filter((item) => !accordianExpandedValues.includes(item));
+    const removed = accordianExpandedValues.filter((item) => !newArray.includes(item));
+
+    if (added.length) {
+      const targetId = added[0];
+      const target = dataBase.find((item) => item._id === targetId);
+
+      if (target && onupdate) {
+        onupdate({
+          ...target,
+          expanded: true,
+        });
+      }
+    } else if (removed.length) {
+      const targetId = removed[0];
+      const target = dataBase.find((item) => item._id === targetId);
+
+      if (target && onupdate) {
+        onupdate({
+          ...target,
+          expanded: false,
+        });
+      }
+    }
+
+    accordianExpandedValues = newArray;
   }
 
-  async function oncreateMain(data: ActivityCreateFormData) {
+  async function oncreateMain(value: ActivityCreateFormData) {
     const now = Date.now();
 
     const newHeader: ActivityGroup = {
-      ...data,
+      ...value,
       createdAt: now,
       updatedAt: now,
       planId: '',
@@ -63,25 +88,67 @@
     dataBase.push(newHeader);
 
     if (oncreate) {
-      oncreate(data);
+      oncreate(value);
     }
   }
 
-  async function onupdateMod(data: Activity) {
-    if (!data.pathOriginal) {
+  async function oncreateMod(value: ActivityCreateFormData) {
+    const { headerActivityId, ...restProps } = value;
+
+    const path = `${headerActivityId}.${value.path}`;
+
+    if (oncreate) {
+      oncreate({
+        ...restProps,
+        path,
+      });
+    }
+  }
+
+  async function onupdateMod(value: Activity) {
+    if (value.headerActivityId) {
+      const { headerActivityId, ...restProps } = value;
+
+      const path = `${headerActivityId}.${value.path}`;
+
+      if (onupdate) {
+        onupdate({
+          ...restProps,
+          path,
+        });
+      }
+    } else {
       const cachedData = [...dataBase];
-      const dataIndex = cachedData.findIndex((item) => item._id === data._id);
+      const dataIndex = cachedData.findIndex((item) => item._id === value._id);
 
       cachedData[dataIndex] = {
-        ...data,
+        ...value,
         expanded: true,
       };
 
       dataBase = [...cachedData];
+
+      if (onupdate) {
+        onupdate(value);
+      }
+    }
+  }
+
+  async function ondeleteMod(value: string) {
+    const targetData = dataBase.find((item) => item._id === value);
+
+    if (!targetData) {
+      return;
     }
 
-    if (onupdate) {
-      onupdate(data);
+    if (!targetData.headerActivityId) {
+      const cachedData = [...dataBase].filter((item) => item._id !== targetData._id);
+
+      dataBase = [...cachedData];
+    }
+
+    if (ondelete) {
+      ondelete(value);
     }
   }
 </script>
@@ -97,9 +164,9 @@
       <ActivityGroupContainer
         data={activityGroup}
         {planType}
-        {oncreate}
+        oncreate={oncreateMod}
         onupdate={onupdateMod}
-        {ondelete}
+        ondelete={ondeleteMod}
         {maxLevels}
         {editMode}
         {startOfWeek}

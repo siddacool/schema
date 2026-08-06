@@ -9,7 +9,7 @@ export interface Activity {
 
   // Tree View params
   path: string;
-  pathOriginal?: string;
+  headerActivityId?: string;
 }
 
 export type ActivityCreateData = Omit<Activity, 'id' | 'createdAt' | 'updatedAt'>;
@@ -18,6 +18,7 @@ export type ActivityCreateFormData = {
   description: string;
   path: string;
   _id: string;
+  headerActivityId?: string;
 };
 
 export interface ActivityGroup extends Activity {

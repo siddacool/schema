@@ -5,7 +5,6 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import { Card } from '@flightlesslabs/dodo-ui';
   import Toolbar from './Toolbar/Toolbar.svelte';
 
   import Trigger from './Trigger.svelte';

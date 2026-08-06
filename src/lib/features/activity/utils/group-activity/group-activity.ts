@@ -54,7 +54,7 @@ export function groupActivity(
         ? item
         : {
             ...item,
-            pathOriginal: item.path,
+            headerActivityId: item.path.slice(0, separatorIndex),
             path: item.path.slice(separatorIndex + 1),
           },
     );

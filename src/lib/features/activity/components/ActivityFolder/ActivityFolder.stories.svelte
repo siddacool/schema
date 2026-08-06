@@ -3,7 +3,6 @@
   import ActivityFolder from './ActivityFolder.svelte';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { activityListMockData } from '../../mocks/activity-list-mock-data';
-  import { groupActivity } from '../../utils/group-activity/group-activity';
 
   // ------------------------------
   // Storybook Meta
@@ -12,12 +11,10 @@
     component: ActivityFolder,
     tags: ['autodocs'],
   });
-
-  const sequenceData = groupActivity(activityListMockData, PlanType.SEQUENCE);
 </script>
 
 <!-- ------------------------------ -->
 <!-- Stories -->
 <!-- ------------------------------ -->
 
-<Story name="Default" args={{ data: sequenceData, planType: PlanType.SEQUENCE }} />
+<Story name="Default" args={{ data: activityListMockData, planType: PlanType.SEQUENCE }} />

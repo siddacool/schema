@@ -5,6 +5,7 @@
     Activity,
   } from '$lib/features/activity/types';
   import AddActivity from './AddActivity.svelte';
+  import Delete from './Delete.svelte';
   import Edit from './Edit.svelte';
 
   type Props = {
@@ -28,7 +29,7 @@
 {#if editMode}
   <div class={classes.join(' ')}>
     <Edit {data} {onupdate} />
-    <!-- <Delete {data} {ondelete} /> -->
+    <Delete {data} {ondelete} />
     <AddActivity {data} {oncreate} />
   </div>
 {/if}

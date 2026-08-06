@@ -5,8 +5,6 @@ export function splitActivity(data: Activity[]) {
   const activity: Activity[] = [];
 
   for (const item of data) {
-    console.log('debug:', item._id, item);
-
     if (item.path === item._id) {
       headings.push(item);
     } else {

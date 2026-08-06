@@ -9,7 +9,6 @@
   import type { SortOrder } from '$lib/features/shared/types/sort-order';
   import { DEFAULT_DATE_SORT_ORDER } from '../../const/calendar';
   import Create from './Create/Create.svelte';
-  import { nanoid } from 'nanoid';
   type OnChangeFn<T> = (value: T) => void;
 
   type Props = {
@@ -39,7 +38,7 @@
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
-  let dataBase = $state<Activity[]>([]);
+  let dataBase = $derived<Activity[]>(dataRaw);
   const data = $derived(groupActivity(dataBase, planType, { startOfWeek, dateSortOrder }));
   let accordianExpandedValues = $derived(
     data.filter((item) => item.expanded).map((item) => item._id),
@@ -54,29 +53,18 @@
 
     const newHeader: ActivityGroup = {
       ...data,
-      _id: data.path,
       createdAt: now,
       updatedAt: now,
-      planId: 'plan-1',
+      planId: '',
       activity: [],
     };
 
-    dataBase = JSON.parse(JSON.stringify([...dataBase, newHeader]));
+    dataBase = [...dataBase, newHeader];
 
     if (oncreate) {
       oncreate(data);
     }
   }
-
-  $effect(() => {
-    if (dataRaw) {
-      dataBase = dataRaw;
-    }
-  });
-
-  $effect(() => {
-    console.log('debug:', 'data', data);
-  });
 </script>
 
 <div class={classes.join(' ')}>

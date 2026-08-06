@@ -5,10 +5,10 @@ export interface Activity {
   createdAt: number;
   updatedAt: number;
   planId: string;
+  expanded?: boolean;
 
   // Tree View params
   path: string;
-  sortOrder?: number;
 }
 
 export type ActivityCreateData = Omit<Activity, 'id' | 'createdAt' | 'updatedAt'>;
@@ -18,3 +18,7 @@ export type ActivityCreateFormData = {
   path: string;
   _id: string;
 };
+
+export interface ActivityGroup extends Activity {
+  activity: Activity[];
+}

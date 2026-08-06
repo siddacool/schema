@@ -1,4 +1,4 @@
-import type { SortOrder } from '$lib/share/types/sort-order';
+import type { SortOrder } from '$lib/features/shared/types/sort-order';
 
 export type DateSortOrderOption = {
   value: SortOrder;

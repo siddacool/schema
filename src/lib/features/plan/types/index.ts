@@ -1,5 +1,5 @@
 import type { WeekDays } from '$lib/features/activity/types/week';
-import type { SortOrder } from '$lib/share/types/sort-order';
+import type { SortOrder } from '$lib/features/shared/types/sort-order';
 import type { PlanType } from './plan-type';
 
 export interface Plan {

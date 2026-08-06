@@ -1,3 +1,3 @@
-import { SortOrder } from '$lib/share/types/sort-order';
+import { SortOrder } from '$lib/features/shared/types/sort-order';
 
 export const DEFAULT_DATE_SORT_ORDER = SortOrder.ASCENDING;

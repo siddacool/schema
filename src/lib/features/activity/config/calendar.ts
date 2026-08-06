@@ -1,4 +1,4 @@
-import { SortOrder } from '$lib/share/types/sort-order';
+import { SortOrder } from '$lib/features/shared/types/sort-order';
 import type { DateSortOrderOption } from '../types/calendar';
 
 export const dateSortOrderOptions: DateSortOrderOption[] = [

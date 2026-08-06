@@ -1,4 +1,4 @@
-import { SortOrder } from '$lib/share/types/sort-order';
+import { SortOrder } from '$lib/features/shared/types/sort-order';
 import { DEFAULT_DATE_SORT_ORDER } from '../../const/calendar';
 import type { Activity } from '../../types';
 

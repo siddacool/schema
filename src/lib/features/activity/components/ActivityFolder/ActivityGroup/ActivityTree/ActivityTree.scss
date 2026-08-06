@@ -4,6 +4,7 @@
 
   .ltree-node {
     position: relative;
+    padding-top: calc(var(--dodo-ui-space) * 0.8);
 
     &::before {
       content: '';
@@ -13,12 +14,32 @@
       background-color: var(--dodo-color-neutral-300);
       position: absolute;
       left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
+      top: -9px;
     }
+
+    &::after {
+      content: '';
+      display: flex;
+      width: 12px;
+      height: 1px;
+      background-color: var(--dodo-color-neutral-300);
+      position: absolute;
+      left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
+      top: 24px;
+    }
+  }
+
+  .ltree-icon-collapse.expanded + div .TreeNode {
+    background-color: var(--dodo-color-primary-100);
   }
 
   .ltree-node-row {
     display: flex;
     align-items: center;
+  }
+
+  .ltree-node-content {
+    flex: 1;
   }
 
   .ltree-toggle-icon {
@@ -39,20 +60,28 @@
 
   .ltree-icon {
     &-expand::before {
+      height: 100%;
       content: '▶';
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       font-size: 1.2rem;
+      cursor: pointer;
     }
 
     &-collapse::before {
+      height: 100%;
       content: '▼';
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       font-size: 1.2rem;
+      cursor: pointer;
     }
 
     &-leaf {
+      height: 100%;
       font-size: 2rem;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       &::before {
         content: '•';
       }

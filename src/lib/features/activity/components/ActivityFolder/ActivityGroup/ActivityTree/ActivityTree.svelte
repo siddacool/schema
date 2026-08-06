@@ -13,7 +13,7 @@
   } from '$lib/features/activity/types';
   import type { WeekDays } from '$lib/features/activity/types/week';
   import { Tree, type LTreeNode } from '@keenmate/svelte-treeview';
-  import { activityListMockData } from '$lib/features/activity/mocks/activity-list-mock-data';
+  import TreeNode from './TreeNode/TreeNode.svelte';
 
   type Props = {
     class?: string;
@@ -59,5 +59,20 @@
     bodyClass="ActivityFolderActivityTree"
     shouldToggleOnNodeClick={false}
     {sortCallback}
-  />
+  >
+    {#snippet nodeTemplate(node: ActivityTreeNodeValue | undefined)}
+      {#if node}
+        <TreeNode
+          {planType}
+          {oncreate}
+          {onupdate}
+          {ondelete}
+          {editMode}
+          {node}
+          {group}
+          {maxLevels}
+        />
+      {/if}
+    {/snippet}
+  </Tree>
 </div>

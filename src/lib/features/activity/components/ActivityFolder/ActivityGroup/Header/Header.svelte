@@ -34,9 +34,9 @@
 
 <div class={classes.join(' ')}>
   <Trigger />
-  <p>
+  <div class="description">
     {data.description}
-  </p>
+  </div>
 
   <Toolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} />
 </div>
@@ -47,11 +47,11 @@
     width: 100%;
     align-items: center;
 
-    p {
+    .description {
       margin: 0;
       flex: 1;
       margin-left: 4px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;

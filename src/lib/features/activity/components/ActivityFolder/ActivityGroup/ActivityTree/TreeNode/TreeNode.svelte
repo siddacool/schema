@@ -36,7 +36,7 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <p>{node.data?.description}</p>
+  <div class="description">{node.data?.description}</div>
   <Toolbar data={group} {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} />
 </div>
 
@@ -53,10 +53,10 @@
       background-color: var(--dodo-color-neutral-100);
     }
 
-    p {
+    .description {
       margin: 0;
       flex: 1;
-      font-size: 1rem;
+      font-size: 0.95rem;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;

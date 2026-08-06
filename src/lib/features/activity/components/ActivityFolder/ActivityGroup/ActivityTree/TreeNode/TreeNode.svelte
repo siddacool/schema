@@ -43,14 +43,14 @@
 <style lang="scss">
   .TreeNode {
     display: flex;
-    align-items: center;
     width: 100%;
+    align-items: center;
     padding: calc(var(--dodo-ui-space)) calc(var(--dodo-ui-space));
     border-radius: 8px;
     margin-left: 4px;
 
     &:hover {
-      background-color: var(--dodo-color-neutral-100);
+      background-color: var(--dodo-color-primary-100);
     }
 
     p {

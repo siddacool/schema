@@ -19,6 +19,12 @@
   const classes = $derived(['AddActivity', className].filter(Boolean));
 
   let open = $state(false);
+
+  function onclick(e: MouseEvent) {
+    e.stopPropagation();
+
+    open = true;
+  }
 </script>
 
 <div class={classes.join(' ')}>
@@ -30,7 +36,7 @@
     compact
     color="primary"
     size="small"
-    onclick={() => (open = true)}
+    {onclick}
     variant="solid"
   >
     <Icon icon="material-symbols:add-rounded" />

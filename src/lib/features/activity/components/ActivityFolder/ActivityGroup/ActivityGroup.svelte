@@ -76,7 +76,7 @@
 
     const { headerActivityId, ...restProps } = value;
 
-    const path = `${headerActivityId}.${value.path}`;
+    const path = headerActivityId ? `${headerActivityId}.${value.path}` : value.path;
 
     if (oncreate) {
       await oncreate(

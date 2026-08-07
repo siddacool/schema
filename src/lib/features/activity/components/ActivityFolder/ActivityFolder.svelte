@@ -39,12 +39,15 @@
 
   async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
     const now = Date.now();
+
     const newNode: Activity = {
       ...value,
       createdAt: now,
       updatedAt: now,
       planId: '',
     };
+
+    console.log('debug:', newNode);
 
     miniDatabase = [...miniDatabase, newNode];
 

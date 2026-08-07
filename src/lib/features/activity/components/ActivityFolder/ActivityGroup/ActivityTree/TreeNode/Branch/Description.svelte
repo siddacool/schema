@@ -34,6 +34,7 @@
 
     &.expanded {
       font-weight: 600;
+      margin-left: 2px;
     }
   }
 </style>

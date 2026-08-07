@@ -81,7 +81,7 @@
           ...restProps,
           path,
         },
-        true,
+        subActivity,
       );
     }
   }
@@ -108,7 +108,7 @@
     };
 
     if (onupdate) {
-      await onupdate(updatedActivity, true);
+      await onupdate(updatedActivity, subActivity);
     }
   }
 
@@ -134,7 +134,7 @@
     treeRef.removeNode(targetData.path);
 
     if (ondelete) {
-      await ondelete(value, true);
+      await ondelete(value, subActivity);
     }
   }
 </script>

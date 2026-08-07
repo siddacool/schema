@@ -1,12 +1,8 @@
 <script lang="ts">
-  import type {
-    ActivityGroup,
-    ActivityCreateFormData,
-    Activity,
-  } from '$lib/features/activity/types';
+  import type { ActivityGroup, ActivityCreateFormData } from '$lib/features/activity/types';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import AddActivityForm from '../../../AddActivityForm/AddActivityForm.svelte';
+  import EditActivityForm from '../../../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     class?: string;
@@ -37,7 +33,7 @@
   </Button>
 </div>
 
-<AddActivityForm {oncreate} data={data as Activity} bind:open />
+<EditActivityForm {oncreate} {data} bind:open mode="create" />
 
 <style lang="scss">
   .AddActivity {

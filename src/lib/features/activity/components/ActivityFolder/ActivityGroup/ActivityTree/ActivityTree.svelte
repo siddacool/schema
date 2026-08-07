@@ -55,7 +55,7 @@
     idMember="_id"
     pathMember="path"
     displayValueMember="description"
-    expandLevel={maxLevels}
+    expandLevel={0}
     bodyClass="ActivityFolderActivityTree"
     shouldToggleOnNodeClick={false}
     {sortCallback}

@@ -18,6 +18,7 @@
     editMode?: boolean;
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
+    syncWithDatabase?: () => Promise<void>;
   };
 
   const {
@@ -31,6 +32,7 @@
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
+    syncWithDatabase,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
@@ -50,7 +52,11 @@
     data = [...data, newHeader];
 
     if (oncreate) {
-      oncreate(value);
+      await oncreate(value);
+    }
+
+    if (syncWithDatabase) {
+      await syncWithDatabase();
     }
   }
 
@@ -91,7 +97,11 @@
       data = [...cachedData];
 
       if (onupdate) {
-        onupdate(value);
+        await onupdate(value);
+      }
+
+      if (syncWithDatabase) {
+        await syncWithDatabase();
       }
     }
   }
@@ -103,14 +113,22 @@
       return;
     }
 
-    if (!targetData.headerActivityId) {
+    if (targetData.headerActivityId) {
+      if (ondelete) {
+        ondelete(value);
+      }
+    } else {
       const cachedData = [...data].filter((item) => item._id !== targetData._id);
 
       data = [...cachedData];
-    }
 
-    if (ondelete) {
-      ondelete(value);
+      if (ondelete) {
+        await ondelete(value);
+      }
+
+      if (syncWithDatabase) {
+        await syncWithDatabase();
+      }
     }
   }
 </script>

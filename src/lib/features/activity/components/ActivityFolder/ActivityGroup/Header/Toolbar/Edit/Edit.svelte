@@ -3,7 +3,7 @@
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import EditActivityFormSequence from './Sequence/EditActivityForm/EditActivityForm.svelte';
+  import EditActivityForm from '../../../../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     planType: PlanType;
@@ -36,7 +36,7 @@
 </div>
 
 {#if planType === PlanType.SEQUENCE}
-  <EditActivityFormSequence {onupdate} {data} bind:open />
+  <EditActivityForm {onupdate} {data} bind:open mode="update" />
 {:else}
   yo
 {/if}

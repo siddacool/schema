@@ -17,6 +17,7 @@
     editMode: boolean;
     maxLevels: number;
     node: ActivityTreeNodeValue;
+    selectedNode: string | undefined;
   };
 
   const {
@@ -28,16 +29,20 @@
     editMode,
     maxLevels,
     node,
+    selectedNode,
   }: Props = $props();
 
   const classes = $derived(['Toolbar', className].filter(Boolean));
-  const selected = $derived(node.hasChildren && node.isExpanded);
+  const isSelected = $derived(selectedNode === node.id);
+  const selected = $derived(
+    (node.hasChildren && node.isExpanded) || (!node.hasChildren && isSelected),
+  );
 </script>
 
 {#if editMode && selected}
   <div class={classes.join(' ')}>
     <Delete {data} {ondelete} />
-    <AddActivity {data} {oncreate} />
+    <AddActivity {data} {oncreate} {maxLevels} {node} />
   </div>
 {/if}
 
@@ -46,6 +51,7 @@
     display: inline-flex;
     align-items: center;
     margin: 0 -6px;
+    padding: calc(var(--dodo-ui-space)) 0;
 
     :global(.dodo-ui-Button),
     :global(.dodo-ui-UtilityButton) {

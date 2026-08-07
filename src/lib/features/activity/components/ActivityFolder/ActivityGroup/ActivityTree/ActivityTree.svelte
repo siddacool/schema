@@ -46,6 +46,16 @@
   };
 
   const data = $derived(group.activity);
+
+  let selectedNode = $state<string | undefined>(undefined);
+
+  function onselect(value: string | undefined) {
+    if (selectedNode !== value) {
+      selectedNode = value;
+    } else {
+      selectedNode = undefined;
+    }
+  }
 </script>
 
 <div class={classes.join(' ')}>
@@ -71,6 +81,8 @@
           {node}
           {group}
           {maxLevels}
+          {selectedNode}
+          {onselect}
         />
       {/if}
     {/snippet}

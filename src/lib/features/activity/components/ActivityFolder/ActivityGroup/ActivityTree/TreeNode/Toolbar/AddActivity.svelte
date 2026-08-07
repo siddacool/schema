@@ -3,16 +3,20 @@
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import EditActivityForm from '../../../../EditActivityForm/EditActivityForm.svelte';
+  import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
 
   type Props = {
     class?: string;
     data: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
+    maxLevels: number;
+    node: ActivityTreeNodeValue;
   };
 
-  const { class: className = '', data, oncreate }: Props = $props();
+  const { class: className = '', data, oncreate, maxLevels, node }: Props = $props();
 
   const classes = $derived(['AddActivity', className].filter(Boolean));
+  const show = $derived(node.level && node.level <= maxLevels);
 
   let open = $state(false);
 
@@ -23,21 +27,23 @@
   }
 </script>
 
-<div class={classes.join(' ')}>
-  <Button
-    aria-label="Add new activity"
-    class="AddActivityButton"
-    roundness={1}
-    title="Add new activity"
-    compact
-    color="primary"
-    size="small"
-    {onclick}
-    variant="solid"
-  >
-    <Icon icon="material-symbols:add-rounded" />
-  </Button>
-</div>
+{#if show}
+  <div class={classes.join(' ')}>
+    <Button
+      aria-label="Add new activity"
+      class="AddActivityButton"
+      roundness={1}
+      title="Add new activity"
+      compact
+      color="primary"
+      size="small"
+      {onclick}
+      variant="solid"
+    >
+      <Icon icon="material-symbols:add-rounded" />
+    </Button>
+  </div>
+{/if}
 
 <EditActivityForm mode="create" {oncreate} {data} bind:open />
 

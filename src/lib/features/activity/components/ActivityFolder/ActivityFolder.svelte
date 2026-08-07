@@ -28,7 +28,7 @@
     oncreate,
     onupdate,
     ondelete,
-    maxLevels = 5,
+    maxLevels = 4,
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,

@@ -18,7 +18,6 @@
     editMode?: boolean;
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
-    syncData?: () => Promise<void>;
   };
 
   const {
@@ -32,21 +31,13 @@
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
-    syncData,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
+  let miniDatabase = $derived<Activity[]>(dataRaw);
 
   async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
-    if (subActivity) {
-      if (oncreate) {
-        oncreate(value);
-      }
-
-      return;
-    }
-
     const now = Date.now();
     const newNode: Activity = {
       ...value,
@@ -55,41 +46,33 @@
       planId: '',
     };
 
-    data = [...data, newNode];
+    miniDatabase = [...miniDatabase, newNode];
 
-    if (oncreate) {
-      await oncreate(value);
+    if (!subActivity) {
+      data = [...miniDatabase];
     }
 
-    if (syncData) {
-      await syncData();
+    if (oncreate) {
+      oncreate(value);
     }
   }
 
   async function onupdateMod(value: Activity, subActivity?: boolean) {
-    if (subActivity) {
-      if (onupdate) {
-        onupdate(value);
-      }
-
-      return;
-    }
-
-    const cachedData = [...data];
+    const cachedData = [...miniDatabase];
     const dataIndex = cachedData.findIndex((item) => item._id === value._id);
 
     cachedData[dataIndex] = {
       ...value,
     };
 
-    data = [...cachedData];
+    miniDatabase = [...cachedData];
 
-    if (onupdate) {
-      await onupdate(value);
+    if (!subActivity) {
+      data = [...miniDatabase];
     }
 
-    if (syncData) {
-      await syncData();
+    if (onupdate) {
+      onupdate(value);
     }
   }
 
@@ -102,22 +85,22 @@
       return;
     }
 
-    const targetData = data.find((item) => item._id === value);
+    const targetData = miniDatabase.find((item) => item._id === value);
 
     if (!targetData) {
       return;
     }
 
-    const cachedData = [...data].filter((item) => item._id !== targetData._id);
+    const cachedData = [...miniDatabase].filter((item) => item._id !== targetData._id);
 
-    data = [...cachedData];
+    miniDatabase = [...cachedData];
 
-    if (ondelete) {
-      await ondelete(value);
+    if (!subActivity) {
+      data = [...miniDatabase];
     }
 
-    if (syncData) {
-      await syncData();
+    if (ondelete) {
+      ondelete(value);
     }
   }
 </script>

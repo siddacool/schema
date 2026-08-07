@@ -1,0 +1,1 @@
+import{$ as e,rt as t,tt as n,z as r}from"./D1ngzGQG.js";import{t as i}from"./CLSgHkkM.js";var a=`DD/MM/YYYY`,o=`SettingsConfig`,s={theme:`auto`,dateFormat:a},c=i(`local`,o);function l(){let i=t(e({...s,...c}));return{get settings(){return r(i)},update(e){n(i,e,!0)}}}var u=l();export{a as n,o as r,u as t};

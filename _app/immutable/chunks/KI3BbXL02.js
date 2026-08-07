@@ -1,0 +1,1 @@
+import{rt as e,tt as t,z as n}from"./D1ngzGQG.js";import{r}from"./D9N6-QwV2.js";function i(){let i=e(void 0);return{get plan(){return n(i)},async load(e){t(i,await r(e),!0)},clear(){t(i,void 0)}}}var a=i();export{a as t};

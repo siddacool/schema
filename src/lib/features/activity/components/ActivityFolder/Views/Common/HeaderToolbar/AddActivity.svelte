@@ -1,8 +1,8 @@
 <script lang="ts">
+  import EditActivityForm from '$lib/features/activity/components/ActivityFolder/EditActivityForm/EditActivityForm.svelte';
   import type { ActivityCreateFormData, Activity } from '$lib/features/activity/types';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import EditActivityForm from '../../../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     class?: string;

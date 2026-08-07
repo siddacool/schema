@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
-  import { UtilityButton } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
 
   type Props = {

@@ -1,9 +1,9 @@
 <script lang="ts">
+  import EditActivityForm from '$lib/features/activity/components/ActivityFolder/EditActivityForm/EditActivityForm.svelte';
   import type { Activity } from '$lib/features/activity/types';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import EditActivityForm from '../../../../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     planType: PlanType;

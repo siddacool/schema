@@ -5,7 +5,7 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import Toolbar from './Toolbar/Toolbar.svelte';
+  import HeaderToolbar from '../../../Common/HeaderToolbar/HeaderToolbar.svelte';
 
   import Trigger from './Trigger.svelte';
 
@@ -38,7 +38,7 @@
     {data.description}
   </div>
 
-  <Toolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} />
+  <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} />
 </div>
 
 <style lang="scss">

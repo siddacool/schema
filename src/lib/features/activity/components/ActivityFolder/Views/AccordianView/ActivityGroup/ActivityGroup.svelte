@@ -1,12 +1,17 @@
 <script lang="ts">
+  import type {
+    ActivityGroup,
+    ActivityCreateFormData,
+    Activity,
+  } from '$lib/features/activity/types';
+  import type { WeekDays } from '$lib/features/activity/types/week';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import { AccordionItem } from '@flightlesslabs/dodo-ui-bits';
-  import type { Activity, ActivityCreateFormData, ActivityGroup } from '../../../types';
-  import { WeekDays } from '../../../types/week';
-  import Header from './Header/Header.svelte';
   import { Card } from '@flightlesslabs/dodo-ui';
-  import ActivityTree from './ActivityTree/ActivityTree.svelte';
-  import type { ActivityTreeRefvalue } from '../../ActivityTree/ActivityTree.svelte';
+  import { AccordionItem } from '@flightlesslabs/dodo-ui-bits';
+  import ActivityTree, {
+    type ActivityTreeRefvalue,
+  } from '../../../ActivityTree/ActivityTree.svelte';
+  import Header from './Header/Header.svelte';
 
   type Props = {
     class?: string;

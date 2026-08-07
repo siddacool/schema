@@ -13,6 +13,7 @@
     class?: string;
     planType: PlanType;
     group: ActivityGroup;
+    data: Activity;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
@@ -27,6 +28,7 @@
     class: className = '',
     planType,
     group,
+    data,
     oncreate,
     onupdate,
     ondelete,
@@ -56,16 +58,7 @@
 <div class={classes.join(' ')}>
   <Card class="TreeNodeCard" shadow={0}>
     <button class="description" onclick={onselect}>{node.data?.description}</button>
-    <Toolbar
-      data={group}
-      {oncreate}
-      {onupdate}
-      {ondelete}
-      {maxLevels}
-      {editMode}
-      {node}
-      {selectedNode}
-    />
+    <Toolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {selectedNode} {data} />
   </Card>
 </div>
 

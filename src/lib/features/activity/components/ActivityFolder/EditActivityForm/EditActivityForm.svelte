@@ -15,12 +15,12 @@
   };
 
   type CreateProps = BaseProps & {
-    data: Activity | ActivityGroup | undefined;
+    data: Activity | undefined;
     mode: 'create';
   };
 
   type EditProps = BaseProps & {
-    data: Activity | ActivityGroup;
+    data: Activity;
     mode: 'update';
   };
 
@@ -73,11 +73,9 @@
 
     loading = true;
 
-    const { activity, ...restData } = data as ActivityGroup;
-
     if (onupdate) {
       await onupdate({
-        ...restData,
+        ...data,
         description,
       } as Activity);
     }

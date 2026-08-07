@@ -37,22 +37,26 @@
   }: Props = $props();
 
   const classes = $derived(['TreeNode', className].filter(Boolean));
+  const data = $derived(node.data);
 </script>
 
-<div class={classes.join(' ')}>
-  <Node
-    {planType}
-    {group}
-    {oncreate}
-    {onupdate}
-    {ondelete}
-    {maxLevels}
-    {editMode}
-    {node}
-    {onselect}
-    {selectedNode}
-  />
-</div>
+{#if data}
+  <div class={classes.join(' ')}>
+    <Node
+      {planType}
+      {group}
+      {oncreate}
+      {onupdate}
+      {ondelete}
+      {maxLevels}
+      {editMode}
+      {node}
+      {onselect}
+      {selectedNode}
+      {data}
+    />
+  </div>
+{/if}
 
 <style lang="scss">
   .TreeNode {

@@ -1,16 +1,12 @@
 <script lang="ts">
-  import type {
-    ActivityGroup,
-    ActivityCreateFormData,
-    Activity,
-  } from '$lib/features/activity/types';
+  import type { ActivityCreateFormData, Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
   import AddActivity from './AddActivity.svelte';
   import Delete from './Delete.svelte';
 
   type Props = {
     class?: string;
-    data: ActivityGroup;
+    data: Activity;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;

@@ -113,11 +113,9 @@
       return;
     }
 
-    if (targetData.headerActivityId) {
-      if (ondelete) {
-        ondelete(value);
-      }
-    } else {
+    const heading = targetData.path === targetData._id;
+
+    if (heading) {
       const cachedData = [...data].filter((item) => item._id !== targetData._id);
 
       data = [...cachedData];
@@ -128,6 +126,10 @@
 
       if (syncWithDatabase) {
         await syncWithDatabase();
+      }
+    } else {
+      if (ondelete) {
+        ondelete(value);
       }
     }
   }

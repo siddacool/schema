@@ -2,11 +2,11 @@
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
-  import type { ActivityGroup } from '$lib/features/activity/types';
+  import type { Activity } from '$lib/features/activity/types';
 
   type Props = {
     ondelete?: (data: string) => Promise<void>;
-    data: ActivityGroup;
+    data: Activity;
     class?: string;
   };
 

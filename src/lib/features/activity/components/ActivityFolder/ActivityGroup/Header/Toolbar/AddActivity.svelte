@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { ActivityGroup, ActivityCreateFormData } from '$lib/features/activity/types';
+  import type { ActivityCreateFormData, Activity } from '$lib/features/activity/types';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import EditActivityForm from '../../../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     class?: string;
-    data: ActivityGroup;
+    data: Activity;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
   };
 

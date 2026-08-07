@@ -3,6 +3,7 @@
   import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
   import AddActivity from './AddActivity.svelte';
   import Delete from './Delete.svelte';
+  import Edit from './Edit.svelte';
 
   type Props = {
     class?: string;
@@ -37,6 +38,7 @@
 
 {#if editMode && selected}
   <div class={classes.join(' ')}>
+    <Edit {data} {onupdate} />
     <Delete {data} {ondelete} />
     <AddActivity {data} {oncreate} {maxLevels} {node} />
   </div>

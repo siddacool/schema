@@ -21,7 +21,7 @@
 
   const {
     class: className = '',
-    data,
+    data: group,
     oncreate,
     onupdate,
     ondelete,
@@ -30,6 +30,7 @@
   }: Props = $props();
 
   const classes = $derived(['Toolbar', className].filter(Boolean));
+  const data = $derived({ ...group, activity: undefined } as Activity);
 </script>
 
 {#if editMode}

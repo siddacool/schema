@@ -1,22 +1,26 @@
 <script lang="ts">
   import type { Activity } from '$lib/features/activity/types';
-  import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import EditActivityForm from '../../../../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
-    planType: PlanType;
     class?: string;
     data: Activity;
     onupdate?: (data: Activity) => Promise<void>;
   };
 
-  const { class: className = '', data, onupdate, planType }: Props = $props();
+  const { class: className = '', data, onupdate }: Props = $props();
 
   const classes = $derived(['Edit', 'ToolbarAdvancedButton', className].filter(Boolean));
 
   let open = $state(false);
+
+  function onclick(e: MouseEvent) {
+    e.stopPropagation();
+
+    open = true;
+  }
 </script>
 
 <div class={classes.join(' ')}>
@@ -28,18 +32,14 @@
     compact
     color="neutral"
     size="small"
-    onclick={() => (open = true)}
+    {onclick}
     variant="text"
   >
     <Icon icon="material-symbols:edit-outline" />
   </Button>
 </div>
 
-{#if planType === PlanType.SEQUENCE}
-  <EditActivityForm {onupdate} {data} bind:open mode="update" />
-{:else}
-  yo
-{/if}
+<EditActivityForm {onupdate} {data} bind:open mode="update" />
 
 <style lang="scss">
   .Edit {

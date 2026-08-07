@@ -215,6 +215,10 @@
     padding-bottom: calc(var(--dodo-ui-space) * 1);
   }
 
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] [data-accordion-content]) {
+    padding-top: var(--dodo-ui-space);
+  }
+
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .ActivityGroupHeaderCard) {
     border-color: transparent;
   }

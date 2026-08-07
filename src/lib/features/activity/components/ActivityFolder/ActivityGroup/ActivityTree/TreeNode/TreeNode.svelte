@@ -7,9 +7,9 @@
   } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../ActivityTree.svelte';
   import Branch from './Branch/Branch.svelte';
+  import Leaf from './Leaf/Leaf.svelte';
 
   type Props = {
-    class?: string;
     planType: PlanType;
     group: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
@@ -23,7 +23,6 @@
   };
 
   let {
-    class: className = '',
     planType,
     group,
     oncreate,
@@ -39,23 +38,6 @@
 </script>
 
 {#if data}
-  <!-- <div class={classes.join(' ')}>
-    <button {onclick}>yo</button>
-    <Node
-      {planType}
-      {group}
-      {oncreate}
-      {onupdate}
-      {ondelete}
-      {maxLevels}
-      {editMode}
-      {node}
-      {onselect}
-      {selectedNode}
-      {data}
-    />
-  </div> -->
-
   {#if node.hasChildren}
     <Branch
       {planType}
@@ -70,7 +52,19 @@
       {onselect}
     />
   {:else}
-    yo
+    <Leaf
+      {planType}
+      {group}
+      {oncreate}
+      {onupdate}
+      {ondelete}
+      {maxLevels}
+      {editMode}
+      {node}
+      {data}
+      {onselect}
+      {selectedNode}
+    />
   {/if}
 {/if}
 

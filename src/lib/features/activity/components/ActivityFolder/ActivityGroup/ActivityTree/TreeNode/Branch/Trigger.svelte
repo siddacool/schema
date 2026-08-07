@@ -42,19 +42,36 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <UtilityButton class="TriggerButton" compact {onclick}>
+  <button class="TriggerButton" {onclick}>
     <Icon icon="weui:arrow-filled" />
-  </UtilityButton>
+  </button>
 </div>
 
 <style lang="scss">
   .Trigger {
-    :global(.TriggerButton.dodo-ui-UtilityButton.size--normal) {
-      font-size: 1.5rem;
+    display: flex;
+    .TriggerButton {
+      font-size: 1.6rem;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+      width: 30px;
+      height: 40px;
+      color: var(--dodo-color-neutral-800);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: var(--dodo-ui-element-roundness-1);
+
+      &:hover {
+        color: var(--dodo-color-primary-800);
+      }
     }
 
     &.expanded {
-      :global(.TriggerButton) {
+      .TriggerButton {
         rotate: 90deg;
       }
     }

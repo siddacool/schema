@@ -14,18 +14,18 @@
       background-color: var(--dodo-color-neutral-300);
       position: absolute;
       left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
-      top: -9px;
+      top: -3px;
     }
 
     &::after {
       content: '';
       display: flex;
-      width: 12px;
+      width: 16px;
       height: 1px;
       background-color: var(--dodo-color-neutral-300);
       position: absolute;
       left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
-      top: 24px;
+      top: 22px;
     }
   }
 
@@ -36,17 +36,5 @@
 
   .ltree-node-content {
     flex: 1;
-  }
-
-  .ltree-icon {
-    &-leaf {
-      height: 100%;
-      font-size: 2rem;
-      display: inline-flex;
-      align-items: center;
-      &::before {
-        content: '•';
-      }
-    }
   }
 }

@@ -8,10 +8,7 @@
 
   const { class: className = '', node }: Props = $props();
 
-  const expanded = $derived(node.isExpanded);
-  const classes = $derived(
-    ['Description', `${expanded ? 'expanded' : ''}`, className].filter(Boolean),
-  );
+  const classes = $derived(['Description', className].filter(Boolean));
 </script>
 
 <p class={classes.join(' ')}>
@@ -21,19 +18,16 @@
 <style lang="scss">
   .Description {
     margin: 0;
-    padding: 0;
-    padding-top: 12px;
     flex: 1;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     font-size: 0.95rem;
     font-family: inherit;
+    padding: 0;
     border: 0;
     background-color: transparent;
-
-    &.expanded {
-      font-weight: 600;
-    }
+    margin-top: 1px;
+    margin-left: 4px;
   }
 </style>

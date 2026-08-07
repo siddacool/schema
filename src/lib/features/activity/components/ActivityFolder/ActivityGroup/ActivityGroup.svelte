@@ -7,7 +7,6 @@
   import { Card } from '@flightlesslabs/dodo-ui';
   import ActivityTree from './ActivityTree/ActivityTree.svelte';
   import type { ActivityTreeRefvalue } from '../../ActivityTree/ActivityTree.svelte';
-  import { onMount } from 'svelte';
 
   type Props = {
     class?: string;

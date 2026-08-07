@@ -7,6 +7,7 @@
   } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../ActivityTree.svelte';
   import Toolbar from './Toolbar/Toolbar.svelte';
+  import { Card } from '@flightlesslabs/dodo-ui';
 
   type Props = {
     class?: string;
@@ -36,21 +37,29 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <div class="description">{node.data?.description}</div>
-  <Toolbar data={group} {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} />
+  <Card class="TreeNodeCard" shadow={0}>
+    <div class="description">{node.data?.description}</div>
+    <Toolbar data={group} {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} />
+  </Card>
 </div>
 
 <style lang="scss">
   .TreeNode {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    align-items: center;
-    padding: calc(var(--dodo-ui-space)) calc(var(--dodo-ui-space));
-    border-radius: 8px;
     margin-left: 4px;
 
+    :global(.TreeNodeCard) {
+      display: flex;
+      padding: calc(var(--dodo-ui-space)) calc(var(--dodo-ui-space));
+      align-items: center;
+    }
+
     &:hover {
-      background-color: var(--dodo-color-neutral-100);
+      :global(.TreeNodeCard) {
+        background-color: var(--dodo-color-neutral-100);
+      }
     }
 
     .description {

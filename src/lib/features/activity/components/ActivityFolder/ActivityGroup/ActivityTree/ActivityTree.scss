@@ -31,7 +31,10 @@
 
   .ltree-icon-collapse.expanded + div .TreeNode {
     font-weight: 600;
-    background-color: var(--dodo-color-neutral-200);
+  }
+
+  .ltree-icon-collapse.expanded + div .TreeNode .TreeNodeCard {
+    border-color: var(--dodo-color-neutral-400);
   }
 
   .ltree-node-row {

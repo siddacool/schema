@@ -67,8 +67,8 @@
 
     const result = treeRef.addNode(parentPath, { ...newNode });
 
-    if (result.success) {
-      console.log('Added:', result.node);
+    if (result.error) {
+      console.error('Error:', result.error);
     }
 
     const { headerActivityId, ...restProps } = value;
@@ -97,6 +97,12 @@
 
     if (!treeRef) {
       return;
+    }
+
+    const result = treeRef.updateNode(value.path, value);
+
+    if (result.error) {
+      console.error('Error:', result.error);
     }
 
     const { headerActivityId, ...restProps } = value;

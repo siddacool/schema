@@ -27,10 +27,11 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-family: inherit;
     border: 0;
     background-color: transparent;
+    font-weight: 500;
 
     &.expanded {
       font-weight: 600;

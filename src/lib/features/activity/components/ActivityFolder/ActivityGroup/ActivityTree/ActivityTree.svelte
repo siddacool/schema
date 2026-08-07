@@ -56,6 +56,33 @@
       selectedNode = undefined;
     }
   }
+
+  async function oncreateMod(value: ActivityCreateFormData) {
+    const { headerActivityId, ...restProps } = value;
+
+    const path = `${headerActivityId}.${value.path}`;
+
+    if (oncreate) {
+      await oncreate({
+        ...restProps,
+        path,
+      });
+    }
+  }
+
+  async function onupdateMod(value: Activity) {
+    const { headerActivityId, ...restProps } = value;
+    const path = headerActivityId ? `${headerActivityId}.${value.path}` : value.path;
+
+    const updatedActivity: Activity = {
+      ...restProps,
+      path,
+    };
+
+    if (onupdate) {
+      await onupdate(updatedActivity);
+    }
+  }
 </script>
 
 <div class={classes.join(' ')}>
@@ -74,8 +101,8 @@
       {#if node}
         <TreeNode
           {planType}
-          {oncreate}
-          {onupdate}
+          oncreate={oncreateMod}
+          onupdate={onupdateMod}
           {ondelete}
           {editMode}
           {node}

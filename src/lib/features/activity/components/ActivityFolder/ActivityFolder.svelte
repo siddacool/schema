@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import type { Activity, ActivityCreateFormData, ActivityGroup } from '../../types';
+  import type { Activity, ActivityCreateFormData } from '../../types';
   import { WeekDays } from '../../types/week';
   import { DEFAULT_START_OF_WEEK } from '../../const/week';
   import type { SortOrder } from '$lib/features/shared/types/sort-order';
@@ -18,7 +18,6 @@
     editMode?: boolean;
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
-    syncWithDatabase?: () => Promise<void>;
   };
 
   const {
@@ -32,77 +31,40 @@
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
-    syncWithDatabase,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
 
-  async function oncreateMain(value: ActivityCreateFormData) {
+  async function oncreateMod(value: ActivityCreateFormData) {
     const now = Date.now();
 
-    const newHeader: ActivityGroup = {
+    const newNode: Activity = {
       ...value,
       createdAt: now,
       updatedAt: now,
       planId: '',
-      activity: [],
     };
 
-    data = [...data, newHeader];
+    data = [...data, newNode];
 
     if (oncreate) {
-      await oncreate(value);
-    }
-
-    if (syncWithDatabase) {
-      await syncWithDatabase();
-    }
-  }
-
-  async function oncreateMod(value: ActivityCreateFormData) {
-    const { headerActivityId, ...restProps } = value;
-
-    const path = `${headerActivityId}.${value.path}`;
-
-    if (oncreate) {
-      oncreate({
-        ...restProps,
-        path,
-      });
+      oncreate(value);
     }
   }
 
   async function onupdateMod(value: Activity) {
-    if (value.headerActivityId) {
-      const { headerActivityId, ...restProps } = value;
+    const cachedData = [...data];
+    const dataIndex = cachedData.findIndex((item) => item._id === value._id);
 
-      const path = `${headerActivityId}.${value.path}`;
+    cachedData[dataIndex] = {
+      ...value,
+    };
 
-      if (onupdate) {
-        onupdate({
-          ...restProps,
-          path,
-        });
-      }
-    } else {
-      const cachedData = [...data];
-      const dataIndex = cachedData.findIndex((item) => item._id === value._id);
+    data = [...cachedData];
 
-      cachedData[dataIndex] = {
-        ...value,
-        expanded: true,
-      };
-
-      data = [...cachedData];
-
-      if (onupdate) {
-        await onupdate(value);
-      }
-
-      if (syncWithDatabase) {
-        await syncWithDatabase();
-      }
+    if (onupdate) {
+      onupdate(value);
     }
   }
 
@@ -113,31 +75,18 @@
       return;
     }
 
-    const heading = targetData.path === targetData._id;
+    const cachedData = [...data].filter((item) => item._id !== targetData._id);
 
-    if (heading) {
-      const cachedData = [...data].filter((item) => item._id !== targetData._id);
+    data = [...cachedData];
 
-      data = [...cachedData];
-
-      if (ondelete) {
-        await ondelete(value);
-      }
-
-      if (syncWithDatabase) {
-        await syncWithDatabase();
-      }
-    } else {
-      if (ondelete) {
-        ondelete(value);
-      }
+    if (ondelete) {
+      await ondelete(value);
     }
   }
 </script>
 
 <div class={classes.join(' ')}>
   <ActivityManager
-    {oncreateMain}
     {data}
     {editMode}
     {startOfWeek}

@@ -13,7 +13,6 @@
   type Props = {
     planType: PlanType;
     data: Activity[];
-    oncreateMain: (data: ActivityCreateFormData) => Promise<void>;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
@@ -26,7 +25,6 @@
   const {
     planType,
     data: dataBase,
-    oncreateMain,
     oncreate,
     onupdate,
     ondelete,
@@ -71,7 +69,7 @@
   }
 </script>
 
-<Create oncreate={oncreateMain} {data} {editMode} {startOfWeek} {planType} />
+<Create {oncreate} {data} {editMode} {startOfWeek} {planType} />
 
 <Accordion
   type="multiple"

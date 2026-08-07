@@ -58,7 +58,7 @@
 <div class={classes.join(' ')}>
   <Card class="TreeNodeCard" shadow={0}>
     <button class="description" onclick={onselect}>{node.data?.description}</button>
-    <Toolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {selectedNode} {data} />
+    <Toolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />
   </Card>
 </div>
 

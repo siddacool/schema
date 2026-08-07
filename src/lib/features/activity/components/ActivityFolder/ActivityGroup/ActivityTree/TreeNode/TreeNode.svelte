@@ -6,7 +6,7 @@
     ActivityGroup,
   } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../ActivityTree.svelte';
-  import Node from './Node.svelte';
+  import Branch from './Branch/Branch.svelte';
 
   type Props = {
     class?: string;
@@ -35,26 +35,11 @@
     onselect,
     selectedNode,
   }: Props = $props();
-
-  const classes = $derived(['TreeNode', className].filter(Boolean));
   const data = $derived(node.data);
-
-  function onclick(e: MouseEvent) {
-    e.stopPropagation();
-
-    const button = e.currentTarget as HTMLButtonElement;
-    const parent =
-      button.parentElement?.parentElement?.parentElement?.querySelector('.ltree-icon-expand') ||
-      button.parentElement?.parentElement?.parentElement?.querySelector('.ltree-icon-collapse');
-
-    parent?.click();
-
-    console.log('debug:', parent);
-  }
 </script>
 
 {#if data}
-  <div class={classes.join(' ')}>
+  <!-- <div class={classes.join(' ')}>
     <button {onclick}>yo</button>
     <Node
       {planType}
@@ -69,7 +54,24 @@
       {selectedNode}
       {data}
     />
-  </div>
+  </div> -->
+
+  {#if node.hasChildren}
+    <Branch
+      {planType}
+      {group}
+      {oncreate}
+      {onupdate}
+      {ondelete}
+      {maxLevels}
+      {editMode}
+      {node}
+      {data}
+      {onselect}
+    />
+  {:else}
+    yo
+  {/if}
 {/if}
 
 <style lang="scss">

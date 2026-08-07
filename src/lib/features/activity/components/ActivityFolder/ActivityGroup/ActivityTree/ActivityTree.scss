@@ -29,14 +29,6 @@
     }
   }
 
-  .ltree-icon-collapse.expanded + div .TreeNode .description {
-    font-weight: 600;
-  }
-
-  .ltree-icon-collapse.expanded + div .TreeNode .TreeNodeCard {
-    border-color: var(--dodo-color-neutral-400);
-  }
-
   .ltree-node-row {
     display: flex;
     align-items: center;
@@ -46,41 +38,7 @@
     flex: 1;
   }
 
-  .ltree-toggle-icon {
-    display: inline-flex;
-    align-items: flex-start;
-    align-self: flex-start;
-    justify-content: center;
-    font-size: 1rem;
-    color: var(--dodo-color-neutral-700);
-    flex-shrink: 0;
-
-    &.ltree-clickable {
-      &.expanded {
-        transform: rotate(0);
-      }
-    }
-  }
-
   .ltree-icon {
-    &-expand::before {
-      height: 100%;
-      content: '▶';
-      display: inline-flex;
-      align-items: center;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    &-collapse::before {
-      height: 100%;
-      content: '▼';
-      display: inline-flex;
-      align-items: center;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
     &-leaf {
       height: 100%;
       font-size: 2rem;

@@ -18,7 +18,7 @@
     maxLevels: number;
     editMode: boolean;
     node: ActivityTreeNodeValue;
-    onselect?: (value: string | undefined) => void;
+    onselect: (value: string | undefined) => void;
     selectedNode: string | undefined;
   };
 

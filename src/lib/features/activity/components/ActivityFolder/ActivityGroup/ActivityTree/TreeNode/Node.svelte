@@ -20,7 +20,7 @@
     editMode: boolean;
     selectedNode: string | undefined;
     node: ActivityTreeNodeValue;
-    onselect?: (value: string | undefined) => void;
+    onselect: (value: string | undefined) => void;
   };
 
   const {
@@ -39,13 +39,15 @@
 
   const isSelected = $derived(selectedNode === node.id);
   const classes = $derived(
-    ['Node', `${isSelected ? 'isSelected' : ''}`, className].filter(Boolean),
+    ['Node', `${isSelected && !node.hasChildren ? 'isSelected' : ''}`, className].filter(Boolean),
   );
 
   function onselect(e: MouseEvent) {
     e.stopPropagation();
 
-    if (onselectBase) {
+    if (node.hasChildren) {
+      onselectBase(undefined);
+    } else {
       onselectBase(node.id as string);
     }
   }

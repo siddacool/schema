@@ -7,6 +7,7 @@
   import { Card } from '@flightlesslabs/dodo-ui';
   import ActivityTree from './ActivityTree/ActivityTree.svelte';
   import type { ActivityTreeRefvalue } from '../../ActivityTree/ActivityTree.svelte';
+  import { onMount } from 'svelte';
 
   type Props = {
     class?: string;
@@ -71,6 +72,8 @@
       console.error('Error:', result.error);
     }
 
+    await treeRef.expandNodes(parentPath);
+
     const { headerActivityId, ...restProps } = value;
 
     const path = `${headerActivityId}.${value.path}`;
@@ -98,6 +101,8 @@
     if (!treeRef) {
       return;
     }
+
+    console.log('debug:', treeRef);
 
     const result = treeRef.updateNode(value.path, value);
 
@@ -143,6 +148,21 @@
       await ondelete(value, subActivity);
     }
   }
+
+  $effect(() => {
+    if (!treeRef) {
+      return;
+    }
+
+    console.log('debug:', treeRef);
+
+    const activity = data.activity;
+    const expandedPaths = activity.filter((item) => item.expanded).map((item) => item.path);
+
+    if (expandedPaths.length) {
+      treeRef.setExpandedPaths(expandedPaths);
+    }
+  });
 </script>
 
 <AccordionItem class={classes.join(' ')} value={data._id}>

@@ -33,6 +33,7 @@ export const activityListMockData: Activity[] = [
     createdAt: 1785400240000,
     updatedAt: 1785400270000,
     planId: 'plan-1',
+    expanded: true,
   },
   {
     _id: 'act-5',

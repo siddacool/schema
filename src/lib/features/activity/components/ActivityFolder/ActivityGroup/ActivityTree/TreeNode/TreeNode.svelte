@@ -38,10 +38,24 @@
 
   const classes = $derived(['TreeNode', className].filter(Boolean));
   const data = $derived(node.data);
+
+  function onclick(e: MouseEvent) {
+    e.stopPropagation();
+
+    const button = e.currentTarget as HTMLButtonElement;
+    const parent =
+      button.parentElement?.parentElement?.parentElement?.querySelector('.ltree-icon-expand') ||
+      button.parentElement?.parentElement?.parentElement?.querySelector('.ltree-icon-collapse');
+
+    parent?.click();
+
+    console.log('debug:', parent);
+  }
 </script>
 
 {#if data}
   <div class={classes.join(' ')}>
+    <button {onclick}>yo</button>
     <Node
       {planType}
       {group}

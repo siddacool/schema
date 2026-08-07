@@ -6,14 +6,15 @@
   import Header from './Header/Header.svelte';
   import { Card } from '@flightlesslabs/dodo-ui';
   import ActivityTree from './ActivityTree/ActivityTree.svelte';
+  import type { ActivityTreeRefvalue } from '../../ActivityTree/ActivityTree.svelte';
 
   type Props = {
     class?: string;
     planType: PlanType;
     data: ActivityGroup;
-    oncreate?: (data: ActivityCreateFormData) => Promise<void>;
-    onupdate?: (data: Activity) => Promise<void>;
-    ondelete?: (data: string) => Promise<void>;
+    oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
+    onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
+    ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
     startOfWeek: WeekDays;
@@ -32,20 +33,132 @@
   }: Props = $props();
 
   const classes = $derived(['ActivityGroup', className].filter(Boolean));
+  let treeRef = $derived<ActivityTreeRefvalue | undefined>(undefined);
+
+  async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
+    if (!subActivity) {
+      if (oncreate) {
+        await oncreate(value);
+      }
+
+      return;
+    }
+
+    if (!treeRef) {
+      return;
+    }
+
+    const now = Date.now();
+    const newNode: Activity = {
+      ...value,
+      createdAt: now,
+      updatedAt: now,
+      planId: '',
+    };
+
+    let parentPath =
+      value.path.lastIndexOf('.') === -1
+        ? ''
+        : value.path.substring(0, value.path.lastIndexOf('.'));
+
+    if (!value.headerActivityId) {
+      parentPath = '';
+    }
+
+    const result = treeRef.addNode(parentPath, { ...newNode });
+
+    if (result.success) {
+      console.log('Added:', result.node);
+    }
+
+    const { headerActivityId, ...restProps } = value;
+
+    const path = `${headerActivityId}.${value.path}`;
+
+    if (oncreate) {
+      await oncreate(
+        {
+          ...restProps,
+          path,
+        },
+        true,
+      );
+    }
+  }
+
+  async function onupdateMod(value: Activity, subActivity?: boolean) {
+    if (!subActivity) {
+      if (onupdate) {
+        await onupdate(value);
+      }
+
+      return;
+    }
+
+    if (!treeRef) {
+      return;
+    }
+
+    const { headerActivityId, ...restProps } = value;
+    const path = headerActivityId ? `${headerActivityId}.${value.path}` : value.path;
+
+    const updatedActivity: Activity = {
+      ...restProps,
+      path,
+    };
+
+    if (onupdate) {
+      await onupdate(updatedActivity, true);
+    }
+  }
+
+  async function ondeleteMod(value: string, subActivity?: boolean) {
+    if (!subActivity) {
+      if (ondelete) {
+        await ondelete(value);
+      }
+
+      return;
+    }
+
+    if (!treeRef) {
+      return;
+    }
+
+    const targetData = data.activity.find((item) => item._id === value);
+
+    if (!targetData) {
+      return;
+    }
+
+    treeRef.removeNode(targetData.path);
+
+    if (ondelete) {
+      await ondelete(value, true);
+    }
+  }
 </script>
 
 <AccordionItem class={classes.join(' ')} value={data._id}>
   {#snippet customHeaderContent()}
     <Card class="ActivityGroupHeaderCard" shadow={0} outline>
-      <Header {planType} {oncreate} {onupdate} {ondelete} {editMode} {data} />
+      <Header
+        {planType}
+        oncreate={oncreateMod}
+        onupdate={onupdateMod}
+        ondelete={ondeleteMod}
+        {editMode}
+        {data}
+      />
     </Card>
   {/snippet}
 
   <ActivityTree
+    bind:treeRef
     {planType}
-    {oncreate}
-    {onupdate}
-    {ondelete}
+    oncreate={oncreateMod}
+    onupdate={onupdateMod}
+    ondelete={ondeleteMod}
     {editMode}
     group={data}
     {startOfWeek}

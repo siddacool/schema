@@ -3,8 +3,7 @@
   import type { WeekDays } from '$lib/features/activity/types/week';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
-
-  import AddActivityForm from '../AddActivityForm/AddActivityForm.svelte';
+  import EditActivityForm from '../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     class?: string;
@@ -36,7 +35,7 @@
 {/if}
 
 {#if planType === PlanType.SEQUENCE}
-  <AddActivityForm {oncreate} bind:open data={undefined} />
+  <EditActivityForm {oncreate} bind:open data={undefined} mode="create" />
 {:else}
   yo
 {/if}

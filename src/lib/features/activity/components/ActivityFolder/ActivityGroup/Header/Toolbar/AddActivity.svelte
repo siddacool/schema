@@ -7,7 +7,7 @@
   type Props = {
     class?: string;
     data: Activity;
-    oncreate?: (data: ActivityCreateFormData) => Promise<void>;
+    oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
   };
 
   const { class: className = '', data, oncreate }: Props = $props();
@@ -15,6 +15,12 @@
   const classes = $derived(['AddActivity', className].filter(Boolean));
 
   let open = $state(false);
+
+  async function oncreateMod(data: ActivityCreateFormData) {
+    if (oncreate) {
+      oncreate(data, true);
+    }
+  }
 </script>
 
 <div class={classes.join(' ')}>
@@ -33,7 +39,7 @@
   </Button>
 </div>
 
-<EditActivityForm {oncreate} {data} bind:open mode="create" />
+<EditActivityForm oncreate={oncreateMod} {data} bind:open mode="create" />
 
 <style lang="scss">
   .AddActivity {

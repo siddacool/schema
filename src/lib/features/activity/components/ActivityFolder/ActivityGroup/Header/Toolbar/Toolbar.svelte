@@ -13,9 +13,9 @@
     planType: PlanType;
     class?: string;
     data: ActivityGroup;
-    oncreate?: (data: ActivityCreateFormData) => Promise<void>;
-    onupdate?: (data: Activity) => Promise<void>;
-    ondelete?: (data: string) => Promise<void>;
+    oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
+    onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
+    ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     editMode: boolean;
   };
 

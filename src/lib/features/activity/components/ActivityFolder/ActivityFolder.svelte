@@ -18,6 +18,7 @@
     editMode?: boolean;
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
+    syncData?: () => Promise<void>;
   };
 
   const {
@@ -31,14 +32,22 @@
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
+    syncData,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
 
-  async function oncreateMod(value: ActivityCreateFormData) {
-    const now = Date.now();
+  async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
+    if (subActivity) {
+      if (oncreate) {
+        oncreate(value);
+      }
 
+      return;
+    }
+
+    const now = Date.now();
     const newNode: Activity = {
       ...value,
       createdAt: now,
@@ -49,11 +58,23 @@
     data = [...data, newNode];
 
     if (oncreate) {
-      oncreate(value);
+      await oncreate(value);
+    }
+
+    if (syncData) {
+      await syncData();
     }
   }
 
-  async function onupdateMod(value: Activity) {
+  async function onupdateMod(value: Activity, subActivity?: boolean) {
+    if (subActivity) {
+      if (onupdate) {
+        onupdate(value);
+      }
+
+      return;
+    }
+
     const cachedData = [...data];
     const dataIndex = cachedData.findIndex((item) => item._id === value._id);
 
@@ -64,11 +85,23 @@
     data = [...cachedData];
 
     if (onupdate) {
-      onupdate(value);
+      await onupdate(value);
+    }
+
+    if (syncData) {
+      await syncData();
     }
   }
 
-  async function ondeleteMod(value: string) {
+  async function ondeleteMod(value: string, subActivity?: boolean) {
+    if (subActivity) {
+      if (ondelete) {
+        ondelete(value);
+      }
+
+      return;
+    }
+
     const targetData = data.find((item) => item._id === value);
 
     if (!targetData) {
@@ -81,6 +114,10 @@
 
     if (ondelete) {
       await ondelete(value);
+    }
+
+    if (syncData) {
+      await syncData();
     }
   }
 </script>

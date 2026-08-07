@@ -19,15 +19,16 @@
     class?: string;
     planType: PlanType;
     group: ActivityGroup;
-    oncreate?: (data: ActivityCreateFormData) => Promise<void>;
-    onupdate?: (data: Activity) => Promise<void>;
-    ondelete?: (data: string) => Promise<void>;
+    oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
+    onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
+    ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
     startOfWeek: WeekDays;
+    treeRef: ActivityTreeRefvalue | undefined;
   };
 
-  const {
+  let {
     class: className = '',
     planType,
     group,
@@ -37,6 +38,7 @@
     maxLevels,
     editMode,
     startOfWeek,
+    treeRef = $bindable(),
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));
@@ -58,35 +60,27 @@
   }
 
   async function oncreateMod(value: ActivityCreateFormData) {
-    const { headerActivityId, ...restProps } = value;
-
-    const path = `${headerActivityId}.${value.path}`;
-
     if (oncreate) {
-      await oncreate({
-        ...restProps,
-        path,
-      });
+      await oncreate(value, true);
     }
   }
 
   async function onupdateMod(value: Activity) {
-    const { headerActivityId, ...restProps } = value;
-    const path = headerActivityId ? `${headerActivityId}.${value.path}` : value.path;
-
-    const updatedActivity: Activity = {
-      ...restProps,
-      path,
-    };
-
     if (onupdate) {
-      await onupdate(updatedActivity);
+      await onupdate(value, true);
+    }
+  }
+
+  async function ondeleteMod(value: string) {
+    if (ondelete) {
+      await ondelete(value, true);
     }
   }
 </script>
 
 <div class={classes.join(' ')}>
   <Tree
+    bind:this={treeRef}
     treeId={`ActivityFolderActivityTree-${group._id}`}
     {data}
     idMember="_id"
@@ -103,7 +97,7 @@
           {planType}
           oncreate={oncreateMod}
           onupdate={onupdateMod}
-          {ondelete}
+          ondelete={ondeleteMod}
           {editMode}
           {node}
           {group}

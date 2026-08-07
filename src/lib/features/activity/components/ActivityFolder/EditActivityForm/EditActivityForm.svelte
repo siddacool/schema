@@ -1,9 +1,5 @@
 <script lang="ts">
-  import type {
-    Activity,
-    ActivityCreateFormData,
-    ActivityGroup,
-  } from '$lib/features/activity/types';
+  import type { Activity, ActivityCreateFormData } from '$lib/features/activity/types';
   import { Button, Column, FormField, Grid, TextArea } from '@flightlesslabs/dodo-ui';
   import { Modal } from '@flightlesslabs/dodo-ui-bits';
   import { nanoid } from 'nanoid';

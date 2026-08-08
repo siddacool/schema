@@ -5,6 +5,7 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
+  import HeaderDescription from '../../../../Common/HeaderDescription/HeaderDescription.svelte';
   import HeaderToolbar from '../../../../Common/HeaderToolbar/HeaderToolbar.svelte';
 
   import Trigger from './Trigger.svelte';
@@ -36,9 +37,8 @@
 
 <div class={classes.join(' ')}>
   <Trigger />
-  <div class="description">
-    {data.description}
-  </div>
+
+  <HeaderDescription {data} {planType} />
 
   <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} {groups} />
 </div>

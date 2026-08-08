@@ -37,7 +37,7 @@
 
   function onclear() {
     open = false;
-    description = '';
+    description = options[0].value;
   }
 
   async function create() {
@@ -79,6 +79,7 @@
       await onupdate({
         ...data,
         description,
+        expanded: false,
       } as Activity);
     }
 

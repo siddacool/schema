@@ -2,7 +2,7 @@
   import type { Activity } from '$lib/features/activity/types';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import EditActivityForm from '../../../EditActivityForm/EditActivityForm.svelte';
+  import EditActivityForm from '../../EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     class?: string;

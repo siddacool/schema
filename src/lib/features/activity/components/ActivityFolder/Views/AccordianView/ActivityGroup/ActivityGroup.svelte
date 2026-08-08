@@ -8,11 +8,11 @@
   import type { PlanType } from '$lib/features/plan/types/plan-type';
   import { Card } from '@flightlesslabs/dodo-ui';
   import { AccordionItem } from '@flightlesslabs/dodo-ui-bits';
+  import Header from './Header/Header.svelte';
+  import { activityTreeAdd } from '$lib/features/activity/components/ActivityTree/utils/crud/add';
   import ActivityTree, {
     type ActivityTreeRefvalue,
-  } from '../../../ActivityTree/ActivityTree.svelte';
-  import Header from './Header/Header.svelte';
-  import { activityTreeAdd } from '../../../ActivityTree/utils/crud/add';
+  } from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
 
   type Props = {
     class?: string;

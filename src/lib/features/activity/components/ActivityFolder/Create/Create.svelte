@@ -3,7 +3,7 @@
   import type { WeekDays } from '$lib/features/activity/types/week';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
-  import EditActivityForm from '../EditActivityForm/EditActivityForm.svelte';
+  import EditActivityForm from '../../ActivityTree/EditActivityForm/EditActivityForm.svelte';
 
   type Props = {
     class?: string;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import EditActivityForm from '$lib/features/activity/components/ActivityFolder/EditActivityForm/EditActivityForm.svelte';
+  import EditActivityForm from '$lib/features/activity/components/ActivityTree/EditActivityForm/EditActivityForm.svelte';
   import type { Activity } from '$lib/features/activity/types';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';

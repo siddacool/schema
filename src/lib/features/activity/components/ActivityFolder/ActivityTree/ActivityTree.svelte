@@ -14,6 +14,8 @@
   import type { WeekDays } from '$lib/features/activity/types/week';
   import { Tree, type LTreeNode } from '@keenmate/svelte-treeview';
   import TreeNode from './TreeNode/TreeNode.svelte';
+  import { activityTreeUpdate } from './utils/crud/update';
+  import { activityTreeRemove } from './utils/crud/remove';
 
   type Props = {
     class?: string;
@@ -66,16 +68,35 @@
   }
 
   async function onupdateMod(value: Activity) {
-    if (onupdate) {
-      await onupdate(value, true);
+    const updatedActivity = await activityTreeUpdate(treeRef, value);
+
+    if (onupdate && updatedActivity) {
+      await onupdate(updatedActivity, true);
     }
   }
 
   async function ondeleteMod(value: string) {
-    if (ondelete) {
+    const deleteCandidate = await activityTreeRemove(treeRef, value);
+
+    if (ondelete && deleteCandidate) {
       await ondelete(value, true);
     }
   }
+
+  $effect(() => {
+    if (!treeRef) {
+      return;
+    }
+
+    console.log('debug:', treeRef);
+
+    const activity = data;
+    const expandedPaths = activity.filter((item) => item.expanded).map((item) => item.path);
+
+    if (expandedPaths.length) {
+      treeRef.setExpandedPaths(expandedPaths);
+    }
+  });
 </script>
 
 <div class={classes.join(' ')}>

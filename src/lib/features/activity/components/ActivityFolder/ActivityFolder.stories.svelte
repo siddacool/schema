@@ -24,3 +24,8 @@
   <ActivityFolder data={activityListMockData} planType={PlanType.SEQUENCE} editMode />
   <ModalManager />
 </Story>
+
+<Story name="Week" asChild>
+  <ActivityFolder data={[]} planType={PlanType.WEEK} editMode />
+  <ModalManager />
+</Story>

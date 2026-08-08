@@ -74,6 +74,7 @@
       {maxLevels}
       {editMode}
       {startOfWeek}
+      groups={data}
     />
   {/each}
 </Accordion>

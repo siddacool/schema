@@ -5,7 +5,7 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import HeaderToolbar from '../../../Common/HeaderToolbar/HeaderToolbar.svelte';
+  import HeaderToolbar from '../../../../Common/HeaderToolbar/HeaderToolbar.svelte';
 
   import Trigger from './Trigger.svelte';
 
@@ -17,6 +17,7 @@
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     editMode: boolean;
+    groups: ActivityGroup[];
   };
 
   const {
@@ -27,6 +28,7 @@
     onupdate,
     ondelete,
     editMode,
+    groups,
   }: Props = $props();
 
   const classes = $derived(['Header', className].filter(Boolean));
@@ -38,7 +40,7 @@
     {data.description}
   </div>
 
-  <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} />
+  <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} {groups} />
 </div>
 
 <style lang="scss">

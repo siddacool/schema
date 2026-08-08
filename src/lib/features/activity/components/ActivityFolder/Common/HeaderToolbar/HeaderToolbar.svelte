@@ -4,6 +4,7 @@
     ActivityCreateFormData,
     Activity,
   } from '$lib/features/activity/types';
+  import type { WeekDays } from '$lib/features/activity/types/week';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
   import AddActivity from './AddActivity.svelte';
   import Delete from './Delete.svelte';
@@ -17,6 +18,7 @@
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     editMode: boolean;
+    groups: ActivityGroup[];
   };
 
   const {
@@ -27,6 +29,7 @@
     ondelete,
     editMode,
     planType,
+    groups,
   }: Props = $props();
 
   const classes = $derived(['Toolbar', className].filter(Boolean));
@@ -35,7 +38,7 @@
 
 {#if editMode}
   <div class={classes.join(' ')}>
-    <Edit {data} {onupdate} {planType} />
+    <Edit {data} {onupdate} {planType} {groups} />
     <Delete {data} {ondelete} />
     <AddActivity {data} {oncreate} />
   </div>

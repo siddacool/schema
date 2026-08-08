@@ -18,6 +18,7 @@
     class?: string;
     planType: PlanType;
     data: ActivityGroup;
+    groups: ActivityGroup[];
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
@@ -36,6 +37,7 @@
     maxLevels,
     editMode,
     startOfWeek,
+    groups,
   }: Props = $props();
 
   const classes = $derived(['ActivityGroup', className].filter(Boolean));
@@ -61,7 +63,7 @@
 <AccordionItem class={classes.join(' ')} value={data._id}>
   {#snippet customHeaderContent()}
     <Card class="ActivityGroupHeaderCard" shadow={0} outline>
-      <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} />
+      <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} {groups} />
     </Card>
   {/snippet}
 

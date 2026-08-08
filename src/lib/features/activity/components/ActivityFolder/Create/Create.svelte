@@ -4,6 +4,8 @@
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
   import EditActivityForm from '../../ActivityTree/EditActivityForm/EditActivityForm.svelte';
+  import EditActivityWeekForm from '../Common/HeaderToolbar/Edit/Week/EditActivityWeekForm.svelte';
+  import { getAvailableDays } from '$lib/features/activity/utils/get-available-days';
 
   type Props = {
     class?: string;
@@ -26,18 +28,24 @@
   const classes = $derived(['ActivityFolderMainCreate', className].filter(Boolean));
 
   let open = $state(false);
+  const isAvailableDays = $derived(data.length < 7);
 </script>
 
-{#if editMode}
-  <div class={classes.join(' ')}>
-    <Button id="ActivityFolderMainCreateButton" onclick={() => (open = true)}>Add activity</Button>
-  </div>
-{/if}
-
-{#if planType === PlanType.SEQUENCE}
+{#if planType === PlanType.WEEK && isAvailableDays}
+  {#if editMode}
+    <div class={classes.join(' ')}>
+      <Button id="ActivityFolderMainCreateButton" onclick={() => (open = true)}>Add day</Button>
+    </div>
+  {/if}
+  <EditActivityWeekForm {oncreate} bind:open data={undefined} mode="create" groups={data} />
+{:else if planType === PlanType.SEQUENCE}
+  {#if editMode}
+    <div class={classes.join(' ')}>
+      <Button id="ActivityFolderMainCreateButton" onclick={() => (open = true)}>Add activity</Button
+      >
+    </div>
+  {/if}
   <EditActivityForm {oncreate} bind:open data={undefined} mode="create" />
-{:else}
-  yo
 {/if}
 
 <style lang="scss">

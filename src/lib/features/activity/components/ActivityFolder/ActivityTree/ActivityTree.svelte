@@ -16,6 +16,7 @@
   import TreeNode from './TreeNode/TreeNode.svelte';
   import { activityTreeUpdate } from './utils/crud/update';
   import { activityTreeRemove } from './utils/crud/remove';
+  import { activityTreeAdd } from './utils/crud/add';
 
   type Props = {
     class?: string;
@@ -62,7 +63,9 @@
   }
 
   async function oncreateMod(value: ActivityCreateFormData) {
-    if (oncreate) {
+    const formData = await activityTreeAdd(treeRef, value, group);
+
+    if (oncreate && formData) {
       await oncreate(value, true);
     }
   }

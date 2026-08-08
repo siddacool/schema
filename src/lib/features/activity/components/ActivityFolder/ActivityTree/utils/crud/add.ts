@@ -26,6 +26,7 @@ export async function activityTreeAdd(
 
   if (!value.path.startsWith(groupId)) {
     value.headerActivityId = groupId;
+    newNode.headerActivityId = groupId;
   }
 
   let parentPath =

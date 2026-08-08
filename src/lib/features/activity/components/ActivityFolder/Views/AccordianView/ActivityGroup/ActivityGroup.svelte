@@ -41,7 +41,7 @@
   const classes = $derived(['ActivityGroup', className].filter(Boolean));
   let treeRef = $derived<ActivityTreeRefvalue | undefined>(undefined);
 
-  async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
+  async function oncreateMain(value: ActivityCreateFormData, subActivity?: boolean) {
     if (!subActivity) {
       if (oncreate) {
         await oncreate(value);
@@ -61,14 +61,14 @@
 <AccordionItem class={classes.join(' ')} value={data._id}>
   {#snippet customHeaderContent()}
     <Card class="ActivityGroupHeaderCard" shadow={0} outline>
-      <Header {planType} oncreate={oncreateMod} {onupdate} {ondelete} {editMode} {data} />
+      <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} />
     </Card>
   {/snippet}
 
   <ActivityTree
     bind:treeRef
     {planType}
-    oncreate={oncreateMod}
+    {oncreate}
     {onupdate}
     {ondelete}
     {editMode}

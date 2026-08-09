@@ -80,11 +80,13 @@
     const formData = await activityTreeAdd(treeRef, value, group);
 
     if (oncreate && formData) {
-      await oncreate(value, true);
+      await oncreate(formData, true);
     }
   }
 
   async function onupdateMod(value: Activity) {
+    console.log('Test');
+
     const updatedActivity = await activityTreeUpdate(treeRef, value);
 
     if (onupdate && updatedActivity) {
@@ -96,7 +98,7 @@
     const deleteCandidate = await activityTreeRemove(treeRef, value);
 
     if (ondelete && deleteCandidate) {
-      await ondelete(value, true);
+      await ondelete(deleteCandidate, true);
     }
   }
 

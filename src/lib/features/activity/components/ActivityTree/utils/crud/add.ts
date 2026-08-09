@@ -10,15 +10,12 @@ export async function activityTreeAdd(
     return;
   }
 
-  const value = {
-    ...valueRaw,
-  };
-
   const groupId = data._id;
 
-  if (!value.path.startsWith(groupId)) {
-    value.headerActivityId = groupId;
-  }
+  const value = {
+    ...valueRaw,
+    headerActivityId: valueRaw.path.startsWith(groupId) ? valueRaw.headerActivityId : groupId,
+  };
 
   let parentPath =
     value.path.lastIndexOf('.') === -1 ? '' : value.path.substring(0, value.path.lastIndexOf('.'));
@@ -52,8 +49,6 @@ export async function activityTreeAdd(
   const { headerActivityId, ...restProps } = value;
 
   const path = headerActivityId ? `${headerActivityId}.${value.path}` : value.path;
-
-  await treeRef.expandNodes(parentPath);
 
   const finalData: ActivityCreateFormData = {
     ...restProps,

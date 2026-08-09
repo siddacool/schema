@@ -1,10 +1,11 @@
 <script lang="ts">
-  import EditActivityForm from '$lib/features/activity/components/ActivityTree/EditActivityForm/EditActivityForm.svelte';
   import type { Activity, ActivityGroup } from '$lib/features/activity/types';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import EditActivityWeekForm from './Week/EditActivityWeekForm.svelte';
+  import EditActivityCalendarForm from './Calendar/EditActivityCalendarForm.svelte';
+  import EditActivitySequenceForm from './Sequence/EditActivitySequenceForm.svelte';
 
   type Props = {
     planType: PlanType;
@@ -41,12 +42,15 @@
   </div>
 {/snippet}
 
-{#if planType === PlanType.WEEK && isAvailableDays}
+{#if planType === PlanType.SEQUENCE}
+  {@render EditButton()}
+  <EditActivitySequenceForm {onupdate} {data} bind:open mode="update" />
+{:else if planType === PlanType.WEEK && isAvailableDays}
   {@render EditButton()}
   <EditActivityWeekForm {onupdate} {data} bind:open mode="update" {groups} />
-{:else if planType === PlanType.SEQUENCE}
+{:else if planType === PlanType.CALENDAR}
   {@render EditButton()}
-  <EditActivityForm {onupdate} {data} bind:open mode="update" />
+  <EditActivityCalendarForm {onupdate} {data} bind:open mode="update" {groups} />
 {/if}
 
 <style lang="scss">

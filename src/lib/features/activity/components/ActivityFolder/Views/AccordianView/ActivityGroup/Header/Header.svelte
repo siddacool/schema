@@ -37,9 +37,7 @@
 
 <div class={classes.join(' ')}>
   <Trigger />
-
   <HeaderDescription {data} {planType} />
-
   <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} {groups} />
 </div>
 

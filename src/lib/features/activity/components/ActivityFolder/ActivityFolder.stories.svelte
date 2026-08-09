@@ -29,3 +29,8 @@
   <ActivityFolder data={[]} planType={PlanType.WEEK} editMode />
   <ModalManager />
 </Story>
+
+<Story name="Calendar" asChild>
+  <ActivityFolder data={[]} planType={PlanType.CALENDAR} editMode />
+  <ModalManager />
+</Story>

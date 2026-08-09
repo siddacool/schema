@@ -14,19 +14,10 @@ export async function activityTreeAdd(
     ...valueRaw,
   };
 
-  const now = Date.now();
-  const newNode: Activity = {
-    ...value,
-    createdAt: now,
-    updatedAt: now,
-    planId: '',
-  };
-
   const groupId = data._id;
 
   if (!value.path.startsWith(groupId)) {
     value.headerActivityId = groupId;
-    newNode.headerActivityId = groupId;
   }
 
   let parentPath =
@@ -35,6 +26,22 @@ export async function activityTreeAdd(
   if (!value.headerActivityId) {
     parentPath = '';
   }
+
+  const sublings = treeRef.getChildren(parentPath);
+  const sublingsLength = sublings.length;
+  const lastSiblingSortOrder = sublings.length
+    ? sublings[sublings.length - 1].data?.sortOrder
+    : undefined;
+
+  value.sortOrder = (lastSiblingSortOrder || sublingsLength) + 1;
+
+  const now = Date.now();
+  const newNode: Activity = {
+    ...value,
+    createdAt: now,
+    updatedAt: now,
+    planId: '',
+  };
 
   const result = treeRef.addNode(parentPath, { ...newNode });
 

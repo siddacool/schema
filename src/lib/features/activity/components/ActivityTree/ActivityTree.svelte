@@ -47,7 +47,21 @@
   const classes = $derived(['ActivityTree', className].filter(Boolean));
 
   const sortCallback = (items: ActivityTreeNodeValue[]) => {
-    return items;
+    return items.sort((a, b) => {
+      // First, sort by level (shallower levels first)
+      const aLevel = a.path.split('.').length;
+      const bLevel = b.path.split('.').length;
+
+      if (aLevel !== bLevel) {
+        return aLevel - bLevel;
+      }
+
+      // Then sort by sortOrder (undefined/null first)
+      const aSortOrder = a.data?.sortOrder ?? 0;
+      const bSortOrder = b.data?.sortOrder ?? 0;
+
+      return aSortOrder - bSortOrder;
+    });
   };
 
   const data = $derived(group.activity);
@@ -90,8 +104,6 @@
     if (!treeRef) {
       return;
     }
-
-    console.log('debug:', treeRef);
 
     const activity = data;
     const expandedPaths = activity.filter((item) => item.expanded).map((item) => item.path);

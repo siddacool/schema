@@ -15,7 +15,7 @@
     tags: ['autodocs'],
   });
 
-  const sequenceData = groupActivity(activityListMockData, PlanType.SEQUENCE)[0];
+  const sequenceData = groupActivity(activityListMockData, PlanType.SEQUENCE);
 </script>
 
 <!-- ------------------------------ -->
@@ -28,8 +28,9 @@
       maxLevels={5}
       startOfWeek={DEFAULT_START_OF_WEEK}
       editMode={true}
-      data={sequenceData}
+      data={sequenceData[0]}
       planType={PlanType.SEQUENCE}
+      groups={sequenceData}
     />
   </Accordion>
   <ModalManager />

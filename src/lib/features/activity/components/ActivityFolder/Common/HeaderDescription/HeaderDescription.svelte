@@ -25,15 +25,3 @@
     <CalendarDescription {data} />
   {/if}
 </div>
-
-<style lang="scss">
-  .HeaderDescription {
-    margin: 0;
-    flex: 1;
-    margin-left: 4px;
-    font-size: 1rem;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-</style>

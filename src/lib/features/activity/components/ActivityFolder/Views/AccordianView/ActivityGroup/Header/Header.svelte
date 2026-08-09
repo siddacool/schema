@@ -47,11 +47,11 @@
     width: 100%;
     align-items: center;
 
-    .description {
+    :global(.HeaderDescription) {
       margin: 0;
       flex: 1;
       margin-left: 4px;
-      font-size: 1.2rem;
+      font-size: 0.9375rem;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;

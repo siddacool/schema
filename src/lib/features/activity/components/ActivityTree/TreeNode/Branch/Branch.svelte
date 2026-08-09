@@ -52,7 +52,7 @@
 </script>
 
 <div class={classes.join(' ')} {onclick} {onkeydown} role="presentation">
-  <Card class="TreeNodeCard" shadow={0} outline>
+  <Card class="TreeNodeCard" shadow={0}>
     <Trigger {onupdate} {node} {data} {onselect} />
     <Description {node} />
 
@@ -75,7 +75,6 @@
     :global(.TreeNodeCard) {
       padding: 0 calc(var(--dodo-ui-space) * 0.8);
       padding-left: 0;
-      border-color: transparent;
       display: flex;
       align-items: flex-start;
 
@@ -86,7 +85,11 @@
 
     &.expanded {
       :global(.TreeNodeCard) {
-        border-color: var(--dodo-color-neutral-300);
+        background-color: var(--dodo-color-primary-100);
+
+        &:hover {
+          background-color: var(--dodo-color-primary-200);
+        }
       }
     }
 

@@ -15,7 +15,7 @@
 
 <style lang="scss">
   .ListIcon {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--dodo-color-neutral-600);
   }
 </style>

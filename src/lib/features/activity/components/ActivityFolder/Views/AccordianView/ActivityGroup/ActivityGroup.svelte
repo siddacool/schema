@@ -62,7 +62,7 @@
 
 <AccordionItem class={classes.join(' ')} value={data._id}>
   {#snippet customHeaderContent()}
-    <Card class="ActivityGroupHeaderCard" shadow={0} outline>
+    <Card class="ActivityGroupHeaderCard" shadow={0}>
       <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} {groups} />
     </Card>
   {/snippet}
@@ -107,15 +107,15 @@
     padding-top: var(--dodo-ui-space);
   }
 
-  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .ActivityGroupHeaderCard) {
-    border-color: transparent;
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
+    background-color: var(--dodo-color-primary-100);
+
+    &:hover {
+      background-color: var(--dodo-color-primary-200);
+    }
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {
     display: none;
-  }
-
-  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
-    font-weight: 600;
   }
 </style>

@@ -13,8 +13,7 @@
     component: Header,
     tags: ['autodocs'],
   });
-
-  const sequenceData = groupActivity(activityListMockData, PlanType.SEQUENCE)[0];
+  const sequenceData = groupActivity(activityListMockData, PlanType.SEQUENCE);
 </script>
 
 <!-- ------------------------------ -->
@@ -25,7 +24,12 @@
   <Accordion type="multiple">
     <AccordionItem class="ActivityGroup">
       {#snippet customHeaderContent()}
-        <Header data={sequenceData} planType={PlanType.SEQUENCE} editMode />
+        <Header
+          data={sequenceData[0]}
+          planType={PlanType.SEQUENCE}
+          editMode
+          groups={sequenceData}
+        />
       {/snippet}
     </AccordionItem>
   </Accordion>

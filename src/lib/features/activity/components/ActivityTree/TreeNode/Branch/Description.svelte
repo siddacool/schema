@@ -27,7 +27,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 1.05rem;
+    font-size: 0.8125rem;
     font-family: inherit;
     border: 0;
     background-color: transparent;

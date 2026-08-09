@@ -22,7 +22,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 0.95rem;
+    font-size: 0.8125rem;
     font-family: inherit;
     padding: 0;
     border: 0;

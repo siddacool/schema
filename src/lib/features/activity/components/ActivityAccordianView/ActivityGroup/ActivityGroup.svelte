@@ -12,6 +12,7 @@
   import { activityTreeAdd } from '$lib/features/activity/components/ActivityTree/utils/crud/add';
   import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
   import type { ActivityTreeRefvalue } from '$lib/features/activity/components/ActivityTree/types';
+  import VerticalLine from './VerticalLine.svelte';
 
   type Props = {
     class?: string;
@@ -66,6 +67,7 @@
     </Card>
   {/snippet}
 
+  <VerticalLine />
   <ActivityTree
     bind:treeRef
     {planType}
@@ -84,6 +86,7 @@
     margin-bottom: calc(var(--dodo-ui-space) * 2);
     padding-left: var(--dodo-ui-space);
     padding-right: var(--dodo-ui-space);
+    position: relative;
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem .ActivityGroupHeaderCard) {
@@ -94,6 +97,7 @@
     transition:
       background-color 100ms,
       color 100ms;
+    min-height: 55px;
 
     &:hover {
       background-color: var(--dodo-color-neutral-200);
@@ -105,7 +109,7 @@
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] [data-accordion-content]) {
-    padding-top: var(--dodo-ui-space);
+    padding-top: 0;
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
@@ -115,6 +119,10 @@
     &:hover {
       background-color: var(--dodo-color-neutral-200);
     }
+  }
+
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .Header) {
+    font-variation-settings: 'wdth' 120;
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {

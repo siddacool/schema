@@ -71,6 +71,8 @@
     text-decoration: none;
     margin: 0;
     padding: 0;
+    z-index: 1;
+    position: relative;
 
     :global(.TreeNodeCard) {
       padding: 0 calc(var(--dodo-ui-space) * 0.8);

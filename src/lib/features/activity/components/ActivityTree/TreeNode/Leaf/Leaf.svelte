@@ -87,13 +87,15 @@
     text-decoration: none;
     margin: 0;
     padding: 0;
+    z-index: 1;
+    position: relative;
 
     :global(.TreeNodeCard) {
       padding: 0 calc(var(--dodo-ui-space) * 0.8);
       padding-left: 0;
       display: flex;
       align-items: flex-start;
-      background-color: transparent;
+      background-color: var(--dodo-color-neutral-50);
 
       &:hover {
         background-color: var(--dodo-color-neutral-100);

@@ -2,6 +2,7 @@
   import type { Activity } from '$lib/features/activity/types';
   import Icon from '@iconify/svelte';
   import type { ActivityTreeNodeValue } from '../../types';
+  import { UtilityButton } from '@flightlesslabs/dodo-ui';
 
   type Props = {
     class?: string;
@@ -41,36 +42,24 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <button class="TriggerButton" {onclick}>
+  <UtilityButton class="TriggerButton" {onclick} compact>
     <Icon icon="weui:arrow-filled" />
-  </button>
+  </UtilityButton>
 </div>
 
 <style lang="scss">
   .Trigger {
     display: flex;
-    .TriggerButton {
-      font-size: 1.6rem;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      background-color: transparent;
-      width: 30px;
-      height: 40px;
-      color: var(--dodo-color-neutral-800);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      border-radius: var(--dodo-ui-element-roundness-1);
+    padding-left: calc(var(--dodo-ui-space) * 0.8);
+    padding-top: calc(var(--dodo-ui-space) * 0.8);
+    padding-bottom: calc(var(--dodo-ui-space) * 0.8);
 
-      &:hover {
-        color: var(--dodo-color-primary-800);
-      }
+    :global(.TriggerButton.dodo-ui-UtilityButton.size--normal) {
+      font-size: 1.5rem;
     }
 
     &.expanded {
-      .TriggerButton {
+      :global(.TriggerButton.dodo-ui-UtilityButton.size--normal) {
         rotate: 90deg;
       }
     }

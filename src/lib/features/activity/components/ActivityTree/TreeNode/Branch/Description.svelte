@@ -27,14 +27,15 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-family: inherit;
     border: 0;
     background-color: transparent;
-    font-weight: 500;
+    font-weight: 400;
+    margin-left: 4px;
 
     @media (min-width: 600px) {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
   }
 </style>

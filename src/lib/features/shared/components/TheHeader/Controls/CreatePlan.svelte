@@ -6,19 +6,17 @@
 <Button
   aria-label="Create plan"
   class="TheHeaderCreatePlanButton"
-  variant="text"
   roundness={1}
   title="Create a plan"
   href="/plans/create"
   compact
-  color="neutral"
-  outline
+  variant="solid"
 >
   <Icon icon="material-symbols:add-rounded" />
 </Button>
 
 <style lang="scss">
   :global(.dodo-ui-Button.size--normal.TheHeaderCreatePlanButton) {
-    font-size: 1.55rem;
+    font-size: 1.8rem;
   }
 </style>

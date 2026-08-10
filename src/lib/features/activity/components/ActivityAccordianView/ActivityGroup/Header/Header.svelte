@@ -57,7 +57,7 @@
       overflow: hidden;
 
       @media (min-width: 600px) {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
       }
     }
   }

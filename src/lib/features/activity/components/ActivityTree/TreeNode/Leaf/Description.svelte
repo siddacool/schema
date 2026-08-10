@@ -17,12 +17,13 @@
 
 <style lang="scss">
   .Description {
+    font-family: 'Crimson Pro', serif !important;
     margin: 0;
     flex: 1;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     font-family: inherit;
     padding: 0;
     border: 0;
@@ -31,7 +32,7 @@
     margin-left: 4px;
 
     @media (min-width: 600px) {
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
   }
 </style>

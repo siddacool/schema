@@ -5,7 +5,7 @@
   import { groupActivity } from '../../utils/group-activity/group-activity';
   import type { SortOrder } from '$lib/features/shared/types/sort-order';
   import Create from './Create/Create.svelte';
-  import AccordianView from './Views/AccordianView/AccordianView.svelte';
+  import ActivityAccordianView from '../ActivityAccordianView/ActivityAccordianView.svelte';
 
   type Props = {
     planType: PlanType;
@@ -36,7 +36,7 @@
 
 <Create {oncreate} {data} {editMode} {startOfWeek} {planType} />
 
-<AccordianView
+<ActivityAccordianView
   {planType}
   {oncreate}
   {onupdate}

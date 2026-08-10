@@ -5,8 +5,8 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import HeaderDescription from '../../../../Common/HeaderDescription/HeaderDescription.svelte';
-  import HeaderToolbar from '../../../../Common/HeaderToolbar/HeaderToolbar.svelte';
+  import HeaderDescription from '../../../ActivityFolder/Common/HeaderDescription/HeaderDescription.svelte';
+  import HeaderToolbar from '../../../ActivityFolder/Common/HeaderToolbar/HeaderToolbar.svelte';
 
   import Trigger from './Trigger.svelte';
 

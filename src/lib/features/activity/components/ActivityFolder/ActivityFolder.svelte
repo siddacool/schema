@@ -113,6 +113,22 @@
       ondelete(value);
     }
   }
+
+  $effect(() => {
+    if (
+      planType ||
+      maxLevels ||
+      maxLevels === 0 ||
+      editMode ||
+      editMode === false ||
+      startOfWeek ||
+      dateSortOrder ||
+      debug ||
+      debug === false
+    ) {
+      syncMiniDatabase();
+    }
+  });
 </script>
 
 <div class={classes.join(' ')}>

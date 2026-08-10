@@ -18,20 +18,23 @@
   }
 
   let { node }: Props = $props();
-  const level = $derived(node.level || 1);
-  const lines = $derived(generateLines(level));
+  const lines = $derived(generateLines(node.level || 1));
 
-  const classes = $derived(['HorizontalLines'].filter(Boolean));
+  const classes = $derived(['VerticalLines'].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
   {#each lines as line (line)}
-    <Line {line} />
+    <Line />
   {/each}
 </div>
 
 <style lang="scss">
-  .HorizontalLines {
+  .VerticalLines {
     display: flex;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>

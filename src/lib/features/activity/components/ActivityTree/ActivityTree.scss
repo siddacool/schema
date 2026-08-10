@@ -6,16 +6,16 @@
     position: relative;
     padding-top: calc(var(--dodo-ui-space) * 0.5);
 
-    &::after {
-      content: '';
-      display: flex;
-      width: 15px;
-      height: 1px;
-      background-color: var(--dodo-color-neutral-300);
-      position: absolute;
-      left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
-      top: 19px;
-    }
+    // &::after {
+    //   content: '';
+    //   display: flex;
+    //   width: 15px;
+    //   height: 1px;
+    //   background-color: var(--dodo-color-neutral-300);
+    //   position: absolute;
+    //   left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
+    //   top: 19px;
+    // }
   }
 
   .ltree-node-row {

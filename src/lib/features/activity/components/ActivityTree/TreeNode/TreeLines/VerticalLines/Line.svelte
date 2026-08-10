@@ -1,18 +1,12 @@
 <script lang="ts">
-  type Props = {
-    line: number;
-  };
-
-  let { line }: Props = $props();
-
   const classes = $derived(['Line'].filter(Boolean));
 </script>
 
-<div class={classes.join(' ')} style={`--HorizontalLine-line-no: ${line};`}></div>
+<div class={classes.join(' ')}></div>
 
 <style lang="scss">
   .Line {
-    background-color: red;
+    background-color: var(--dodo-color-neutral-300);
     width: 1px;
     height: 100%;
     display: flex;

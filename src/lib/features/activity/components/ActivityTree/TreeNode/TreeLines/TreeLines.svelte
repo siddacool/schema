@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ActivityTreeNodeValue, ActivityTreeRefvalue } from '../../types';
-
-  import HorizontalLines from './HorizontalLines/HorizontalLines.svelte';
+  import HorizontalLine from './HorizontalLine/HorizontalLine.svelte';
+  import VerticalLines from './VerticalLines/VerticalLines.svelte';
 
   type Props = {
     class?: string;
@@ -24,7 +24,10 @@
 </script>
 
 <div class={classes.join(' ')} style={`--TreeLines-level: ${level};`}>
-  <HorizontalLines {node} />
+  <div class="conatiner">
+    <VerticalLines {node} />
+    <HorizontalLine {node} />
+  </div>
 </div>
 
 <style lang="scss">
@@ -41,6 +44,10 @@
     &.firstChild {
       top: -2px;
       height: calc(100% + 2px);
+    }
+
+    .conatiner {
+      position: relative;
     }
   }
 </style>

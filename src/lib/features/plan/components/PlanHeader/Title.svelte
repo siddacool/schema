@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { resolve } from '$app/paths';
   import { planDetailStore } from '../../store/detail.svelte';
 
   const plan = $derived(planDetailStore.plan);
@@ -7,7 +6,7 @@
 
 {#if plan}
   <div class="Title">
-    / <a href={resolve(`/plans/${plan._id}`)}>{plan.name}</a>
+    {plan.name}
   </div>
 {/if}
 
@@ -18,10 +17,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    color: inherit;
+    text-decoration: none;
   }
 </style>

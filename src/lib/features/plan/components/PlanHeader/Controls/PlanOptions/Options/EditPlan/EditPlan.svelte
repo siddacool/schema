@@ -1,18 +1,17 @@
 <script>
   import { DropdownMenuItem } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
-  import { goto } from '$app/navigation';
-  import { resolve } from '$app/paths';
-  import { page } from '$app/state';
 
-  const planId = page.params.planId || '';
+  function onclick() {
+    const button = document.getElementById('EditPlanActionButton');
+
+    if (button) {
+      button?.click();
+    }
+  }
 </script>
 
-<DropdownMenuItem
-  onSelect={() => goto(resolve(`/plans/${planId}/edit`))}
-  outline
-  class="EditPlanDropdownMenuItem"
->
+<DropdownMenuItem outline class="EditPlanDropdownMenuItem" {onclick}>
   <span class="Icon">
     <Icon icon="material-symbols:edit-outline" />
   </span>

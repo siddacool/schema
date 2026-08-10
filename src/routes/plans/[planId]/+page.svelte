@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
+  import ActivityFolder from '$lib/features/activity/components/ActivityFolder/ActivityFolder.svelte';
   import { deleteActivityNodes, saveActivity } from '$lib/features/activity/logic/crud.svelte';
   import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import type {
@@ -49,7 +49,7 @@
 </script>
 
 {#if plan && !loading}
-  <ActivityTree
+  <ActivityFolder
     planType={plan.type}
     data={activityList}
     {oncreate}

@@ -28,8 +28,6 @@ export async function saveActivity(data: ActivityCreateData | Activity) {
 
     const id = await updateActivity(newData);
 
-    await activityListStore.load(data.planId);
-
     return id;
   } else {
     const { description, ...restData } = data;
@@ -42,8 +40,6 @@ export async function saveActivity(data: ActivityCreateData | Activity) {
     validateActivityCreate(newData);
 
     const id = await createActivity(newData);
-
-    await activityListStore.load(newData.planId);
 
     return id;
   }
@@ -67,8 +63,6 @@ export async function deleteActivityNodes(planId: string, id: string) {
   }
 
   await deleteBulkActivity(ids as number[]);
-
-  await activityListStore.load(planId);
 
   return ids;
 }

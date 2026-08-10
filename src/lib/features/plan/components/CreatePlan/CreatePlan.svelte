@@ -6,7 +6,7 @@
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { savePlan } from '../../logic/crud.svelte';
-  import ListPicker from '$lib/components/ListPicker/ListPicker.svelte';
+  import PlanTypeListPicker from '../PlanTypeListPicker/PlanTypeListPicker.svelte';
 
   let name = $state('');
   let type = $state(planTypeOptions[0].value);
@@ -73,7 +73,7 @@
       </Column>
       <Column>
         <p class="decoratedTitle">Pick a plan type</p>
-        <ListPicker options={planTypeOptions} bind:value={type} id="plan-type" disabled={loading} />
+        <PlanTypeListPicker bind:value={type} id="plan-type" disabled={loading} />
       </Column>
       <!-- {#if type === PlanType.WEEK}
         <Column>

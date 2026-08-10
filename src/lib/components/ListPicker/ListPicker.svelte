@@ -12,6 +12,8 @@
     value: string;
     id?: string;
     disabled?: boolean;
+    customLabel?: Snippet<[ListPickerOptionContext]>;
+    customDescription?: Snippet<[ListPickerOptionContext]>;
   };
 </script>
 
@@ -20,7 +22,8 @@
 
   import { RadioGroup } from 'bits-ui';
   import { nanoid } from 'nanoid';
-  import Option from './Option.svelte';
+  import Option, { type ListPickerOptionContext } from './Option.svelte';
+  import type { Snippet } from 'svelte';
 
   let {
     class: className = '',
@@ -28,6 +31,8 @@
     value = $bindable(),
     id = nanoid(),
     disabled,
+    customLabel,
+    customDescription,
   }: ListPickerProps = $props();
 
   const classes = $derived(['ListPicker', className].filter(Boolean));
@@ -45,7 +50,7 @@
             class="RadioItem"
           >
             {#snippet children({ checked })}
-              <Option {...option} {checked} />
+              <Option {...option} {checked} {customLabel} {customDescription} />
             {/snippet}
           </RadioGroup.Item>
         </Column>

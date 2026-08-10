@@ -1,6 +1,12 @@
 <script lang="ts" module>
+  export interface ListPickerOptionContext extends ListPickerOption {
+    checked: boolean;
+  }
+
   export type ListPickerOptionProps = ListPickerOption & {
     checked?: boolean;
+    customLabel?: Snippet<[ListPickerOptionContext]>;
+    customDescription?: Snippet<[ListPickerOptionContext]>;
   };
 </script>
 
@@ -9,8 +15,17 @@
 
   import type { ListPickerOption } from './ListPicker.svelte';
   import { Card, type CardColor } from '@flightlesslabs/dodo-ui';
+  import type { Snippet } from 'svelte';
 
-  let { label, description, disabled = false, checked = false }: ListPickerOptionProps = $props();
+  let {
+    value,
+    label,
+    description,
+    disabled = false,
+    checked = false,
+    customLabel,
+    customDescription,
+  }: ListPickerOptionProps = $props();
 
   function getColor(disabledvalue: boolean, checkedValue: boolean): CardColor {
     if (disabledvalue) {
@@ -31,16 +46,18 @@
 <div class={classes.join(' ')}>
   <Card {color} outline class="ListPickerOptionCard" shadow={0} roundness={2}>
     <div class="label">
-      {#if checked}
-        <span class="checked">
-          <Icon icon="material-symbols:check-circle-outline-rounded" />
-        </span>
+      {#if customLabel}
+        {@render customLabel?.({ value, checked, disabled, label, description })}
+      {:else}
+        {label}
       {/if}
-
-      {label}
     </div>
 
-    {#if description}
+    {#if customDescription}
+      <div class="description">
+        {@render customDescription?.({ value, checked, disabled, label, description })}
+      </div>
+    {:else if description}
       <div class="description">
         {description}
       </div>
@@ -82,6 +99,7 @@
       font-size: 1.5rem;
       display: inline-flex;
       margin-right: 6px;
+      color: var(--dodo-color-primary-600);
     }
   }
 </style>

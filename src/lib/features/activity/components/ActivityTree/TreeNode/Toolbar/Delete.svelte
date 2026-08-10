@@ -55,7 +55,6 @@
     title="Delete"
     compact
     color="danger"
-    size="small"
     onclick={deleteConfirmation}
     variant="text"
     disabled={loading}
@@ -66,8 +65,8 @@
 
 <style lang="scss">
   .Delete {
-    :global(.dodo-ui-Button.size--small.DeleteButton) {
-      font-size: 1.3rem;
+    :global(.dodo-ui-Button.size--normal.DeleteButton) {
+      font-size: 1.5rem;
     }
   }
 </style>

@@ -36,7 +36,6 @@
       title="Add new activity"
       compact
       color="primary"
-      size="small"
       {onclick}
       variant="solid"
     >
@@ -49,8 +48,8 @@
 
 <style lang="scss">
   .AddActivity {
-    :global(.dodo-ui-Button.size--small.AddActivityButton) {
-      font-size: 1.5rem;
+    :global(.dodo-ui-Button.size--normal.AddActivityButton) {
+      font-size: 1.8rem;
     }
   }
 </style>

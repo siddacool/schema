@@ -30,8 +30,7 @@
     roundness={1}
     title="Edit details"
     compact
-    color="neutral"
-    size="small"
+    color="primary"
     {onclick}
     variant="text"
   >
@@ -43,8 +42,8 @@
 
 <style lang="scss">
   .Edit {
-    :global(.dodo-ui-Button.size--small.EditButton) {
-      font-size: 1.3rem;
+    :global(.dodo-ui-Button.size--normal.EditButton) {
+      font-size: 1.5rem;
     }
   }
 </style>

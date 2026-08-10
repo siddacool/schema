@@ -27,8 +27,10 @@
     roundness={1}
     title={editMode ? 'Edit mode' : 'Read mode'}
     compact
-    color="neutral"
+    color={editMode ? 'safe' : 'neutral'}
     onclick={toggleEditMode}
+    outline
+    variant="text"
   >
     {#if editMode}
       <Icon icon="jam:write" />

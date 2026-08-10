@@ -1,1 +1,0 @@
-var e=function(e){return e.WEEK=`WEEK`,e.CALENDAR=`CALENDAR`,e.SEQUENCE=`SEQUENCE`,e}({});export{e as t};

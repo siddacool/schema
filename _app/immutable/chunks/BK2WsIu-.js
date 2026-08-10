@@ -1,0 +1,1 @@
+import{rt as e,tt as t,z as n}from"./D1ngzGQG.js";function r(){let r=e(`light`);return{get theme(){return n(r)},updateSystemTheme(e){t(r,e,!0)}}}var i=r();export{i as t};

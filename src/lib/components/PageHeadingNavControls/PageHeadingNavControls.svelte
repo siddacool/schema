@@ -19,6 +19,7 @@
   .PageHeadingNavControls {
     display: flex;
     margin: 0 -6px;
+    align-items: center;
 
     :global(.dodo-ui-Button) {
       margin: 0 6px;

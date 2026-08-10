@@ -2,10 +2,12 @@
   import { Card } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls/Controls.svelte';
   import Title from './Title.svelte';
+  import BackButton from '$lib/components/BackButton/BackButton.svelte';
 </script>
 
 <header class="PlanHeader">
   <Card class="HeaderCard" roundness={0} shadow={3}>
+    <BackButton href="/plans" />
     <div class="content">
       <Title />
     </div>
@@ -33,6 +35,10 @@
     .content {
       overflow: hidden;
       padding: 0 var(--dodo-ui-space);
+      padding-left: 0;
+      display: flex;
+      align-items: center;
+      margin-left: 4px;
     }
 
     .controls {

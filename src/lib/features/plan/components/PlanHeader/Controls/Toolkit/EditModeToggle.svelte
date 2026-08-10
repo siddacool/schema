@@ -27,10 +27,10 @@
     roundness={1}
     title={editMode ? 'Edit mode' : 'Read mode'}
     compact
-    color={editMode ? 'safe' : 'neutral'}
+    color={editMode ? 'safe' : 'warning'}
     onclick={toggleEditMode}
-    outline
     variant="text"
+    size="small"
   >
     {#if editMode}
       <Icon icon="jam:write" />
@@ -42,12 +42,12 @@
 
 <style lang="scss">
   .EditModeToggle {
-    :global(.dodo-ui-Button.size--normal.EditModeToggleButton) {
+    :global(.dodo-ui-Button.size--small.EditModeToggleButton) {
       font-size: 1.5rem;
     }
 
     &.editMode {
-      :global(.dodo-ui-Button.size--normal.EditModeToggleButton) {
+      :global(.dodo-ui-Button.size--small.EditModeToggleButton) {
         font-size: 1.2rem;
       }
     }

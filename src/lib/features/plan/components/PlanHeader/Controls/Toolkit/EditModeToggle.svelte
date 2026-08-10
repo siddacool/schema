@@ -33,7 +33,7 @@
     size="small"
   >
     {#if editMode}
-      <Icon icon="jam:write" />
+      <Icon icon="ri:edit-line" />
     {:else}
       <Icon icon="ant-design:read-outlined" />
     {/if}

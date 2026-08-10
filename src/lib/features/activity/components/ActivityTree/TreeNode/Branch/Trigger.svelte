@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Activity } from '$lib/features/activity/types';
-  import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
   import Icon from '@iconify/svelte';
+  import type { ActivityTreeNodeValue } from '../../types';
 
   type Props = {
     class?: string;

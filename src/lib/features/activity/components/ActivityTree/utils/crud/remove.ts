@@ -1,4 +1,4 @@
-import type { ActivityTreeRefvalue } from '../../ActivityTree.svelte';
+import type { ActivityTreeRefvalue } from '../../types';
 
 export async function activityTreeRemove(treeRef: ActivityTreeRefvalue | undefined, value: string) {
   if (!treeRef) {

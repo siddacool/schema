@@ -1,5 +1,5 @@
 import type { Activity, ActivityCreateFormData, ActivityGroup } from '$lib/features/activity/types';
-import type { ActivityTreeRefvalue } from '../../ActivityTree.svelte';
+import type { ActivityTreeRefvalue } from '../../types';
 
 export async function activityTreeAdd(
   treeRef: ActivityTreeRefvalue | undefined,

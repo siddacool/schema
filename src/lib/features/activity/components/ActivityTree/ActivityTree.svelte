@@ -1,8 +1,3 @@
-<script lang="ts" module>
-  export type ActivityTreeNodeValue = LTreeNode<Activity>;
-  export type ActivityTreeRefvalue = Tree<Activity>;
-</script>
-
 <script lang="ts">
   import './ActivityTree.scss';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
@@ -12,11 +7,12 @@
     ActivityGroup,
   } from '$lib/features/activity/types';
   import type { WeekDays } from '$lib/features/activity/types/week';
-  import { Tree, type LTreeNode } from '@keenmate/svelte-treeview';
+  import { Tree } from '@keenmate/svelte-treeview';
   import TreeNode from './TreeNode/TreeNode.svelte';
   import { activityTreeUpdate } from './utils/crud/update';
   import { activityTreeRemove } from './utils/crud/remove';
   import { activityTreeAdd } from './utils/crud/add';
+  import type { ActivityTreeNodeValue, ActivityTreeRefvalue } from './types';
 
   type Props = {
     class?: string;
@@ -132,6 +128,7 @@
     {#snippet nodeTemplate(node: ActivityTreeNodeValue | undefined)}
       {#if node}
         <TreeNode
+          {treeRef}
           {planType}
           oncreate={oncreateMod}
           onupdate={onupdateMod}

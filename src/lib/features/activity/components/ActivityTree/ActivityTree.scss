@@ -6,17 +6,6 @@
     position: relative;
     padding-top: calc(var(--dodo-ui-space) * 0.5);
 
-    &::before {
-      content: '';
-      display: flex;
-      width: 1px;
-      height: 100%;
-      background-color: var(--dodo-color-neutral-300);
-      position: absolute;
-      left: calc(var(--tree-node-indent-per-level) * -1 + 10px);
-      top: -3px;
-    }
-
     &::after {
       content: '';
       display: flex;

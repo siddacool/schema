@@ -10,9 +10,8 @@
   import { AccordionItem } from '@flightlesslabs/dodo-ui-bits';
   import Header from './Header/Header.svelte';
   import { activityTreeAdd } from '$lib/features/activity/components/ActivityTree/utils/crud/add';
-  import ActivityTree, {
-    type ActivityTreeRefvalue,
-  } from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
+  import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
+  import type { ActivityTreeRefvalue } from '$lib/features/activity/components/ActivityTree/types';
 
   type Props = {
     class?: string;

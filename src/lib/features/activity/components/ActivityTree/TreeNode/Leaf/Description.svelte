@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
+  import type { ActivityTreeNodeValue } from '../../types';
 
   type Props = {
     class?: string;

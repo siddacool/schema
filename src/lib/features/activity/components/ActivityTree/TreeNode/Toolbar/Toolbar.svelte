@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { ActivityCreateFormData, Activity } from '$lib/features/activity/types';
-  import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
+  import type { ActivityTreeNodeValue } from '../../types';
   import AddActivity from './AddActivity.svelte';
   import Delete from './Delete.svelte';
   import Edit from './Edit.svelte';

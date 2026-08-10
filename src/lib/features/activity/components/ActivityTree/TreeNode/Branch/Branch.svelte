@@ -5,11 +5,11 @@
     ActivityCreateFormData,
     ActivityGroup,
   } from '$lib/features/activity/types';
-  import type { ActivityTreeNodeValue } from '../../ActivityTree.svelte';
   import { Card } from '@flightlesslabs/dodo-ui';
   import Toolbar from '../Toolbar/Toolbar.svelte';
   import Trigger from './Trigger.svelte';
   import Description from './Description.svelte';
+  import type { ActivityTreeNodeValue } from '../../types';
 
   type Props = {
     class?: string;

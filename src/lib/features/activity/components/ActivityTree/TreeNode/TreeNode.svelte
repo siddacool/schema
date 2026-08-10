@@ -5,9 +5,10 @@
     ActivityCreateFormData,
     ActivityGroup,
   } from '$lib/features/activity/types';
-  import type { ActivityTreeNodeValue } from '../ActivityTree.svelte';
   import Branch from './Branch/Branch.svelte';
   import Leaf from './Leaf/Leaf.svelte';
+  import TreeLines from './TreeLines/TreeLines.svelte';
+  import type { ActivityTreeNodeValue, ActivityTreeRefvalue } from '../types';
 
   type Props = {
     planType: PlanType;
@@ -20,6 +21,7 @@
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
     selectedNode: string | undefined;
+    treeRef: ActivityTreeRefvalue | undefined;
   };
 
   let {
@@ -33,11 +35,13 @@
     node,
     onselect,
     selectedNode,
+    treeRef,
   }: Props = $props();
   const data = $derived(node.data);
 </script>
 
 {#if data}
+  <TreeLines {node} {treeRef} />
   {#if node.hasChildren}
     <Branch
       {planType}

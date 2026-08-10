@@ -4,6 +4,8 @@
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { activityListMockData } from '../../mocks/activity-list-mock-data';
   import { ModalManager } from '@flightlesslabs/dodo-ui-bits';
+  import { activityListMockDataWeek } from '../../mocks/activity-lits-mock-data-week';
+  import { activityListMockDataCalendar } from '../../mocks/activity-lits-mock-data-calendar';
 
   // ------------------------------
   // Storybook Meta
@@ -26,11 +28,11 @@
 </Story>
 
 <Story name="Week" asChild>
-  <ActivityFolder data={[]} planType={PlanType.WEEK} editMode />
+  <ActivityFolder data={activityListMockDataWeek} planType={PlanType.WEEK} editMode />
   <ModalManager />
 </Story>
 
 <Story name="Calendar" asChild>
-  <ActivityFolder data={[]} planType={PlanType.CALENDAR} editMode />
+  <ActivityFolder data={activityListMockDataCalendar} planType={PlanType.CALENDAR} editMode />
   <ModalManager />
 </Story>

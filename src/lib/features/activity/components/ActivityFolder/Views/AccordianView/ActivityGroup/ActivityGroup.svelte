@@ -108,11 +108,7 @@
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
-    background-color: var(--dodo-color-primary-100);
-
-    &:hover {
-      background-color: var(--dodo-color-primary-200);
-    }
+    border-color: var(--dodo-color-neutral-400);
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {

@@ -113,6 +113,7 @@
 
     &.isSelected {
       :global(.TreeNodeCard) {
+        border-color: var(--dodo-color-neutral-300);
         background-color: var(--dodo-color-neutral-100);
 
         &:hover {

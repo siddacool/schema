@@ -20,19 +20,22 @@
 <!-- Stories -->
 <!-- ------------------------------ -->
 
-<Story name="Default" args={{ data: activityListMockData, planType: PlanType.SEQUENCE }} />
+<Story
+  name="Default"
+  args={{ data: activityListMockData, planType: PlanType.SEQUENCE, debug: true }}
+/>
 
 <Story name="EditMode" asChild>
-  <ActivityFolder data={activityListMockData} planType={PlanType.SEQUENCE} editMode />
+  <ActivityFolder data={activityListMockData} planType={PlanType.SEQUENCE} editMode debug />
   <ModalManager />
 </Story>
 
 <Story name="Week" asChild>
-  <ActivityFolder data={activityListMockDataWeek} planType={PlanType.WEEK} editMode />
+  <ActivityFolder data={activityListMockDataWeek} planType={PlanType.WEEK} editMode debug />
   <ModalManager />
 </Story>
 
 <Story name="Calendar" asChild>
-  <ActivityFolder data={activityListMockDataCalendar} planType={PlanType.CALENDAR} editMode />
+  <ActivityFolder data={activityListMockDataCalendar} planType={PlanType.CALENDAR} editMode debug />
   <ModalManager />
 </Story>

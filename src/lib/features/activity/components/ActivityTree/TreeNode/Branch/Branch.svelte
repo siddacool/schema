@@ -85,11 +85,7 @@
 
     &.expanded {
       :global(.TreeNodeCard) {
-        background-color: var(--dodo-color-primary-100);
-
-        &:hover {
-          background-color: var(--dodo-color-primary-200);
-        }
+        border-color: var(--dodo-color-neutral-400);
       }
     }
 

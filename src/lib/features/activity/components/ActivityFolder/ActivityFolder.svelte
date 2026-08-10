@@ -6,6 +6,7 @@
   import type { SortOrder } from '$lib/features/shared/types/sort-order';
   import { DEFAULT_DATE_SORT_ORDER } from '../../const/calendar';
   import ActivityManager from './ActivityManager.svelte';
+  import { debugLog } from '$lib/utils/debug-log';
 
   type Props = {
     class?: string;
@@ -18,6 +19,7 @@
     editMode?: boolean;
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
+    debug?: boolean;
   };
 
   const {
@@ -31,11 +33,18 @@
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
+    debug = false,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
   let miniDatabase = $derived<Activity[]>(dataRaw);
+
+  function syncMiniDatabase() {
+    data = [...miniDatabase];
+
+    debugLog(debug, 'syncMiniDatabase');
+  }
 
   async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
     const now = Date.now();
@@ -47,12 +56,10 @@
       planId: '',
     };
 
-    console.log('debug:', newNode);
-
     miniDatabase = [...miniDatabase, newNode];
 
     if (!subActivity) {
-      data = [...miniDatabase];
+      syncMiniDatabase();
     }
 
     if (oncreate) {
@@ -71,7 +78,7 @@
     miniDatabase = [...cachedData];
 
     if (!subActivity) {
-      data = [...miniDatabase];
+      syncMiniDatabase();
     }
 
     if (onupdate) {
@@ -99,7 +106,7 @@
     miniDatabase = [...cachedData];
 
     if (!subActivity) {
-      data = [...miniDatabase];
+      syncMiniDatabase();
     }
 
     if (ondelete) {

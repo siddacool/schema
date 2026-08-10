@@ -1,20 +1,14 @@
 <script lang="ts">
   import { Button, Column, Grid, TextInput } from '@flightlesslabs/dodo-ui';
-  import { Select, toasts } from '@flightlesslabs/dodo-ui-bits';
+  import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import type { Plan } from '../../types';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { savePlan } from '../../logic/crud.svelte';
   import { planDetailStore } from '../../store/detail.svelte';
-  import { daysOptions } from '$lib/features/activity/config/week';
-  import { PlanType } from '../../types/plan-type';
-  import { DEFAULT_START_OF_WEEK } from '$lib/features/activity/const/week';
-  import { dateSortOrderOptions } from '$lib/features/activity/config/calendar';
 
   const plan = $derived(planDetailStore.plan);
   let name = $derived(plan?.name || '');
-  let startOfWeek = $derived(plan?.startOfWeek || DEFAULT_START_OF_WEEK);
-  let dateSortOrder = $state(dateSortOrderOptions[0].value);
   const isDataValid = $derived(name ? true : false);
   let loading = $state(false);
 
@@ -40,8 +34,6 @@
       const formData: Plan = {
         ...plan,
         name,
-        startOfWeek,
-        dateSortOrder,
       };
 
       const planId = await savePlan(formData);
@@ -80,7 +72,7 @@
         />
       </Column>
 
-      {#if plan?.type === PlanType.WEEK}
+      <!-- {#if plan?.type === PlanType.WEEK}
         <Column>
           <p class="decoratedTitle">Start the week from</p>
           <Select
@@ -92,9 +84,9 @@
             size="large"
           />
         </Column>
-      {/if}
+      {/if} -->
 
-      {#if plan?.type === PlanType.CALENDAR}
+      <!-- {#if plan?.type === PlanType.CALENDAR}
         <Column>
           <p class="decoratedTitle">Date order</p>
           <Select
@@ -106,7 +98,7 @@
             size="large"
           />
         </Column>
-      {/if}
+      {/if} -->
 
       <Column>
         <Button

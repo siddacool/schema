@@ -1,21 +1,15 @@
 <script lang="ts">
   import { Button, Column, Grid, TextInput } from '@flightlesslabs/dodo-ui';
-  import { Select, toasts } from '@flightlesslabs/dodo-ui-bits';
+  import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import { planTypeOptions } from '../../config';
   import type { PlanCreateData } from '../../types';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { savePlan } from '../../logic/crud.svelte';
   import ListPicker from '$lib/components/ListPicker/ListPicker.svelte';
-  import { PlanType } from '../../types/plan-type';
-  import { daysOptions } from '$lib/features/activity/config/week';
-  import { DEFAULT_START_OF_WEEK } from '$lib/features/activity/const/week';
-  import { dateSortOrderOptions } from '$lib/features/activity/config/calendar';
 
   let name = $state('');
   let type = $state(planTypeOptions[0].value);
-  let dateSortOrder = $state(dateSortOrderOptions[0].value);
-  let startOfWeek = $state(DEFAULT_START_OF_WEEK);
   const isDataValid = $derived(name && type ? true : false);
   let loading = $state(false);
 
@@ -37,8 +31,6 @@
       const formData: PlanCreateData = {
         name,
         type,
-        startOfWeek,
-        dateSortOrder,
       };
 
       const planId = await savePlan(formData);
@@ -83,7 +75,7 @@
         <p class="decoratedTitle">Pick a plan type</p>
         <ListPicker options={planTypeOptions} bind:value={type} id="plan-type" disabled={loading} />
       </Column>
-      {#if type === PlanType.WEEK}
+      <!-- {#if type === PlanType.WEEK}
         <Column>
           <p class="decoratedTitle">Start the week from</p>
           <Select
@@ -94,8 +86,8 @@
             bind:value={startOfWeek}
           />
         </Column>
-      {/if}
-      {#if type === PlanType.CALENDAR}
+      {/if} -->
+      <!-- {#if type === PlanType.CALENDAR}
         <Column>
           <p class="decoratedTitle">Date order</p>
           <Select
@@ -106,7 +98,7 @@
             bind:value={dateSortOrder}
           />
         </Column>
-      {/if}
+      {/if} -->
       <Column>
         <Button
           type="submit"

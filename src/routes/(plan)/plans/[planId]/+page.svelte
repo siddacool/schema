@@ -9,6 +9,7 @@
     ActivityCreateFormData,
   } from '$lib/features/activity/types';
   import PlanHeader from '$lib/features/plan/components/PlanHeader/PlanHeader.svelte';
+  import { updateActivePlan } from '$lib/features/plan/logic/page.svelte';
   import { planDetailStore } from '$lib/features/plan/store/detail.svelte';
 
   let loading = $derived(true);
@@ -46,6 +47,8 @@
 
   $effect(() => {
     load();
+
+    updateActivePlan(planId);
   });
 </script>
 

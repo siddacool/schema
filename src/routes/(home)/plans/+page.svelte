@@ -1,5 +1,6 @@
 <script lang="ts">
   import PlanList from '$lib/features/plan/components/PlanList/PlanList.svelte';
+  import { clearActivePlan } from '$lib/features/plan/logic/page.svelte';
   import { planListStore } from '$lib/features/plan/store/list.svelte';
 
   let loading = $derived(true);
@@ -12,6 +13,8 @@
 
   $effect(() => {
     load();
+
+    clearActivePlan();
   });
 </script>
 

@@ -79,13 +79,13 @@
       align-items: flex-start;
 
       &:hover {
-        background-color: var(--dodo-color-neutral-100);
+        background-color: var(--dodo-color-neutral-200);
       }
     }
 
     &.expanded {
       :global(.TreeNodeCard) {
-        border-color: var(--dodo-color-neutral-400);
+        border-color: var(--dodo-color-neutral-500);
       }
     }
 

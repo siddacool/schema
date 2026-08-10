@@ -29,5 +29,9 @@
     background-color: transparent;
     margin-top: 1px;
     margin-left: 4px;
+
+    @media (min-width: 600px) {
+      font-size: 1rem;
+    }
   }
 </style>

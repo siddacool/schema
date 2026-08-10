@@ -32,5 +32,9 @@
     border: 0;
     background-color: transparent;
     font-weight: 500;
+
+    @media (min-width: 600px) {
+      font-size: 1rem;
+    }
   }
 </style>

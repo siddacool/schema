@@ -17,9 +17,10 @@ import {
 
 export async function saveActivity(data: ActivityCreateData | Activity) {
   if ('updatedAt' in data) {
-    const { description, ...restData } = data;
+    const { description, planId, ...restData } = data;
 
     const newData: Activity = {
+      planId,
       description: description.trim(),
       ...restData,
     };
@@ -28,11 +29,14 @@ export async function saveActivity(data: ActivityCreateData | Activity) {
 
     const id = await updateActivity(newData);
 
+    await activityListStore.syncBackup(planId);
+
     return id;
   } else {
-    const { description, ...restData } = data;
+    const { description, planId, ...restData } = data;
 
     const newData: ActivityCreateData = {
+      planId,
       description: description.trim(),
       ...restData,
     };
@@ -40,6 +44,8 @@ export async function saveActivity(data: ActivityCreateData | Activity) {
     validateActivityCreate(newData);
 
     const id = await createActivity(newData);
+
+    await activityListStore.syncBackup(planId);
 
     return id;
   }
@@ -63,6 +69,8 @@ export async function deleteActivityNodes(planId: string, id: string) {
   }
 
   await deleteBulkActivity(ids as number[]);
+
+  await activityListStore.syncBackup(planId);
 
   return ids;
 }

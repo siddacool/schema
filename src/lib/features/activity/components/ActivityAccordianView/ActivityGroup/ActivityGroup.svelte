@@ -82,6 +82,8 @@
 <style>
   :global(.ActivityGroup.dodo-ui-AccordionItem) {
     margin-bottom: calc(var(--dodo-ui-space) * 2);
+    padding-left: var(--dodo-ui-space);
+    padding-right: var(--dodo-ui-space);
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem .ActivityGroupHeaderCard) {
@@ -94,12 +96,12 @@
       color 100ms;
 
     &:hover {
-      background-color: var(--dodo-color-neutral-100);
+      background-color: var(--dodo-color-neutral-200);
     }
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed']) {
-    padding-bottom: calc(var(--dodo-ui-space) * 1);
+    padding-bottom: calc(var(--dodo-ui-space) * 2);
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] [data-accordion-content]) {
@@ -107,7 +109,12 @@
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
-    border-color: var(--dodo-color-neutral-400);
+    border-color: var(--dodo-color-neutral-500);
+    background-color: var(--dodo-color-neutral-100);
+
+    &:hover {
+      background-color: var(--dodo-color-neutral-200);
+    }
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {

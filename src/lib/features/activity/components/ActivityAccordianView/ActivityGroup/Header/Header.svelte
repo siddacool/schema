@@ -51,10 +51,14 @@
       margin: 0;
       flex: 1;
       margin-left: 4px;
-      font-size: 0.9375rem;
+      font-size: 1rem;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+
+      @media (min-width: 600px) {
+        font-size: 1.1rem;
+      }
     }
   }
 </style>

@@ -93,6 +93,7 @@
       padding-left: 0;
       display: flex;
       align-items: flex-start;
+      background-color: transparent;
 
       &:hover {
         background-color: var(--dodo-color-neutral-100);

@@ -8,6 +8,7 @@
     ActivityCreateData,
     ActivityCreateFormData,
   } from '$lib/features/activity/types';
+  import PlanHeader from '$lib/features/plan/components/PlanHeader/PlanHeader.svelte';
   import { planDetailStore } from '$lib/features/plan/store/detail.svelte';
 
   let loading = $derived(true);
@@ -49,13 +50,36 @@
 </script>
 
 {#if plan && !loading}
-  <ActivityFolder
-    planType={plan.type}
-    data={activityList}
-    {oncreate}
-    {onupdate}
-    {editMode}
-    {ondelete}
-    startOfWeek={plan.startOfWeek}
-  />
+  <PlanHeader />
+
+  <div class="container">
+    <ActivityFolder
+      planType={plan.type}
+      data={activityList}
+      {oncreate}
+      {onupdate}
+      {editMode}
+      {ondelete}
+      startOfWeek={plan.startOfWeek}
+    />
+  </div>
 {/if}
+
+<style lang="scss">
+  .container {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+    padding: calc(var(--dodo-ui-space) * 3) 0;
+    max-width: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    :global(.ActivityFolderMainCreate) {
+      position: absolute;
+      z-index: -200;
+    }
+  }
+</style>

@@ -83,6 +83,8 @@
       align-items: center;
       font-weight: 500;
       min-height: 24px;
+      font-variation-settings: 'wdth' 95;
+      transition: font-variation-settings 100ms;
     }
 
     .description {
@@ -104,7 +106,7 @@
 
     &.selected {
       .label {
-        font-variation-settings: 'wdth' 120;
+        font-variation-settings: 'wdth' 110;
       }
     }
   }

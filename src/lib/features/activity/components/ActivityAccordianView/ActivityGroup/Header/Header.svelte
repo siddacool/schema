@@ -46,6 +46,8 @@
     display: flex;
     width: 100%;
     align-items: center;
+    font-variation-settings: 'wdth' 100;
+    transition: font-variation-settings 60ms;
 
     :global(.HeaderDescription) {
       margin: 0;

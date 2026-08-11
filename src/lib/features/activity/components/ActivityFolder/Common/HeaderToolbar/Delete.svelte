@@ -58,6 +58,7 @@
     onclick={deleteConfirmation}
     variant="text"
     disabled={loading}
+    size="small"
   >
     <Icon icon="material-symbols:delete-outline-rounded" />
   </Button>
@@ -65,8 +66,8 @@
 
 <style lang="scss">
   .Delete {
-    :global(.dodo-ui-Button.size--normal.DeleteButton) {
-      font-size: 1.5rem;
+    :global(.dodo-ui-Button.size--small.DeleteButton) {
+      font-size: 1.3rem;
     }
   }
 </style>

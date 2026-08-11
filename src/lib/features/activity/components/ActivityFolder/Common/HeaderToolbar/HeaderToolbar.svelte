@@ -4,7 +4,6 @@
     ActivityCreateFormData,
     Activity,
   } from '$lib/features/activity/types';
-  import type { WeekDays } from '$lib/features/activity/types/week';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
   import AddActivity from './AddActivity.svelte';
   import Delete from './Delete.svelte';

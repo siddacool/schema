@@ -121,7 +121,7 @@
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .Header) {
-    font-variation-settings: 'wdth' 120;
+    font-variation-settings: 'wdth' 115;
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed'] .Toolbar) {

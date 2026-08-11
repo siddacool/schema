@@ -33,6 +33,7 @@
     color="primary"
     {onclick}
     variant="text"
+    size="small"
   >
     <Icon icon="material-symbols:edit-outline" />
   </Button>
@@ -42,8 +43,8 @@
 
 <style lang="scss">
   .Edit {
-    :global(.dodo-ui-Button.size--normal.EditButton) {
-      font-size: 1.5rem;
+    :global(.dodo-ui-Button.size--small.EditButton) {
+      font-size: 1.3rem;
     }
   }
 </style>

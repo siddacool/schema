@@ -32,7 +32,9 @@
     compact
     color="primary"
     onclick={() => (open = true)}
-    variant="solid"
+    variant="text"
+    size="small"
+    outline
   >
     <Icon icon="material-symbols:add-rounded" />
   </Button>
@@ -42,8 +44,8 @@
 
 <style lang="scss">
   .AddActivity {
-    :global(.dodo-ui-Button.size--normal.AddActivityButton) {
-      font-size: 1.8rem;
+    :global(.dodo-ui-Button.size--small.AddActivityButton) {
+      font-size: 1.5rem;
     }
   }
 </style>

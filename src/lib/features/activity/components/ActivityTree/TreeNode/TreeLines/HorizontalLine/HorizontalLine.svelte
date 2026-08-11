@@ -1,4 +1,5 @@
 <script lang="ts">
+  import NodeLine from '$lib/components/NodeLine/NodeLine.svelte';
   import type { ActivityTreeNodeValue } from '../../../types';
   type Props = {
     node: ActivityTreeNodeValue;
@@ -13,17 +14,14 @@
 <div
   class={classes.join(' ')}
   style={`--HorizontalLine-space: ${space}; --HorizontalLine-space-pixel: ${space}px;`}
-></div>
+>
+  <NodeLine class="HorizontalLineLine" position="horizontal" width="30px" />
+</div>
 
 <style lang="scss">
   .HorizontalLine {
-    z-index: 0;
-    background-color: var(--dodo-color-neutral-300);
-    height: 1px;
-    width: 30px;
     position: absolute;
     top: 20px;
-    left: 1px;
     left: calc(
       calc(var(--tree-node-indent-per-level) * var(--HorizontalLine-space)) +
         var(--HorizontalLine-space-pixel)

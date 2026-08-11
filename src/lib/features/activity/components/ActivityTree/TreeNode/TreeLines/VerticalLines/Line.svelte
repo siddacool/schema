@@ -1,15 +1,13 @@
 <script lang="ts">
-  const classes = $derived(['Line'].filter(Boolean));
+  import NodeLine from '$lib/components/NodeLine/NodeLine.svelte';
+
+  const classes = $derived(['TreeLinesVerticalLine'].filter(Boolean));
 </script>
 
-<div class={classes.join(' ')}></div>
+<NodeLine class={classes.join(' ')} position="vertical" height="100%" />
 
 <style lang="scss">
-  .Line {
-    background-color: var(--dodo-color-neutral-300);
-    width: 1px;
-    height: 100%;
-    display: flex;
+  :global(.TreeLinesVerticalLine) {
     margin-right: var(--tree-node-indent-per-level);
   }
 </style>

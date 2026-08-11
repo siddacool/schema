@@ -1,15 +1,13 @@
 <script lang="ts">
-  const classes = $derived(['VerticalLine'].filter(Boolean));
+  import NodeLine from '$lib/components/NodeLine/NodeLine.svelte';
+
+  const classes = $derived(['ActivityAccordianViewVerticalLine'].filter(Boolean));
 </script>
 
-<div class={classes.join(' ')}></div>
+<NodeLine class={classes.join(' ')} position="vertical" height="calc(var(--dodo-ui-space) * 1.5)" />
 
 <style lang="scss">
-  .VerticalLine {
-    background-color: var(--dodo-color-neutral-300);
-    width: 1px;
-    height: calc(var(--dodo-ui-space) * 1.5);
-    display: flex;
+  :global(.ActivityAccordianViewVerticalLine) {
     position: relative;
     left: 8px;
   }

@@ -43,7 +43,7 @@
 
 <div class={classes.join(' ')}>
   <UtilityButton class="TriggerButton" {onclick} compact>
-    <Icon icon="weui:arrow-filled" />
+    <Icon icon="material-symbols:arrow-right-rounded" />
   </UtilityButton>
 </div>
 
@@ -55,7 +55,7 @@
     padding-bottom: calc(var(--dodo-ui-space) * 0.8);
 
     :global(.TriggerButton.dodo-ui-UtilityButton.size--normal) {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
 
     &.expanded {

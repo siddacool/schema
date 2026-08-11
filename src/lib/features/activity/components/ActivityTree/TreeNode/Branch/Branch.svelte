@@ -79,6 +79,7 @@
       padding-left: 0;
       display: flex;
       align-items: flex-start;
+      background-color: var(--dodo-color-neutral-50);
 
       &:hover {
         background-color: var(--dodo-color-neutral-200);

@@ -33,3 +33,9 @@ export function validateDeleteActivityByPlanId(planActivityKeys: number[]) {
     throw new Error('Activities not found');
   }
 }
+
+export function validateActivityImport(planId: string) {
+  if (!planId) {
+    throw new Error('planId not found');
+  }
+}

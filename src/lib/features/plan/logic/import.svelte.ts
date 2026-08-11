@@ -2,6 +2,7 @@ import { savePlan } from './crud.svelte';
 import type { ExportPlanData } from '../types/export';
 import { validatePlanImport } from '../validation';
 import { planListStore } from '../store/list.svelte';
+import { importActivity } from '$lib/features/activity/logic/import.svelte';
 
 export async function importPlan(data: ExportPlanData) {
   validatePlanImport(data);
@@ -11,7 +12,7 @@ export async function importPlan(data: ExportPlanData) {
 
   const planId = await savePlan({ ...restProps });
 
-  console.log('debug:', planId);
+  await importActivity(planId, data.activity);
 
   await planListStore.load();
 }

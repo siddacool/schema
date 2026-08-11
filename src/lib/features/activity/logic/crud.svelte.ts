@@ -2,6 +2,7 @@ import {
   createActivity,
   deleteActivity as deleteActivityDb,
   updateActivityBulk as updateActivityBulkDb,
+  bulkAddActivity as bulkAddActivityDb,
   deleteBulkActivity,
   getActivityById,
   listActivity,
@@ -107,6 +108,16 @@ export async function updateActivityBulk(data: Activity[]) {
   }
 
   const ids = await updateActivityBulkDb(data);
+
+  return ids;
+}
+
+export async function bulkAddActivity(data: Activity[]) {
+  if (!data.length) {
+    return;
+  }
+
+  const ids = await bulkAddActivityDb(data);
 
   return ids;
 }

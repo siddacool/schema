@@ -21,7 +21,7 @@
 
 {#if !loading && plans.length}
   <PlanList {plans} />
-{:else}
+{:else if !loading && !plans.length}
   <PlansListPageInstructions />
 {/if}
 

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import ActivityFolder from '$lib/features/activity/components/ActivityFolder/ActivityFolder.svelte';
+  import ActivityListPageInstructions from '$lib/features/activity/components/ActivityListPageInstructions/ActivityListPageInstructions.svelte';
   import { deleteActivityNodes, saveActivity } from '$lib/features/activity/logic/crud.svelte';
   import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import type {
@@ -52,19 +53,23 @@
   });
 </script>
 
-{#if plan && !loading}
+{#if !loading && plan}
   <PlanHeader />
 
   <div class="container">
-    <ActivityFolder
-      planType={plan.type}
-      data={activityList}
-      {oncreate}
-      {onupdate}
-      {editMode}
-      {ondelete}
-      startOfWeek={plan.startOfWeek}
-    />
+    {#if !loading && activityList.length}
+      <ActivityFolder
+        planType={plan.type}
+        data={activityList}
+        {oncreate}
+        {onupdate}
+        {editMode}
+        {ondelete}
+        startOfWeek={plan.startOfWeek}
+      />
+    {:else if !loading && !activityList.length}
+      <ActivityListPageInstructions />
+    {/if}
   </div>
 {/if}
 

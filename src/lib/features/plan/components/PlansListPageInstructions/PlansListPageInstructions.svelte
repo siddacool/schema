@@ -24,15 +24,17 @@
     display: flex;
     align-items: center;
     justify-self: center;
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 500;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
 
     :global(.SiteLogo) {
       margin-right: var(--dodo-ui-space);
     }
 
     @media (min-width: 600px) {
-      font-size: 2.2rem;
+      font-size: 2.7rem;
     }
   }
 

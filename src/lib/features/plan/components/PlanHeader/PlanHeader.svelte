@@ -29,7 +29,8 @@
       min-height: 60px;
       display: flex;
       align-items: center;
-      padding: 0 calc(var(--dodo-ui-space) * 2);
+      padding: 0 var(--dodo-ui-space);
+      padding-left: calc(var(--dodo-ui-space) * 0.5);
     }
 
     .content {

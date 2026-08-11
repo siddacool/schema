@@ -66,8 +66,7 @@
       <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} {groups} />
     </Card>
   {/snippet}
-
-  <VerticalLine />
+  <VerticalLine {data} />
   <ActivityTree
     bind:treeRef
     {planType}

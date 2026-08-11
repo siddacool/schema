@@ -27,10 +27,14 @@
     color: var(--dodo-color-neutral-800);
 
     :global(.PlanTypeIcon) {
-      font-size: 1.5rem;
-      margin-right: 4px;
-      color: var(--dodo-color-neutral-600);
+      font-size: 1.3rem;
+      margin-right: 8px;
     }
+
+    :global(.PlanTypeIcon.value--SEQUENCE) {
+      font-size: 1.5rem;
+    }
+
     .description {
       display: flex;
       align-items: center;

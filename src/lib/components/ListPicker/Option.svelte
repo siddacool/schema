@@ -11,8 +11,6 @@
 </script>
 
 <script lang="ts">
-  import Icon from '@iconify/svelte';
-
   import type { ListPickerOption } from './ListPicker.svelte';
   import { Card, type CardColor } from '@flightlesslabs/dodo-ui';
   import type { Snippet } from 'svelte';
@@ -39,7 +37,7 @@
     }
   }
 
-  const classes = $derived(['ListPickerOption'].filter(Boolean));
+  const classes = $derived(['ListPickerOption', `${checked ? 'selected' : ''}`].filter(Boolean));
   const color = $derived(getColor(disabled, checked));
 </script>
 
@@ -72,13 +70,14 @@
     color: inherit;
 
     :global(.ListPickerOptionCard) {
-      padding: calc(var(--dodo-ui-space) * 2);
+      padding: calc(var(--dodo-ui-space) * 1.8);
       display: flex;
       flex-direction: column;
     }
 
     .label {
-      font-size: 1.1rem;
+      font-family: 'Archivo', sans-serif;
+      font-size: 1.2rem;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -87,7 +86,8 @@
     }
 
     .description {
-      font-size: 1rem;
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.1rem;
       text-align: left;
       margin-top: calc(var(--dodo-ui-space) * 1);
       opacity: 0.8;
@@ -100,6 +100,12 @@
       display: inline-flex;
       margin-right: 6px;
       color: var(--dodo-color-primary-600);
+    }
+
+    &.selected {
+      .label {
+        font-variation-settings: 'wdth' 120;
+      }
     }
   }
 </style>

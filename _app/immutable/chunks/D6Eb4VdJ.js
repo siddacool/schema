@@ -1,1 +1,0 @@
-import{c as e}from"./48Ml2F1z.js";var t=[{value:e.SEQUENCE,label:`Sequence`,description:`Step wise plan. Step 1, Step 2`},{value:e.WEEK,label:`Daily routine`,description:`Gym routines, Weekly goals`},{value:e.CALENDAR,label:`Calendar`,description:`Travel itinerary, Date wise plan`}];export{t};

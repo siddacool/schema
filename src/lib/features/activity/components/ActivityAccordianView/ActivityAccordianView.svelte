@@ -12,6 +12,7 @@
   type OnChangeFn<T> = (value: T) => void;
 
   type Props = {
+    class?: string;
     planType: PlanType;
     data: ActivityGroup[];
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
@@ -22,8 +23,19 @@
     startOfWeek: WeekDays;
   };
 
-  const { planType, data, oncreate, onupdate, ondelete, maxLevels, editMode, startOfWeek }: Props =
-    $props();
+  const {
+    class: className = '',
+    planType,
+    data,
+    oncreate,
+    onupdate,
+    ondelete,
+    maxLevels,
+    editMode,
+    startOfWeek,
+  }: Props = $props();
+
+  const classes = $derived(['ActivityAccordianView', className].filter(Boolean));
 
   let accordianExpandedValues = $derived(
     data.filter((item) => item.expanded).map((item) => item._id),
@@ -63,6 +75,7 @@
   type="multiple"
   value={accordianExpandedValues}
   onValueChange={toggleAccordianExpanded as OnChangeFn<string[]>}
+  class={classes.join(' ')}
 >
   {#each data as activityGroup (activityGroup._id)}
     <ActivityGroupContainer

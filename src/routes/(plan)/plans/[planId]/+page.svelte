@@ -75,7 +75,6 @@
     margin-left: auto;
     margin-right: auto;
     width: 100vw;
-    padding: calc(var(--dodo-ui-space) * 3) 0;
     max-width: 800px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -83,6 +82,10 @@
     :global(.ActivityFolderMainCreate) {
       position: absolute;
       z-index: -200;
+    }
+
+    :global(.ActivityAccordianView) {
+      padding: calc(var(--dodo-ui-space) * 3) 0;
     }
   }
 </style>

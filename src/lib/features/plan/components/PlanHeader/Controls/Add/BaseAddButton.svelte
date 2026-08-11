@@ -29,6 +29,7 @@
     color={preventAdd ? 'neutral' : 'primary'}
     {onclick}
     variant="solid"
+    size="small"
   >
     <Icon icon="material-symbols:add-rounded" />
   </Button>
@@ -36,8 +37,8 @@
 
 <style lang="scss">
   .BaseAddButton {
-    :global(.dodo-ui-Button.size--normal.AddActivityButton) {
-      font-size: 1.8rem;
+    :global(.dodo-ui-Button.size--small.AddActivityButton) {
+      font-size: 1.5rem;
     }
   }
 </style>

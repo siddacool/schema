@@ -21,6 +21,7 @@
     class: 'PlanHeaderPlanOptionsButton',
     color: 'neutral',
     outline: true,
+    size: 'small',
   }}
 >
   <Icon icon="material-symbols:menu" />
@@ -37,8 +38,8 @@
 </Dropdown>
 
 <style lang="scss">
-  :global(.PlanHeaderPlanOptionsButton.dodo-ui-Button.size--normal) {
-    font-size: 1.5rem;
+  :global(.PlanHeaderPlanOptionsButton.dodo-ui-Button.size--small) {
+    font-size: 1.3rem;
   }
 
   :global(.PlanHeadePlanOptions .Icon) {

@@ -28,5 +28,17 @@
     align-items: center;
     color: inherit;
     font-size: inherit;
+
+    &.value--SEQUENCE {
+      color: var(--dodo-color-base-amber-400);
+    }
+
+    &.value--WEEK {
+      color: var(--dodo-color-base-emerald-400);
+    }
+
+    &.value--CALENDAR {
+      color: var(--dodo-color-base-sky-400);
+    }
   }
 </style>

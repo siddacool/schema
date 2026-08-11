@@ -44,7 +44,7 @@
     }
 
     :global(.ToolkitCard) {
-      padding: calc(var(--dodo-ui-space) * 0.5) var(--dodo-ui-space);
+      padding: calc(var(--dodo-ui-space) * 0.4);
       background-color: var(--dodo-color-neutral-200);
     }
   }

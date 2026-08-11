@@ -1,6 +1,7 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
   import { PlanType } from '../types/plan-type';
+  import { useThemeStore } from '@flightlesslabs/dodo-ui';
 
   type Props = {
     value: PlanType;
@@ -9,7 +10,10 @@
 
   let { value, class: className = '' }: Props = $props();
 
-  const classes = $derived(['PlanTypeIcon', `value--${value}`, className].filter(Boolean));
+  const theme = $derived(useThemeStore.theme);
+  const classes = $derived(
+    ['PlanTypeIcon', `value--${value}`, `theme--${theme}`, className].filter(Boolean),
+  );
 </script>
 
 <span class={classes.join(' ')}>
@@ -29,16 +33,32 @@
     color: inherit;
     font-size: inherit;
 
-    &.value--SEQUENCE {
-      color: var(--dodo-color-base-amber-400);
+    &.theme--light {
+      &.value--SEQUENCE {
+        color: var(--dodo-color-base-amber-700);
+      }
+
+      &.value--WEEK {
+        color: var(--dodo-color-base-emerald-700);
+      }
+
+      &.value--CALENDAR {
+        color: var(--dodo-color-base-sky-700);
+      }
     }
 
-    &.value--WEEK {
-      color: var(--dodo-color-base-emerald-400);
-    }
+    &.theme--dark {
+      &.value--SEQUENCE {
+        color: var(--dodo-color-base-amber-400);
+      }
 
-    &.value--CALENDAR {
-      color: var(--dodo-color-base-sky-400);
+      &.value--WEEK {
+        color: var(--dodo-color-base-emerald-400);
+      }
+
+      &.value--CALENDAR {
+        color: var(--dodo-color-base-sky-400);
+      }
     }
   }
 </style>

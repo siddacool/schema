@@ -26,7 +26,7 @@
     width: 100vw;
 
     :global(.HeaderCard) {
-      min-height: 55px;
+      min-height: 60px;
       display: flex;
       align-items: center;
       padding: 0 var(--dodo-ui-space);

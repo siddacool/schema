@@ -11,7 +11,7 @@
     "standalone"
   ],
   "orientation": "portrait-primary",
-  "theme_color": "#a89ea9",
+  "theme_color": "#ffffff",
   "background_color": "#1d161e",
   "categories": ["planning", "schedule", "productivity"],
   "lang": "en-US",

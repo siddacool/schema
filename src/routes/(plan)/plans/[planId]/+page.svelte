@@ -72,10 +72,6 @@
   .container {
     margin-top: 60px;
     height: calc(100vh - 60px);
-    margin-left: auto;
-    margin-right: auto;
-    width: 100vw;
-    max-width: 800px;
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -86,6 +82,10 @@
 
     :global(.ActivityAccordianView) {
       padding: calc(var(--dodo-ui-space) * 3) 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100vw;
+      max-width: 800px;
     }
   }
 </style>

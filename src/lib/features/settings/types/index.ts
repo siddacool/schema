@@ -16,8 +16,8 @@ export type ThemeOption = {
 };
 
 export const enum ThemeAppBarColors {
-  LIGHT = '#ddd6ff',
-  DARK = '#1a162f', // #0f0324
+  LIGHT = '#a89ea9',
+  DARK = '#1d161e',
 }
 
 export type SettingsConfig = {

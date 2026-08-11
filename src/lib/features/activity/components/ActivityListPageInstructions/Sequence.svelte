@@ -11,6 +11,7 @@
   <div class="ActivityListPageInstructionsSequence">
     <Instructions>
       <h1 class="title"><PlanTypeIcon value={plan.type} /> {plan.name}</h1>
+      <h3 class="siteFeatures">add step wise activity. Step 1, Step 2..</h3>
 
       <p>
         Click on <span class="addButton"><Icon icon="material-symbols:add-rounded" /></span> button to

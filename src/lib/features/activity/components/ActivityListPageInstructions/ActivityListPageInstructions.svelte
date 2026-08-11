@@ -47,13 +47,15 @@
     }
 
     :global(.siteFeatures) {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 400;
       font-family: 'Crimson Pro', serif;
       color: var(--dodo-color-neutral-600);
+      margin-top: calc(var(--dodo-ui-space) * -1);
+      margin-bottom: calc(var(--dodo-ui-space) * 2);
 
       @media (min-width: 600px) {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
       }
     }
 

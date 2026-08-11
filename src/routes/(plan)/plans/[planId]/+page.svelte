@@ -18,6 +18,12 @@
   const plan = $derived(planDetailStore.plan);
   const activityList = $derived(activityListStore.activity);
   const editMode = $derived(planDetailStore.plan?.editMode === false ? false : true);
+  const showActivityFolder = $derived(activityListStore.activityBackup.length ? true : false);
+  const classes = $derived(
+    ['PlanListPage', `${showActivityFolder ? 'showActivityFolder' : 'hideActivityFolder'}`].filter(
+      Boolean,
+    ),
+  );
 
   async function load() {
     await planDetailStore.load(planId);
@@ -54,10 +60,10 @@
 </script>
 
 {#if !loading && plan}
-  <PlanHeader />
+  <div class={classes.join(' ')}>
+    <PlanHeader />
 
-  <div class="container">
-    {#if !loading && activityList.length}
+    <div class="container">
       <ActivityFolder
         planType={plan.type}
         data={activityList}
@@ -67,19 +73,16 @@
         {ondelete}
         startOfWeek={plan.startOfWeek}
       />
-    {:else if !loading && !activityList.length}
-      <ActivityListPageInstructions />
-    {/if}
+
+      {#if !showActivityFolder}
+        <ActivityListPageInstructions />
+      {/if}
+    </div>
   </div>
 {/if}
 
 <style lang="scss">
-  .container {
-    margin-top: 60px;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
-    overflow-x: hidden;
-
+  .PlanListPage {
     :global(.ActivityFolderMainCreate) {
       position: absolute;
       z-index: -200;
@@ -92,5 +95,19 @@
       width: 100vw;
       max-width: 800px;
     }
+
+    &.hideActivityFolder {
+      :global(.ActivityFolder) {
+        position: absolute;
+        z-index: -200;
+      }
+    }
+  }
+
+  .container {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>

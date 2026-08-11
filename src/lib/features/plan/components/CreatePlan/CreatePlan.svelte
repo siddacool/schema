@@ -115,11 +115,14 @@
 
 <style lang="scss">
   .CreatePlan {
-    margin-top: calc(var(--dodo-ui-space) * 1);
+    margin-top: calc(var(--dodo-ui-space) * -2);
 
     h1 {
-      font-size: 1.6rem;
+      font-size: 2.2rem;
       margin: 0;
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-weight: 500;
     }
 
     .decoratedTitle {

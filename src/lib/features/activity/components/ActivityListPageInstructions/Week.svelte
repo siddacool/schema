@@ -11,6 +11,7 @@
   <div class="ActivityListPageInstructionsWeek">
     <Instructions>
       <h1 class="title"><PlanTypeIcon value={plan.type} /> {plan.name}</h1>
+      <h3 class="siteFeatures">add gym routines, weekly goals etc.</h3>
 
       <p>
         Click on <span class="addButton"><Icon icon="material-symbols:add-rounded" /></span> button

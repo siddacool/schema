@@ -9,8 +9,8 @@
   roundness={1}
   title="Create a plan"
   href="/plans/create"
-  compact
-  variant="solid"
+  variant="text"
+  outline
 >
   <Icon icon="material-symbols:add-rounded" />
 </Button>

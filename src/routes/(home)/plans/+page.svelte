@@ -1,5 +1,6 @@
 <script lang="ts">
   import PlanList from '$lib/features/plan/components/PlanList/PlanList.svelte';
+  import PlansListPageInstructions from '$lib/features/plan/components/PlansListPageInstructions/PlansListPageInstructions.svelte';
   import { clearActivePlan } from '$lib/features/plan/logic/page.svelte';
   import { planListStore } from '$lib/features/plan/store/list.svelte';
 
@@ -18,11 +19,11 @@
   });
 </script>
 
-{#if plans.length && !loading}
+{#if !loading && plans.length}
   <PlanList {plans} />
+{:else}
+  <PlansListPageInstructions />
 {/if}
-
-<div></div>
 
 <style lang="scss">
 </style>

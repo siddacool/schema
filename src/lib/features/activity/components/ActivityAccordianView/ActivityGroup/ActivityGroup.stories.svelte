@@ -6,6 +6,7 @@
   import { activityListMockData } from '$lib/features/activity/mocks/activity-list-mock-data';
   import { DEFAULT_START_OF_WEEK } from '$lib/features/activity/const/week';
   import { Accordion, ModalManager } from '@flightlesslabs/dodo-ui-bits';
+  import { Theme } from '@flightlesslabs/dodo-ui';
 
   // ------------------------------
   // Storybook Meta
@@ -34,4 +35,36 @@
     />
   </Accordion>
   <ModalManager />
+</Story>
+
+<Story name="Dark Theme" asChild globals={{ backgrounds: { value: 'dark' } }}>
+  <Theme type="dark">
+    <Accordion type="multiple">
+      <ActivityGroup
+        maxLevels={5}
+        startOfWeek={DEFAULT_START_OF_WEEK}
+        editMode={false}
+        data={sequenceData[0]}
+        planType={PlanType.SEQUENCE}
+        groups={sequenceData}
+      />
+    </Accordion>
+    <ModalManager />
+  </Theme>
+</Story>
+
+<Story name="Dark Theme edit" asChild globals={{ backgrounds: { value: 'dark' } }}>
+  <Theme type="dark">
+    <Accordion type="multiple">
+      <ActivityGroup
+        maxLevels={5}
+        startOfWeek={DEFAULT_START_OF_WEEK}
+        editMode={true}
+        data={sequenceData[0]}
+        planType={PlanType.SEQUENCE}
+        groups={sequenceData}
+      />
+    </Accordion>
+    <ModalManager />
+  </Theme>
 </Story>

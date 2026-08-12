@@ -1,3 +1,6 @@
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true
+minimumReleaseAgeExclude:
+  - '@flightlesslabs/dodo-ui-bits@0.11.8'
+  - '@flightlesslabs/dodo-ui-date@0.4.39'

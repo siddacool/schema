@@ -34,7 +34,8 @@
     onclick={() => (open = true)}
     variant="text"
     size="small"
-    outline
+    background="none"
+    id={`AddActivity-${data._id}`}
   >
     <Icon icon="material-symbols:add-rounded" />
   </Button>
@@ -44,6 +45,9 @@
 
 <style lang="scss">
   .AddActivity {
+    position: absolute;
+    z-index: -200;
+
     :global(.dodo-ui-Button.size--small.AddActivityButton) {
       font-size: 1.5rem;
     }

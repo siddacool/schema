@@ -133,15 +133,5 @@
       min-width: 100px;
       top: 33%;
     }
-
-    :global([data-unavailable]) {
-      color: var(--dodo-color-neutral-400);
-      background-color: initial;
-
-      &:hover {
-        background-color: initial;
-        border-color: transparent;
-      }
-    }
   }
 </style>

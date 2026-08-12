@@ -5,10 +5,9 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import HeaderDescription from '../../../ActivityFolder/Common/HeaderDescription/HeaderDescription.svelte';
+  import { Card } from '@flightlesslabs/dodo-ui';
   import HeaderToolbar from '../../../ActivityFolder/Common/HeaderToolbar/HeaderToolbar.svelte';
-
-  import Trigger from './Trigger.svelte';
+  import HeaderTrigger from './HeaderTrigger.svelte';
 
   type Props = {
     class?: string;
@@ -32,13 +31,14 @@
     groups,
   }: Props = $props();
 
-  const classes = $derived(['Header', className].filter(Boolean));
+  const classes = $derived(['Header', `${editMode ? 'editMode' : ''}`, className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
-  <Trigger />
-  <HeaderDescription {data} {planType} />
-  <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} {groups} />
+  <Card class="ActivityGroupHeaderCard" shadow={0}>
+    <HeaderTrigger {data} {planType} />
+    <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} {groups} />
+  </Card>
 </div>
 
 <style lang="scss">
@@ -46,20 +46,18 @@
     display: flex;
     width: 100%;
     align-items: center;
-    font-variation-settings: 'wdth' 100;
-    transition: font-variation-settings 60ms;
 
-    :global(.HeaderDescription) {
-      margin: 0;
-      flex: 1;
-      margin-left: 4px;
-      font-size: 1rem;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+    :global(.ActivityGroupHeaderCard) {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      transition:
+        background-color 100ms,
+        color 100ms;
+      background-color: transparent;
 
-      @media (min-width: 600px) {
-        font-size: 1.3rem;
+      &:hover {
+        background-color: var(--dodo-color-neutral-100);
       }
     }
   }

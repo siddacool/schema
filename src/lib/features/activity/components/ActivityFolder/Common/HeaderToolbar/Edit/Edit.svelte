@@ -24,37 +24,35 @@
   const isAvailableDays = $derived(groups.length < 7);
 </script>
 
-{#snippet EditButton()}
-  <div class={classes.join(' ')}>
-    <Button
-      aria-label="Edit details"
-      class="EditButton"
-      roundness={1}
-      title="Edit details"
-      compact
-      color="primary"
-      onclick={() => (open = true)}
-      variant="text"
-      size="small"
-    >
-      <Icon icon="material-symbols:edit-outline" />
-    </Button>
-  </div>
-{/snippet}
+<div class={classes.join(' ')}>
+  <Button
+    aria-label="Edit details"
+    class="EditButton"
+    roundness={1}
+    title="Edit details"
+    compact
+    color="primary"
+    onclick={() => (open = true)}
+    variant="text"
+    size="small"
+    id={`EditButton-${data._id}`}
+  >
+    <Icon icon="material-symbols:edit-outline" />
+  </Button>
+</div>
 
 {#if planType === PlanType.SEQUENCE}
-  {@render EditButton()}
   <EditActivitySequenceForm {onupdate} {data} bind:open mode="update" />
 {:else if planType === PlanType.WEEK && isAvailableDays}
-  {@render EditButton()}
   <EditActivityWeekForm {onupdate} {data} bind:open mode="update" {groups} />
 {:else if planType === PlanType.CALENDAR}
-  {@render EditButton()}
   <EditActivityCalendarForm {onupdate} {data} bind:open mode="update" {groups} />
 {/if}
 
 <style lang="scss">
   .Edit {
+    position: absolute;
+    z-index: -200;
     :global(.dodo-ui-Button.size--small.EditButton) {
       font-size: 1.3rem;
     }

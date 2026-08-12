@@ -4,7 +4,8 @@
 
   .ltree-node {
     position: relative;
-    padding-top: calc(var(--dodo-ui-space) * 0.5);
+    padding-top: 6px;
+    margin-top: 0 !important;
 
     // &::after {
     //   content: '';

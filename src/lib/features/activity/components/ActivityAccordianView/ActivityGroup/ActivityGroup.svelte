@@ -10,7 +10,6 @@
   import { activityTreeAdd } from '$lib/features/activity/components/ActivityTree/utils/crud/add';
   import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
   import type { ActivityTreeRefvalue } from '$lib/features/activity/components/ActivityTree/types';
-  import VerticalLine from './VerticalLine.svelte';
 
   type Props = {
     class?: string;
@@ -62,20 +61,24 @@
   {#snippet customHeaderContent()}
     <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} {groups} />
   {/snippet}
-  <VerticalLine {data} />
   <ActivityTree bind:treeRef {oncreate} {onupdate} {ondelete} {editMode} group={data} {maxLevels} />
 </AccordionItem>
 
 <style>
   :global(.ActivityGroup.dodo-ui-AccordionItem) {
-    margin-bottom: calc(var(--dodo-ui-space) * 2);
+    margin-bottom: calc(var(--dodo-ui-space) * 1);
     padding-left: var(--dodo-ui-space);
     padding-right: var(--dodo-ui-space);
     position: relative;
   }
 
+  :global(.ActivityGroup.dodo-ui-AccordionItem .AccordionItemHeader) {
+    position: relative;
+    z-index: 1;
+  }
+
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='closed']) {
-    padding-bottom: calc(var(--dodo-ui-space) * 2);
+    padding-bottom: calc(var(--dodo-ui-space) * 1);
   }
 
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] [data-accordion-content]) {

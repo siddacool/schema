@@ -29,14 +29,14 @@
 <style lang="scss">
   .HorizontalLine {
     position: absolute;
-    top: 25px;
+    top: 28px;
     left: calc(
       calc(var(--tree-node-indent-per-level) * var(--HorizontalLine-space)) +
         var(--HorizontalLine-space-pixel)
     );
 
     &.isNodeTypeBranch {
-      top: 25px;
+      top: 28px;
     }
   }
 </style>

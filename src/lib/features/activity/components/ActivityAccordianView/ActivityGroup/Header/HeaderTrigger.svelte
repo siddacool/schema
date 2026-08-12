@@ -40,12 +40,8 @@
   :global(.ActivityGroupHeaderTrigger .HeaderDescription) {
     margin: 0;
     margin-left: var(--dodo-ui-space);
-    font-size: 1rem;
+    font-size: 1.1rem;
     overflow: hidden;
-
-    @media (min-width: 600px) {
-      font-size: 1.1rem;
-    }
   }
 
   :global(.ActivityGroupHeaderTrigger .TriggerIcon) {

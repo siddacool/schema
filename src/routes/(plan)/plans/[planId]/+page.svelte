@@ -109,7 +109,7 @@
     }
 
     :global(.ActivityAccordianView) {
-      padding: calc(var(--dodo-ui-space) * 3) 0;
+      padding: calc(var(--dodo-ui-space) * 2) 0;
       margin-left: auto;
       margin-right: auto;
       width: 100vw;

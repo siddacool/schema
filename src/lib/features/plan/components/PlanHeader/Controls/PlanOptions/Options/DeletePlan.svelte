@@ -52,8 +52,8 @@
     <span class="Icon">
       <Icon icon="material-symbols:delete-outline-rounded" />
     </span>
-    Delete plan
   </Text>
+  Delete plan
 </DropdownMenuItem>
 
 <style lang="scss">

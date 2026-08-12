@@ -5,9 +5,8 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import AddActivity from './AddActivity.svelte';
-  import Edit from './Edit/Edit.svelte';
-  import ExtendedOptions from './ExtendedOptions/ExtendedOptions.svelte';
+  import BackgoundTools from './BackgoundTools/BackgoundTools.svelte';
+  import Toolbar from './Toolbar/Toolbar.svelte';
 
   type Props = {
     planType: PlanType;
@@ -37,9 +36,8 @@
 
 {#if editMode}
   <div class={classes.join(' ')}>
-    <AddActivity {data} {oncreate} />
-    <Edit {data} {onupdate} {planType} {groups} />
-    <ExtendedOptions {data} {planType} {groups} {ondelete} />
+    <BackgoundTools {data} {onupdate} {oncreate} {planType} {groups} />
+    <Toolbar {data} {planType} {groups} {ondelete} />
   </div>
 {/if}
 
@@ -48,7 +46,6 @@
     display: inline-flex;
     align-items: center;
     margin: 0 -3px;
-    padding-right: var(--dodo-ui-space);
 
     :global(.dodo-ui-Button),
     :global(.dodo-ui-UtilityButton) {

@@ -38,7 +38,7 @@
 
 <style lang="scss">
   :global(.ActivityFolderHeaderToolbarOptionsButton.dodo-ui-Button.size--small) {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   :global(.ActivityFolderHeaderToolbarOptions .Icon) {

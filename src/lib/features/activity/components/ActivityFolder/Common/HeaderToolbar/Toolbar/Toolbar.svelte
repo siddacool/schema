@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { Activity, ActivityGroup } from '$lib/features/activity/types';
   import DropdownTool from './DropdownTool.svelte';
-  import EditActivity from './Options/EditActivity.svelte';
+  import Edit from './Options/Edit.svelte';
   import { PlanType } from '$lib/features/plan/types/plan-type';
-  import AddChild from './Options/AddChild.svelte';
+  import Add from './Options/Add.svelte';
   import Delete from './Options/Delete.svelte';
 
   type Props = {
@@ -17,7 +17,7 @@
 </script>
 
 <DropdownTool>
-  <AddChild {data} />
-  <EditActivity {planType} {groups} {data} />
+  <Add {data} />
+  <Edit {planType} {groups} {data} />
   <Delete {data} {ondelete} />
 </DropdownTool>

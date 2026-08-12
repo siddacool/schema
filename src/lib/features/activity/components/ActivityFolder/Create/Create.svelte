@@ -3,9 +3,9 @@
   import type { WeekDays } from '$lib/features/activity/types/week';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
-  import EditActivityWeekForm from '../Common/HeaderToolbar/Edit/Week/EditActivityWeekForm.svelte';
-  import EditActivityCalendarForm from '../Common/HeaderToolbar/Edit/Calendar/EditActivityCalendarForm.svelte';
-  import EditActivitySequenceForm from '../Common/HeaderToolbar/Edit/Sequence/EditActivitySequenceForm.svelte';
+  import EditActivitySequenceForm from '../Common/HeaderToolbar/BackgoundTools/Edit/Sequence/EditActivitySequenceForm.svelte';
+  import EditActivityWeekForm from '../Common/HeaderToolbar/BackgoundTools/Edit/Week/EditActivityWeekForm.svelte';
+  import EditActivityCalendarForm from '../Common/HeaderToolbar/BackgoundTools/Edit/Calendar/EditActivityCalendarForm.svelte';
 
   type Props = {
     class?: string;

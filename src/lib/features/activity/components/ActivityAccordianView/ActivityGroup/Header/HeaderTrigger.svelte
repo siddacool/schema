@@ -34,6 +34,7 @@
     display: flex;
     align-items: center;
     flex: 1;
+    min-height: 40px;
   }
 
   :global(.ActivityGroupHeaderTrigger .HeaderDescription) {

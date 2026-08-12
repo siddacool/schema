@@ -12,6 +12,7 @@
     data: Activity[];
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
+    onbulkupdate?: (data: Activity[]) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
@@ -24,6 +25,7 @@
     data: dataBase,
     oncreate,
     onupdate,
+    onbulkupdate,
     ondelete,
     maxLevels,
     editMode,
@@ -36,13 +38,4 @@
 
 <Create {oncreate} {data} {editMode} {startOfWeek} {planType} />
 
-<ActivityAccordianView
-  {planType}
-  {oncreate}
-  {onupdate}
-  {ondelete}
-  {maxLevels}
-  {editMode}
-  {startOfWeek}
-  {data}
-/>
+<ActivityAccordianView {planType} {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {data} />

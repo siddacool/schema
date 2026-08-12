@@ -7,6 +7,7 @@
   import { DEFAULT_DATE_SORT_ORDER } from '../../const/calendar';
   import ActivityManager from './ActivityManager.svelte';
   import { debugLog } from '$lib/utils/debug-log';
+  import { getParentByPath } from '../../utils/get-parent-by-path';
 
   type Props = {
     class?: string;
@@ -14,6 +15,7 @@
     data: Activity[];
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
+    onbulkupdate?: (data: Activity[]) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
     maxLevels?: number;
     editMode?: boolean;
@@ -28,6 +30,7 @@
     data: dataRaw,
     oncreate,
     onupdate,
+    onbulkupdate,
     ondelete,
     maxLevels = 4,
     editMode = false,
@@ -44,6 +47,25 @@
     data = [...miniDatabase];
 
     debugLog(debug, 'syncMiniDatabase');
+  }
+
+  async function onupdateMod(value: Activity, subActivity?: boolean) {
+    const cachedData = [...miniDatabase];
+    const dataIndex = cachedData.findIndex((item) => item._id === value._id);
+
+    cachedData[dataIndex] = {
+      ...value,
+    };
+
+    miniDatabase = [...cachedData];
+
+    if (!subActivity) {
+      syncMiniDatabase();
+    }
+
+    if (onupdate) {
+      onupdate(value);
+    }
   }
 
   async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
@@ -65,15 +87,29 @@
     if (oncreate) {
       oncreate(value);
     }
+
+    const parentId = getParentByPath(value.path);
+    const targetParent = miniDatabase.find((item) => item._id === parentId);
+
+    if (targetParent) {
+      onupdateMod({
+        ...targetParent,
+        expanded: true,
+      });
+    }
   }
 
-  async function onupdateMod(value: Activity, subActivity?: boolean) {
+  async function onbulkupdateMod(activity: Activity[], subActivity?: boolean) {
     const cachedData = [...miniDatabase];
-    const dataIndex = cachedData.findIndex((item) => item._id === value._id);
 
-    cachedData[dataIndex] = {
-      ...value,
-    };
+    for (let i = 0; i < activity.length; i++) {
+      const target = activity[i];
+      const dataIndex = cachedData.findIndex((item) => item._id === target._id);
+
+      cachedData[dataIndex] = {
+        ...target,
+      };
+    }
 
     miniDatabase = [...cachedData];
 
@@ -81,8 +117,8 @@
       syncMiniDatabase();
     }
 
-    if (onupdate) {
-      onupdate(value);
+    if (onbulkupdate) {
+      onbulkupdate(activity);
     }
   }
 
@@ -139,6 +175,7 @@
     {planType}
     oncreate={oncreateMod}
     onupdate={onupdateMod}
+    onbulkupdate={onbulkupdateMod}
     ondelete={ondeleteMod}
     {maxLevels}
     {dateSortOrder}

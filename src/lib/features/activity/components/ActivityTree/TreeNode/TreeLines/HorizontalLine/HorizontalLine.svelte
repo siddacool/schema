@@ -23,20 +23,20 @@
   class={classes.join(' ')}
   style={`--HorizontalLine-space: ${space}; --HorizontalLine-space-pixel: ${space}px;`}
 >
-  <NodeLine class="HorizontalLineLine" position="horizontal" width="30px" />
+  <NodeLine class="HorizontalLineLine" position="horizontal" width="28px" />
 </div>
 
 <style lang="scss">
   .HorizontalLine {
     position: absolute;
-    top: 20px;
+    top: 25px;
     left: calc(
       calc(var(--tree-node-indent-per-level) * var(--HorizontalLine-space)) +
         var(--HorizontalLine-space-pixel)
     );
 
     &.isNodeTypeBranch {
-      top: 29px;
+      top: 25px;
     }
   }
 </style>

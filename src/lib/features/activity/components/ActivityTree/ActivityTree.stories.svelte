@@ -4,7 +4,6 @@
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { groupActivity } from '$lib/features/activity/utils/group-activity/group-activity';
   import { activityListMockData } from '$lib/features/activity/mocks/activity-list-mock-data';
-  import { DEFAULT_START_OF_WEEK } from '$lib/features/activity/const/week';
 
   // ------------------------------
   // Storybook Meta
@@ -25,9 +24,7 @@
   name="Default"
   args={{
     group: sequenceData,
-    planType: PlanType.SEQUENCE,
     maxLevels: 5,
     editMode: true,
-    startOfWeek: DEFAULT_START_OF_WEEK,
   }}
 />

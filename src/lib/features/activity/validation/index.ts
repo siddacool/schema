@@ -39,3 +39,9 @@ export function validateActivityImport(planId: string) {
     throw new Error('planId not found');
   }
 }
+
+export function validateActivityUpdateBulk(planId: string) {
+  if (!planId) {
+    throw new Error('planId not found');
+  }
+}

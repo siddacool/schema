@@ -1,21 +1,13 @@
 <script lang="ts">
-  import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import type {
-    Activity,
-    ActivityCreateFormData,
-    ActivityGroup,
-  } from '$lib/features/activity/types';
+  import type { Activity, ActivityCreateFormData } from '$lib/features/activity/types';
 
   import { Card } from '@flightlesslabs/dodo-ui';
-  import Toolbar from '../Toolbar/Toolbar.svelte';
-  import Description from './Description.svelte';
-  import ListIcon from './ListIcon.svelte';
   import type { ActivityTreeNodeValue } from '../../types';
+  import HeaderTrigger from './HeaderTrigger.svelte';
+  import TreeNodeToolbar from '../TreeNodeToolbar/TreeNodeToolbar.svelte';
 
   type Props = {
     class?: string;
-    planType: PlanType;
-    group: ActivityGroup;
     data: Activity;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
@@ -29,8 +21,6 @@
 
   const {
     class: className = '',
-    planType,
-    group,
     data,
     oncreate,
     onupdate,
@@ -59,21 +49,14 @@
   function onkeydown(e: KeyboardEvent) {
     e.stopPropagation();
   }
-
-  function selectToggle() {
-    onselect(node.id as string);
-  }
 </script>
 
 <div class={classes.join(' ')} {onclick} {onkeydown} role="presentation">
   <Card class="TreeNodeCard" shadow={0}>
-    <div class="clikable" onclick={selectToggle} role="presentation">
-      <ListIcon />
-      <Description {node} />
-    </div>
+    <HeaderTrigger {onselect} {node} />
 
     {#if isSelected}
-      <Toolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />
+      <TreeNodeToolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />
     {/if}
   </Card>
 </div>
@@ -81,54 +64,32 @@
 <style lang="scss">
   .Leaf {
     display: flex;
-    flex-direction: column;
     width: 100%;
-    color: inherit;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    z-index: 1;
+    align-items: center;
     position: relative;
+    z-index: 1;
 
     :global(.TreeNodeCard) {
-      padding: 0 calc(var(--dodo-ui-space) * 0.8);
-      padding-left: 0;
       display: flex;
-      align-items: flex-start;
-      background-color: var(--dodo-color-neutral-50);
+      align-items: center;
+      width: 100%;
+      transition:
+        background-color 100ms,
+        color 100ms;
+      background-color: transparent;
 
       &:hover {
-        background-color: var(--dodo-color-neutral-100);
+        background-color: var(--dodo-color-primary-50);
       }
-    }
-
-    .clikable {
-      display: flex;
-      align-items: flex-start;
-      flex: 1;
-      padding: calc(var(--dodo-ui-space) * 0.8);
-      padding-right: 0;
-      padding-left: 3px;
-    }
-
-    :global(.Toolbar) {
-      padding: calc(var(--dodo-ui-space) * 0.8) 0;
     }
 
     &.isSelected {
       :global(.TreeNodeCard) {
-        border-color: var(--dodo-color-neutral-300);
-        background-color: var(--dodo-color-neutral-100);
+        background-color: var(--dodo-color-neutral-200);
 
         &:hover {
-          background-color: var(--dodo-color-neutral-200);
+          background-color: var(--dodo-color-primary-100);
         }
-      }
-    }
-
-    &.editMode.isSelected {
-      .clikable {
-        min-height: 47px;
       }
     }
   }

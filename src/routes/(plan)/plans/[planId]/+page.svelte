@@ -2,7 +2,11 @@
   import { page } from '$app/state';
   import ActivityFolder from '$lib/features/activity/components/ActivityFolder/ActivityFolder.svelte';
   import ActivityListPageInstructions from '$lib/features/activity/components/ActivityListPageInstructions/ActivityListPageInstructions.svelte';
-  import { deleteActivityNodes, saveActivity } from '$lib/features/activity/logic/crud.svelte';
+  import {
+    deleteActivityNodes,
+    saveActivity,
+    updateActivityBulk,
+  } from '$lib/features/activity/logic/crud.svelte';
   import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import type {
     Activity,
@@ -32,6 +36,10 @@
   }
 
   async function oncreate(data: ActivityCreateFormData) {
+    if (!planId) {
+      return;
+    }
+
     const dataFormatted: ActivityCreateData = {
       ...data,
       planId,
@@ -41,7 +49,19 @@
   }
 
   async function onupdate(data: Activity) {
-    await saveActivity(data);
+    if (!planId) {
+      return;
+    }
+
+    await saveActivity({ ...data, planId });
+  }
+
+  async function onbulkupdate(data: Activity[]) {
+    if (!planId) {
+      return;
+    }
+
+    await updateActivityBulk(planId, data);
   }
 
   async function ondelete(data: string) {

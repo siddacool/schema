@@ -4,7 +4,6 @@
     ActivityCreateFormData,
     Activity,
   } from '$lib/features/activity/types';
-  import type { WeekDays } from '$lib/features/activity/types/week';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
   import { AccordionItem } from '@flightlesslabs/dodo-ui-bits';
   import Header from './Header/Header.svelte';
@@ -23,7 +22,6 @@
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
-    startOfWeek: WeekDays;
   };
 
   const {
@@ -35,7 +33,6 @@
     ondelete,
     maxLevels,
     editMode,
-    startOfWeek,
     groups,
   }: Props = $props();
 
@@ -66,17 +63,7 @@
     <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} {groups} />
   {/snippet}
   <VerticalLine {data} />
-  <ActivityTree
-    bind:treeRef
-    {planType}
-    {oncreate}
-    {onupdate}
-    {ondelete}
-    {editMode}
-    group={data}
-    {startOfWeek}
-    {maxLevels}
-  />
+  <ActivityTree bind:treeRef {oncreate} {onupdate} {ondelete} {editMode} group={data} {maxLevels} />
 </AccordionItem>
 
 <style>
@@ -99,11 +86,8 @@
     display: none;
   }
 
-  :global(
-    .ActivityGroup.dodo-ui-AccordionItem[data-state='open'].editMode .ActivityGroupHeaderCard
-  ) {
-    border-color: var(--dodo-color-primary-400);
-    background-color: var(--dodo-color-primary-50);
+  :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
+    background-color: var(--dodo-color-neutral-200);
 
     &:hover {
       background-color: var(--dodo-color-primary-100);

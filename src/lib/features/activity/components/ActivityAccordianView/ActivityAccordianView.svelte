@@ -7,7 +7,6 @@
     ActivityCreateFormData,
     ActivityGroup,
   } from '$lib/features/activity/types';
-  import type { WeekDays } from '$lib/features/activity/types/week';
 
   type OnChangeFn<T> = (value: T) => void;
 
@@ -20,7 +19,6 @@
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
-    startOfWeek: WeekDays;
   };
 
   const {
@@ -32,7 +30,6 @@
     ondelete,
     maxLevels,
     editMode,
-    startOfWeek,
   }: Props = $props();
 
   const classes = $derived(['ActivityAccordianView', className].filter(Boolean));
@@ -86,7 +83,6 @@
       {ondelete}
       {maxLevels}
       {editMode}
-      {startOfWeek}
       groups={data}
     />
   {/each}

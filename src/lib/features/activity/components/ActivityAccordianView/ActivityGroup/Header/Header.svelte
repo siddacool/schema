@@ -57,7 +57,7 @@
       background-color: transparent;
 
       &:hover {
-        background-color: var(--dodo-color-neutral-100);
+        background-color: var(--dodo-color-primary-50);
       }
     }
   }

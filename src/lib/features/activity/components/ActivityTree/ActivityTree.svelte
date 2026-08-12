@@ -1,12 +1,10 @@
 <script lang="ts">
   import './ActivityTree.scss';
-  import type { PlanType } from '$lib/features/plan/types/plan-type';
   import type {
     Activity,
     ActivityCreateFormData,
     ActivityGroup,
   } from '$lib/features/activity/types';
-  import type { WeekDays } from '$lib/features/activity/types/week';
   import { Tree } from '@keenmate/svelte-treeview';
   import TreeNode from './TreeNode/TreeNode.svelte';
   import { activityTreeUpdate } from './utils/crud/update';
@@ -16,27 +14,23 @@
 
   type Props = {
     class?: string;
-    planType: PlanType;
     group: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
-    startOfWeek: WeekDays;
     treeRef: ActivityTreeRefvalue | undefined;
   };
 
   let {
     class: className = '',
-    planType,
     group,
     oncreate,
     onupdate,
     ondelete,
     maxLevels,
     editMode,
-    startOfWeek,
     treeRef = $bindable(),
   }: Props = $props();
 
@@ -129,13 +123,11 @@
       {#if node}
         <TreeNode
           {treeRef}
-          {planType}
           oncreate={oncreateMod}
           onupdate={onupdateMod}
           ondelete={ondeleteMod}
           {editMode}
           {node}
-          {group}
           {maxLevels}
           {selectedNode}
           {onselect}

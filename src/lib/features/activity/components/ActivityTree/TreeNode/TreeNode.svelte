@@ -1,18 +1,11 @@
 <script lang="ts">
-  import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import type {
-    Activity,
-    ActivityCreateFormData,
-    ActivityGroup,
-  } from '$lib/features/activity/types';
+  import type { Activity, ActivityCreateFormData } from '$lib/features/activity/types';
   import Branch from './Branch/Branch.svelte';
   import Leaf from './Leaf/Leaf.svelte';
   import TreeLines from './TreeLines/TreeLines.svelte';
   import type { ActivityTreeNodeValue, ActivityTreeRefvalue } from '../types';
 
   type Props = {
-    planType: PlanType;
-    group: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
@@ -25,8 +18,6 @@
   };
 
   let {
-    planType,
-    group,
     oncreate,
     onupdate,
     ondelete,
@@ -43,22 +34,9 @@
 {#if data}
   <TreeLines {node} {treeRef} />
   {#if node.hasChildren}
-    <Branch
-      {planType}
-      {group}
-      {oncreate}
-      {onupdate}
-      {ondelete}
-      {maxLevels}
-      {editMode}
-      {node}
-      {data}
-      {onselect}
-    />
+    <Branch {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} {onselect} />
   {:else}
     <Leaf
-      {planType}
-      {group}
       {oncreate}
       {onupdate}
       {ondelete}
@@ -71,12 +49,3 @@
     />
   {/if}
 {/if}
-
-<style lang="scss">
-  .TreeNode {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-left: 4px;
-  }
-</style>

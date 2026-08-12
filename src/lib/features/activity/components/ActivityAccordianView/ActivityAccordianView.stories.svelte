@@ -4,10 +4,10 @@
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { activityListMockData } from '../../mocks/activity-list-mock-data';
   import { groupActivity } from '../../utils/group-activity/group-activity';
-  import { DEFAULT_START_OF_WEEK } from '../../const/week';
   import { ModalManager } from '@flightlesslabs/dodo-ui-bits';
   import { activityListMockDataWeek } from '../../mocks/activity-lits-mock-data-week';
   import { activityListMockDataCalendar } from '../../mocks/activity-lits-mock-data-calendar';
+  import { Theme } from '@flightlesslabs/dodo-ui';
 
   // ------------------------------
   // Storybook Meta
@@ -33,39 +33,32 @@
     planType: PlanType.SEQUENCE,
     maxLevels: 3,
     editMode: false,
-    startOfWeek: DEFAULT_START_OF_WEEK,
   }}
 />
 
 <Story name="EditMode" asChild>
-  <ActivityAccordianView
-    data={sequenceData}
-    planType={PlanType.SEQUENCE}
-    editMode
-    startOfWeek={DEFAULT_START_OF_WEEK}
-    maxLevels={3}
-  />
+  <ActivityAccordianView data={sequenceData} planType={PlanType.SEQUENCE} editMode maxLevels={3} />
   <ModalManager />
 </Story>
 
 <Story name="Week" asChild>
-  <ActivityAccordianView
-    data={weekData}
-    planType={PlanType.WEEK}
-    editMode
-    startOfWeek={DEFAULT_START_OF_WEEK}
-    maxLevels={3}
-  />
+  <ActivityAccordianView data={weekData} planType={PlanType.WEEK} editMode maxLevels={3} />
   <ModalManager />
 </Story>
 
 <Story name="Calendar" asChild>
-  <ActivityAccordianView
-    data={calendarData}
-    planType={PlanType.CALENDAR}
-    editMode
-    startOfWeek={DEFAULT_START_OF_WEEK}
-    maxLevels={3}
-  />
+  <ActivityAccordianView data={calendarData} planType={PlanType.CALENDAR} editMode maxLevels={3} />
   <ModalManager />
+</Story>
+
+<Story name="Dark Theme" asChild globals={{ backgrounds: { value: 'dark' } }}>
+  <Theme type="dark">
+    <ActivityAccordianView
+      data={sequenceData}
+      planType={PlanType.SEQUENCE}
+      editMode
+      maxLevels={3}
+    />
+    <ModalManager />
+  </Theme>
 </Story>

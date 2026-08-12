@@ -13,6 +13,7 @@ import type { Activity, ActivityCreateData } from '../types';
 import {
   validateActivityCreate,
   validateActivityUpdate,
+  validateActivityUpdateBulk,
   validateDeleteActivityByPlanId,
 } from '../validation';
 
@@ -102,9 +103,20 @@ export async function updateActivityFields(id: string, data: Partial<Activity>) 
   });
 }
 
-export async function updateActivityBulk(data: Activity[]) {
+export async function updateActivityBulk(planId: string, data: Activity[]) {
+  validateActivityUpdateBulk(planId);
+
   if (!data.length) {
     return;
+  }
+
+  const newData: Activity[] = [];
+
+  for (let i = 0; i < data.length; i++) {
+    newData.push({
+      ...data[i],
+      planId,
+    });
   }
 
   const ids = await updateActivityBulkDb(data);

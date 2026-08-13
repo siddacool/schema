@@ -36,9 +36,9 @@
   const classes = $derived(['Leaf', className].filter(Boolean));
 </script>
 
-<BaseNodeContainer class={classes.join(' ')} expanded={isSelected}>
+<BaseNodeContainer class={classes.join(' ')} expanded={editMode && isSelected}>
   <Card class="TreeNodeCard" shadow={0}>
-    <HeaderTrigger {onselect} {node} />
+    <HeaderTrigger {onselect} {node} {editMode} />
 
     {#if isSelected}
       <TreeNodeToolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />

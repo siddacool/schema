@@ -6,12 +6,17 @@
     class?: string;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
+    editMode: boolean;
   };
 
-  const { class: className = '', node, onselect }: Props = $props();
+  const { class: className = '', node, onselect, editMode }: Props = $props();
   const classes = $derived(['HeaderTrigger', className].filter(Boolean));
 
   function selectToggle() {
+    if (!editMode) {
+      return;
+    }
+
     onselect(node.id as string);
   }
 </script>

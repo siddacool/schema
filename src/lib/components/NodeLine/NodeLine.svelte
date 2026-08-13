@@ -29,7 +29,7 @@
 
 <style lang="scss">
   .NodeLine {
-    background-color: var(--dodo-color-neutral-400);
+    background-color: var(--dodo-color-neutral-300);
     display: flex;
 
     &.position--horizontal {

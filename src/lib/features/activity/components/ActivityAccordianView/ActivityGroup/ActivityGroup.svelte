@@ -10,6 +10,7 @@
   import { activityTreeAdd } from '$lib/features/activity/components/ActivityTree/utils/crud/add';
   import ActivityTree from '$lib/features/activity/components/ActivityTree/ActivityTree.svelte';
   import type { ActivityTreeRefvalue } from '$lib/features/activity/components/ActivityTree/types';
+  import { useThemeStore } from '@flightlesslabs/dodo-ui';
 
   type Props = {
     class?: string;
@@ -35,9 +36,9 @@
     groups,
   }: Props = $props();
 
-  const classes = $derived(
-    ['ActivityGroup', `${editMode ? 'editMode' : ''}`, className].filter(Boolean),
-  );
+  const theme = $derived(useThemeStore.theme);
+
+  const classes = $derived(['ActivityGroup', `theme--${theme}`, className].filter(Boolean));
   let treeRef = $derived<ActivityTreeRefvalue | undefined>(undefined);
 
   async function oncreateMain(value: ActivityCreateFormData, subActivity?: boolean) {
@@ -92,6 +93,14 @@
   :global(.ActivityGroup.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard) {
     background-color: var(--dodo-color-neutral-200);
 
+    &:hover {
+      background-color: var(--dodo-color-primary-200);
+    }
+  }
+
+  :global(
+    .ActivityGroup.theme--dark.dodo-ui-AccordionItem[data-state='open'] .ActivityGroupHeaderCard
+  ) {
     &:hover {
       background-color: var(--dodo-color-primary-100);
     }

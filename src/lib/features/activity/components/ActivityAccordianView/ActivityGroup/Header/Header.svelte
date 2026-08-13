@@ -5,7 +5,7 @@
     Activity,
   } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import { Card } from '@flightlesslabs/dodo-ui';
+  import { Card, useThemeStore } from '@flightlesslabs/dodo-ui';
   import HeaderToolbar from '../../../ActivityFolder/Common/HeaderToolbar/HeaderToolbar.svelte';
   import HeaderTrigger from './HeaderTrigger.svelte';
 
@@ -31,7 +31,9 @@
     groups,
   }: Props = $props();
 
-  const classes = $derived(['Header', `${editMode ? 'editMode' : ''}`, className].filter(Boolean));
+  const theme = $derived(useThemeStore.theme);
+
+  const classes = $derived(['Header', `theme--${theme}`, className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
@@ -54,10 +56,20 @@
       transition:
         background-color 100ms,
         color 100ms;
-      background-color: transparent;
+      background-color: var(--dodo-color-white);
 
       &:hover {
-        background-color: var(--dodo-color-primary-50);
+        background-color: var(--dodo-color-primary-100);
+      }
+    }
+
+    &.theme--dark {
+      :global(.ActivityGroupHeaderCard) {
+        background-color: var(--dodo-color-neutral-50);
+
+        &:hover {
+          background-color: var(--dodo-color-primary-50);
+        }
       }
     }
   }

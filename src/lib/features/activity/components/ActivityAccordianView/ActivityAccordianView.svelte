@@ -17,6 +17,7 @@
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
+    onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
   };
@@ -27,6 +28,7 @@
     data,
     oncreate,
     onupdate,
+    onbulkupdate,
     ondelete,
     maxLevels,
     editMode,

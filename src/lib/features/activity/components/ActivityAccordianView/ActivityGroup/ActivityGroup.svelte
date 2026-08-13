@@ -19,6 +19,7 @@
     groups: ActivityGroup[];
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
+    onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
@@ -34,6 +35,7 @@
     maxLevels,
     editMode,
     groups,
+    onbulkupdate,
   }: Props = $props();
 
   const theme = $derived(useThemeStore.theme);
@@ -62,7 +64,16 @@
   {#snippet customHeaderContent()}
     <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} {groups} />
   {/snippet}
-  <ActivityTree bind:treeRef {oncreate} {onupdate} {ondelete} {editMode} group={data} {maxLevels} />
+  <ActivityTree
+    bind:treeRef
+    {oncreate}
+    {onupdate}
+    {ondelete}
+    {editMode}
+    group={data}
+    {maxLevels}
+    {onbulkupdate}
+  />
 </AccordionItem>
 
 <style>

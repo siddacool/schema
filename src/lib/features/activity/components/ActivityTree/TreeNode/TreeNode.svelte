@@ -9,6 +9,7 @@
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
+    onexpand: (data: Activity, expandState: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
     node: ActivityTreeNodeValue;
@@ -21,6 +22,7 @@
     oncreate,
     onupdate,
     ondelete,
+    onexpand,
     maxLevels,
     editMode,
     node,
@@ -34,7 +36,17 @@
 {#if data}
   <TreeLines {node} {treeRef} />
   {#if node.hasChildren}
-    <Branch {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} {onselect} />
+    <Branch
+      {oncreate}
+      {onupdate}
+      {ondelete}
+      {maxLevels}
+      {editMode}
+      {node}
+      {data}
+      {onselect}
+      {onexpand}
+    />
   {:else}
     <Leaf
       {oncreate}

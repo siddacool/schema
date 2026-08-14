@@ -47,7 +47,13 @@ export async function bulkAddActivity(activites: Activity[]) {
 }
 
 export async function updateActivity(data: Activity) {
-  await db.activity.update(data.id, {
+  const target = await getActivityById(data._id);
+
+  if (!target.id) {
+    throw new Error('updateActivity: target.id not found');
+  }
+
+  await db.activity.update(target.id, {
     ...data,
     updatedAt: Date.now(),
   });

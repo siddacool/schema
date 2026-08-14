@@ -16,7 +16,6 @@
     planType: PlanType;
     data: ActivityGroup[];
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
-    onbulkcreate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
@@ -29,7 +28,6 @@
     planType,
     data,
     oncreate,
-    onbulkcreate,
     onupdate,
     onbulkupdate,
     ondelete,
@@ -49,9 +47,7 @@
 
     if (added.length) {
       const targetId = added[0];
-      /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-      const { activity, ...restProps } = data.find((item) => item._id === targetId) || {};
-      const target = { ...restProps } as Activity | undefined;
+      const target = data.find((item) => item._id === targetId);
 
       if (target && onupdate) {
         onupdate({
@@ -61,9 +57,7 @@
       }
     } else if (removed.length) {
       const targetId = removed[0];
-      const { activity = [], ...restProps } = data.find((item) => item._id === targetId) || {};
-
-      const target = { ...restProps } as Activity | undefined;
+      const target = data.find((item) => item._id === targetId);
 
       if (target && onbulkupdate) {
         const dataToUpdate: Activity[] = [
@@ -73,7 +67,7 @@
           },
         ];
 
-        const children = processChildrenExpandClose(target._id, activity);
+        const children = processChildrenExpandClose(target._id, target.activity);
 
         if (children.length) {
           dataToUpdate.push(...children);
@@ -104,7 +98,6 @@
       {editMode}
       groups={data}
       {onbulkupdate}
-      {onbulkcreate}
     />
   {/each}
 </Accordion>

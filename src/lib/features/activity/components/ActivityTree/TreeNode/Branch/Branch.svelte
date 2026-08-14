@@ -16,7 +16,6 @@
     editMode: boolean;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
-    onduplicate?: (data: Activity) => Promise<void>;
   };
 
   const {
@@ -30,7 +29,6 @@
     node,
     onselect,
     onexpand,
-    onduplicate,
   }: Props = $props();
 
   const expanded = $derived(node.isExpanded);
@@ -41,15 +39,6 @@
   <HeaderTrigger {onexpand} {node} {data} {onselect} />
 
   {#if expanded}
-    <TreeNodeToolbar
-      {oncreate}
-      {onupdate}
-      {ondelete}
-      {maxLevels}
-      {editMode}
-      {node}
-      {data}
-      {onduplicate}
-    />
+    <TreeNodeToolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />
   {/if}
 </BaseNodeContainer>

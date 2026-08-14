@@ -21,11 +21,9 @@ function clonePath(path: string, idMap: Record<string, string>): string {
   return parts.join('.');
 }
 
-export function cloneActivity(data: Activity[], updateTimings = false): Activity[] {
+export function cloneActivity(data: Activity[]): Activity[] {
   const idMap = createIdMap(data);
   const clonedItems: Activity[] = [];
-
-  const now = Date.now();
 
   for (const activity of data) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -35,8 +33,6 @@ export function cloneActivity(data: Activity[], updateTimings = false): Activity
       ...rest,
       _id: idMap[activity._id],
       path: clonePath(activity.path, idMap),
-      createdAt: updateTimings ? now : activity.createdAt,
-      updatedAt: updateTimings ? now : activity.updatedAt,
     });
   }
 

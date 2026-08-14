@@ -1,8 +1,9 @@
 <script lang="ts">
   import type { ActivityCreateFormData, Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../types';
-  import BackgoundTools from './BackgoundTools/BackgoundTools.svelte';
-  import Toolbar from './Toolbar/Toolbar.svelte';
+  import AddActivity from './AddActivity.svelte';
+  import Delete from './Delete.svelte';
+  import Edit from './Edit.svelte';
 
   type Props = {
     class?: string;
@@ -26,25 +27,26 @@
     node,
   }: Props = $props();
 
-  const classes = $derived(['TreeNodeToolbar', className].filter(Boolean));
+  const classes = $derived(['Toolbar', className].filter(Boolean));
 </script>
 
 {#if editMode}
   <div class={classes.join(' ')}>
-    <BackgoundTools {data} {onupdate} {oncreate} {node} {maxLevels} />
-    <Toolbar {data} {maxLevels} {node} {ondelete} />
+    <Edit {data} {onupdate} />
+    <Delete {data} {ondelete} />
+    <AddActivity {data} {oncreate} {maxLevels} {node} />
   </div>
 {/if}
 
 <style lang="scss">
-  .TreeNodeToolbar {
+  .Toolbar {
     display: inline-flex;
     align-items: center;
-    margin: 0 -3px;
+    margin: 0 -6px;
 
     :global(.dodo-ui-Button),
     :global(.dodo-ui-UtilityButton) {
-      margin: 0 3px;
+      margin: 0 6px;
     }
   }
 </style>

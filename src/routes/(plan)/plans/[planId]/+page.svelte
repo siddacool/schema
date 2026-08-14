@@ -3,7 +3,6 @@
   import ActivityFolder from '$lib/features/activity/components/ActivityFolder/ActivityFolder.svelte';
   import ActivityListPageInstructions from '$lib/features/activity/components/ActivityListPageInstructions/ActivityListPageInstructions.svelte';
   import {
-    bulkAddActivity,
     deleteActivityNodes,
     saveActivity,
     updateActivityBulk,
@@ -65,14 +64,6 @@
     await updateActivityBulk(planId, data);
   }
 
-  async function onbulkcreate(data: Activity[]) {
-    if (!planId) {
-      return;
-    }
-
-    await bulkAddActivity(planId, data);
-  }
-
   async function ondelete(data: string) {
     if (!planId) {
       return;
@@ -101,7 +92,6 @@
         {editMode}
         {ondelete}
         {onbulkupdate}
-        {onbulkcreate}
         startOfWeek={plan.startOfWeek}
       />
 

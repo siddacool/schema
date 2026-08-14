@@ -12,13 +12,11 @@
   import { activityTreeAdd } from './utils/crud/add';
   import type { ActivityTreeNodeValue, ActivityTreeRefvalue } from './types';
   import { activityTreeExpand } from './utils/crud/expand';
-  import { activityTreeDuplicate } from './utils/crud/duplicate';
 
   type Props = {
     class?: string;
     group: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
-    onbulkcreate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
@@ -31,7 +29,6 @@
     class: className = '',
     group,
     oncreate,
-    onbulkcreate,
     onupdate,
     onbulkupdate,
     ondelete,
@@ -81,7 +78,7 @@
   }
 
   async function onupdateMod(value: Activity) {
-    const updatedActivity = await activityTreeUpdate(value);
+    const updatedActivity = await activityTreeUpdate(treeRef, value);
 
     if (onupdate && updatedActivity) {
       await onupdate(updatedActivity, true);
@@ -89,7 +86,7 @@
   }
 
   async function ondeleteMod(value: string) {
-    const deleteCandidate = await activityTreeRemove(data, value);
+    const deleteCandidate = await activityTreeRemove(treeRef, value);
 
     if (ondelete && deleteCandidate) {
       await ondelete(deleteCandidate, true);
@@ -97,24 +94,10 @@
   }
 
   async function onexpand(value: Activity, expandState: boolean) {
-    const updateCandidates = await activityTreeExpand(value, expandState, data);
+    const updateCandidates = await activityTreeExpand(treeRef, value, expandState, data);
 
     if (onbulkupdate && updateCandidates?.length) {
       await onbulkupdate(updateCandidates, true);
-    }
-  }
-
-  async function onduplicate(value: Activity) {
-    const { create, update } = (await activityTreeDuplicate(treeRef, value)) || {};
-
-    if (onbulkupdate && onbulkcreate) {
-      if (create?.length) {
-        await onbulkcreate(create, true);
-      }
-
-      if (update?.length) {
-        await onbulkupdate(update, true);
-      }
     }
   }
 
@@ -158,7 +141,6 @@
           {maxLevels}
           {selectedNode}
           {onselect}
-          {onduplicate}
         />
       {/if}
     {/snippet}

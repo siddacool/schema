@@ -8,7 +8,6 @@
   type Props = {
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
-    onduplicate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
     onexpand: (data: Activity, expandState: boolean) => Promise<void>;
     maxLevels: number;
@@ -22,7 +21,6 @@
   let {
     oncreate,
     onupdate,
-    onduplicate,
     ondelete,
     onexpand,
     maxLevels,
@@ -48,7 +46,6 @@
       {data}
       {onselect}
       {onexpand}
-      {onduplicate}
     />
   {:else}
     <Leaf
@@ -61,7 +58,6 @@
       {data}
       {onselect}
       {selectedNode}
-      {onduplicate}
     />
   {/if}
 {/if}

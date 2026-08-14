@@ -10,7 +10,6 @@
     class?: string;
     data: Activity;
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
-    onduplicate?: (data: Activity) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
     maxLevels: number;
@@ -24,7 +23,6 @@
     class: className = '',
     data,
     oncreate,
-    onduplicate,
     onupdate,
     ondelete,
     maxLevels,
@@ -43,16 +41,7 @@
     <HeaderTrigger {onselect} {node} {editMode} />
 
     {#if isSelected}
-      <TreeNodeToolbar
-        {oncreate}
-        {onupdate}
-        {ondelete}
-        {maxLevels}
-        {editMode}
-        {node}
-        {data}
-        {onduplicate}
-      />
+      <TreeNodeToolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />
     {/if}
   </Card>
 </BaseNodeContainer>

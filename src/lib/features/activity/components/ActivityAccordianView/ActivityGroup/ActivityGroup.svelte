@@ -18,6 +18,7 @@
     data: ActivityGroup;
     groups: ActivityGroup[];
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
+    onbulkcreate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
@@ -30,6 +31,7 @@
     planType,
     data,
     oncreate,
+    onbulkcreate,
     onupdate,
     ondelete,
     maxLevels,
@@ -73,6 +75,7 @@
     group={data}
     {maxLevels}
     {onbulkupdate}
+    {onbulkcreate}
   />
 </AccordionItem>
 

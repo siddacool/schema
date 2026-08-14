@@ -41,7 +41,13 @@ export async function createActivity(data: ActivityCreateData) {
 }
 
 export async function bulkAddActivity(activites: Activity[]) {
+  console.log('debug:', activites);
+
   await db.activity.bulkAdd(activites);
+
+  const saved = await db.activity.where('planId').equals(activites[0].planId).toArray();
+
+  console.log('AFTER DB:', saved);
 
   return activites;
 }

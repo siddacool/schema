@@ -12,11 +12,13 @@
   import { activityTreeAdd } from './utils/crud/add';
   import type { ActivityTreeNodeValue, ActivityTreeRefvalue } from './types';
   import { activityTreeExpand } from './utils/crud/expand';
+  import { activityTreeDuplicate } from './utils/crud/duplicate';
 
   type Props = {
     class?: string;
     group: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
+    onbulkcreate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
@@ -29,6 +31,7 @@
     class: className = '',
     group,
     oncreate,
+    onbulkcreate,
     onupdate,
     onbulkupdate,
     ondelete,
@@ -101,6 +104,20 @@
     }
   }
 
+  async function onduplicate(value: Activity) {
+    const { create, update } = (await activityTreeDuplicate(treeRef, value)) || {};
+
+    if (onbulkupdate && onbulkcreate) {
+      if (create?.length) {
+        await onbulkcreate(create, true);
+      }
+
+      if (update?.length) {
+        await onbulkupdate(update, true);
+      }
+    }
+  }
+
   $effect(() => {
     if (!treeRef) {
       return;
@@ -141,6 +158,7 @@
           {maxLevels}
           {selectedNode}
           {onselect}
+          {onduplicate}
         />
       {/if}
     {/snippet}

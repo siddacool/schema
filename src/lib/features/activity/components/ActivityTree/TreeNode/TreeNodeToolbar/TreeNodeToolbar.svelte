@@ -10,6 +10,7 @@
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
+    onduplicate?: (data: Activity) => Promise<void>;
     editMode: boolean;
     maxLevels: number;
     node: ActivityTreeNodeValue;
@@ -21,6 +22,7 @@
     oncreate,
     onupdate,
     ondelete,
+    onduplicate,
     editMode,
     maxLevels,
     node,
@@ -32,7 +34,7 @@
 {#if editMode}
   <div class={classes.join(' ')}>
     <BackgoundTools {data} {onupdate} {oncreate} {node} {maxLevels} />
-    <Toolbar {data} {maxLevels} {node} {ondelete} />
+    <Toolbar {data} {maxLevels} {node} {ondelete} {onduplicate} />
   </div>
 {/if}
 

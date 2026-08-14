@@ -119,19 +119,30 @@ export async function updateActivityBulk(planId: string, data: Activity[]) {
     });
   }
 
-  const ids = await updateActivityBulkDb(data);
+  const ids = await updateActivityBulkDb(newData);
 
   await activityListStore.syncBackup(planId);
 
   return ids;
 }
 
-export async function bulkAddActivity(data: Activity[]) {
+export async function bulkAddActivity(planId: string, data: Activity[]) {
   if (!data.length) {
     return;
   }
 
-  const ids = await bulkAddActivityDb(data);
+  const newData: Activity[] = [];
+
+  for (let i = 0; i < data.length; i++) {
+    newData.push({
+      ...data[i],
+      planId,
+    });
+  }
+
+  const ids = await bulkAddActivityDb(newData);
+
+  await activityListStore.syncBackup(planId);
 
   return ids;
 }

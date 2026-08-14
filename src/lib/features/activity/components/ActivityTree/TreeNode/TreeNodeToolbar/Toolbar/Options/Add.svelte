@@ -23,7 +23,7 @@
 </script>
 
 {#if show}
-  <DropdownMenuItem outline class="TreeNodeToolbarDropdownMenuItemAddActivityAdd" {onclick}>
+  <DropdownMenuItem class="TreeNodeToolbarDropdownMenuItemAddActivityAdd" {onclick}>
     <Text color="primary">
       <span class="Icon">
         <Icon icon="material-symbols:add-rounded" />

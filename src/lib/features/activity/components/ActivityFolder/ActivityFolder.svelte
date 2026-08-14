@@ -14,6 +14,7 @@
     planType: PlanType;
     data: Activity[];
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
+    onbulkcreate?: (data: Activity[]) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     onbulkupdate?: (data: Activity[]) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
@@ -29,6 +30,7 @@
     planType,
     data: dataRaw,
     oncreate,
+    onbulkcreate,
     onupdate,
     onbulkupdate,
     ondelete,
@@ -96,6 +98,18 @@
         ...targetParent,
         expanded: true,
       });
+    }
+  }
+
+  async function onbulkcreateMod(activity: Activity[], subActivity?: boolean) {
+    miniDatabase = [...miniDatabase, ...activity];
+
+    if (!subActivity) {
+      syncMiniDatabase();
+    }
+
+    if (onbulkcreate) {
+      onbulkcreate(activity);
     }
   }
 
@@ -174,6 +188,7 @@
     {startOfWeek}
     {planType}
     oncreate={oncreateMod}
+    onbulkcreate={onbulkcreateMod}
     onupdate={onupdateMod}
     onbulkupdate={onbulkupdateMod}
     ondelete={ondeleteMod}

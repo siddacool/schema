@@ -41,19 +41,19 @@ export async function createActivity(data: ActivityCreateData) {
 }
 
 export async function bulkAddActivity(activites: Activity[]) {
-  console.log('debug:', activites);
-
   await db.activity.bulkAdd(activites);
-
-  const saved = await db.activity.where('planId').equals(activites[0].planId).toArray();
-
-  console.log('AFTER DB:', saved);
 
   return activites;
 }
 
 export async function updateActivity(data: Activity) {
-  await db.activity.update(data.id, {
+  const targetDbId = await getActivityById(data._id);
+
+  if (!targetDbId.id) {
+    throw new Error('updateActivity: targetDbId.id not found');
+  }
+
+  await db.activity.update(targetDbId.id, {
     ...data,
     updatedAt: Date.now(),
   });

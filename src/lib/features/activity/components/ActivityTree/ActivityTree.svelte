@@ -81,7 +81,7 @@
   }
 
   async function onupdateMod(value: Activity) {
-    const updatedActivity = await activityTreeUpdate(treeRef, value);
+    const updatedActivity = await activityTreeUpdate(value);
 
     if (onupdate && updatedActivity) {
       await onupdate(updatedActivity, true);
@@ -89,7 +89,7 @@
   }
 
   async function ondeleteMod(value: string) {
-    const deleteCandidate = await activityTreeRemove(treeRef, value);
+    const deleteCandidate = await activityTreeRemove(data, value);
 
     if (ondelete && deleteCandidate) {
       await ondelete(deleteCandidate, true);
@@ -97,7 +97,7 @@
   }
 
   async function onexpand(value: Activity, expandState: boolean) {
-    const updateCandidates = await activityTreeExpand(treeRef, value, expandState, data);
+    const updateCandidates = await activityTreeExpand(value, expandState, data);
 
     if (onbulkupdate && updateCandidates?.length) {
       await onbulkupdate(updateCandidates, true);

@@ -1,25 +1,48 @@
 import type { Activity } from '$lib/features/activity/types';
-import { nanoid } from 'nanoid';
 import type { ActivityTreeRefvalue } from '../../types';
 import { removeHeaderActivityId } from '$lib/features/activity/utils/toggle-headerActivityId';
+import { cloneActivity } from '$lib/features/activity/utils/clone-activity';
+import { getAllChildren } from '$lib/features/activity/utils/get-all-children';
+import { replaceActivityId } from '$lib/features/activity/utils/replace-activity-id';
 
-function createDuplicate(duplicateTarget: Activity) {
+function duplicateChildNodes(treeRef: ActivityTreeRefvalue, oldId: string, newId: string) {
+  const data = treeRef.getAllData();
+  const targetChildren = getAllChildren(oldId, data);
+
+  const targetChildrenForNewId = replaceActivityId(targetChildren, oldId, newId);
+  const clones: Activity[] = cloneActivity(targetChildrenForNewId, true);
+
+  return clones;
+}
+
+function duplicateMainNode(duplicateTarget: Activity) {
   const newSortOrder = (duplicateTarget.sortOrder as number) + 1;
 
-  const now = Date.now();
-  const _id = nanoid();
+  const clone: Activity = cloneActivity([duplicateTarget], true)[0];
 
-  const clone: Activity = {
-    ...duplicateTarget,
-    id: undefined,
-    _id,
-    createdAt: now,
-    updatedAt: now,
-    sortOrder: newSortOrder,
-    path: duplicateTarget.path.replace(duplicateTarget._id, _id),
-  };
+  clone.sortOrder = newSortOrder;
 
   return clone;
+}
+
+function createDuplicate(treeRef: ActivityTreeRefvalue, duplicateTarget: Activity) {
+  const mainNode: Activity = duplicateMainNode(duplicateTarget);
+  const clonedChildren = duplicateChildNodes(treeRef, duplicateTarget._id, mainNode._id);
+  const allData: Activity[] = [];
+
+  allData.push({
+    ...mainNode,
+    expanded: false,
+  });
+
+  for (const activity of clonedChildren) {
+    allData.push({
+      ...activity,
+      expanded: false,
+    });
+  }
+
+  return allData;
 }
 
 function siblingsToUpdate(treeRef: ActivityTreeRefvalue, dupicateItem: Activity) {
@@ -65,31 +88,13 @@ export async function activityTreeDuplicate(
     return;
   }
 
-  const dupicateItem = createDuplicate(value);
-  const dupicateItemClean = removeHeaderActivityId([dupicateItem])[0];
+  const clonedItems = createDuplicate(treeRef, value);
+  const mainNode = clonedItems[0];
 
-  let parentPath =
-    dupicateItem.path.lastIndexOf('.') === -1
-      ? ''
-      : dupicateItem.path.substring(0, dupicateItem.path.lastIndexOf('.'));
-
-  if (!dupicateItem.headerActivityId) {
-    parentPath = '';
-  }
-
-  treeRef.addNode(parentPath, { ...dupicateItem });
-
-  const siblings = siblingsToUpdate(treeRef, dupicateItem);
-  const siblingsClean = removeHeaderActivityId(siblings);
-
-  for (const activity of siblings) {
-    treeRef.updateNode(activity.path, {
-      ...activity,
-    });
-  }
+  const siblings = siblingsToUpdate(treeRef, mainNode);
 
   return {
-    create: [dupicateItemClean],
-    update: siblingsClean,
+    create: removeHeaderActivityId(clonedItems),
+    update: removeHeaderActivityId(siblings),
   };
 }

@@ -1,4 +1,4 @@
-import type { Activity, ActivityCreateFormData, ActivityGroup } from '$lib/features/activity/types';
+import type { ActivityCreateFormData, ActivityGroup } from '$lib/features/activity/types';
 import type { ActivityTreeRefvalue } from '../../types';
 
 export async function activityTreeAdd(
@@ -31,20 +31,6 @@ export async function activityTreeAdd(
     : undefined;
 
   value.sortOrder = (lastSiblingSortOrder || siblingsLength) + 1;
-
-  const now = Date.now();
-  const newNode: Activity = {
-    ...value,
-    createdAt: now,
-    updatedAt: now,
-    planId: '',
-  };
-
-  const result = treeRef.addNode(parentPath, { ...newNode });
-
-  if (result.error) {
-    console.error('Error:', result.error);
-  }
 
   const { headerActivityId, ...restProps } = value;
 

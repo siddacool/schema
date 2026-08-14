@@ -6,7 +6,6 @@
   import type { SortOrder } from '$lib/features/shared/types/sort-order';
   import { DEFAULT_DATE_SORT_ORDER } from '../../const/calendar';
   import ActivityManager from './ActivityManager.svelte';
-  import { debugLog } from '$lib/utils/debug-log';
   import { getParentByPath } from '../../utils/get-parent-by-path';
 
   type Props = {
@@ -22,7 +21,6 @@
     editMode?: boolean;
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
-    debug?: boolean;
   };
 
   const {
@@ -38,39 +36,29 @@
     editMode = false,
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
-    debug = false,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
-  let miniDatabase = $derived<Activity[]>(dataRaw);
+  let updateDataAt = $derived<number>(Date.now());
 
-  function syncMiniDatabase() {
-    data = [...miniDatabase];
-
-    debugLog(debug, 'syncMiniDatabase');
-  }
-
-  async function onupdateMod(value: Activity, subActivity?: boolean) {
-    const cachedData = [...miniDatabase];
+  async function onupdateMod(value: Activity) {
+    const cachedData = [...data];
     const dataIndex = cachedData.findIndex((item) => item._id === value._id);
 
     cachedData[dataIndex] = {
       ...value,
     };
 
-    miniDatabase = [...cachedData];
-
-    if (!subActivity) {
-      syncMiniDatabase();
-    }
+    data = [...cachedData];
+    updateDataAt = Date.now();
 
     if (onupdate) {
       onupdate(value);
     }
   }
 
-  async function oncreateMod(value: ActivityCreateFormData, subActivity?: boolean) {
+  async function oncreateMod(value: ActivityCreateFormData) {
     const now = Date.now();
 
     const newNode: Activity = {
@@ -80,18 +68,15 @@
       planId: '',
     };
 
-    miniDatabase = [...miniDatabase, newNode];
-
-    if (!subActivity) {
-      syncMiniDatabase();
-    }
+    data = [...data, newNode];
+    updateDataAt = Date.now();
 
     if (oncreate) {
       oncreate(value);
     }
 
     const parentId = getParentByPath(value.path);
-    const targetParent = miniDatabase.find((item) => item._id === parentId);
+    const targetParent = data.find((item) => item._id === parentId);
 
     if (targetParent) {
       onupdateMod({
@@ -101,20 +86,18 @@
     }
   }
 
-  async function onbulkcreateMod(activity: Activity[], subActivity?: boolean) {
-    miniDatabase = [...miniDatabase, ...activity];
+  async function onbulkcreateMod(activity: Activity[]) {
+    data = [...data, ...activity];
 
-    if (!subActivity) {
-      syncMiniDatabase();
-    }
+    updateDataAt = Date.now();
 
     if (onbulkcreate) {
       onbulkcreate(activity);
     }
   }
 
-  async function onbulkupdateMod(activity: Activity[], subActivity?: boolean) {
-    const cachedData = [...miniDatabase];
+  async function onbulkupdateMod(activity: Activity[]) {
+    const cachedData = [...data];
 
     for (let i = 0; i < activity.length; i++) {
       const target = activity[i];
@@ -125,64 +108,35 @@
       };
     }
 
-    miniDatabase = [...cachedData];
-
-    if (!subActivity) {
-      syncMiniDatabase();
-    }
+    data = [...cachedData];
+    updateDataAt = Date.now();
 
     if (onbulkupdate) {
       onbulkupdate(activity);
     }
   }
 
-  async function ondeleteMod(value: string, subActivity?: boolean) {
-    if (subActivity) {
-      if (ondelete) {
-        ondelete(value);
-      }
-
-      return;
-    }
-
-    const targetData = miniDatabase.find((item) => item._id === value);
+  async function ondeleteMod(value: string) {
+    const targetData = data.find((item) => item._id === value);
 
     if (!targetData) {
       return;
     }
 
-    const cachedData = [...miniDatabase].filter((item) => item._id !== targetData._id);
+    const cachedData = [...data].filter((item) => item._id !== targetData._id);
 
-    miniDatabase = [...cachedData];
-
-    if (!subActivity) {
-      syncMiniDatabase();
-    }
+    data = [...cachedData];
+    updateDataAt = Date.now();
 
     if (ondelete) {
       ondelete(value);
     }
   }
-
-  $effect(() => {
-    if (
-      planType ||
-      maxLevels ||
-      maxLevels === 0 ||
-      editMode ||
-      editMode === false ||
-      startOfWeek ||
-      dateSortOrder ||
-      debug ||
-      debug === false
-    ) {
-      syncMiniDatabase();
-    }
-  });
 </script>
 
 <div class={classes.join(' ')}>
   <ActivityManager
+    {updateDataAt}
     {data}
     {editMode}
     {startOfWeek}

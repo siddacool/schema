@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import type { Activity, ActivityCreateFormData } from '../../types';
+  import type { Activity, ActivityCreateFormData, ActivityGroup } from '../../types';
   import { WeekDays } from '../../types/week';
   import { groupActivity } from '../../utils/group-activity/group-activity';
   import type { SortOrder } from '$lib/features/shared/types/sort-order';
@@ -10,6 +10,7 @@
   type Props = {
     planType: PlanType;
     data: Activity[];
+    updateDataAt: number;
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
     onbulkcreate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
@@ -33,12 +34,21 @@
     editMode,
     startOfWeek,
     dateSortOrder,
+    updateDataAt,
   }: Props = $props();
 
-  const data = $derived(groupActivity(dataBase, planType, { startOfWeek, dateSortOrder }));
+  let data = $state<ActivityGroup[]>([]);
+
+  $effect(() => {
+    if (updateDataAt || dataBase || planType || startOfWeek || dateSortOrder) {
+      console.log('debug:', 'data update');
+
+      data = groupActivity(dataBase, planType, { startOfWeek, dateSortOrder });
+    }
+  });
 </script>
 
-<Create {oncreate} {data} {editMode} {startOfWeek} {planType} />
+<Create {oncreate} {data} {editMode} {planType} />
 
 <ActivityAccordianView
   {onbulkcreate}

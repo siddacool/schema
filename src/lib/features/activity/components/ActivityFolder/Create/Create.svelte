@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { ActivityCreateFormData, ActivityGroup } from '$lib/features/activity/types';
-  import type { WeekDays } from '$lib/features/activity/types/week';
   import { PlanType } from '$lib/features/plan/types/plan-type';
   import { Button } from '@flightlesslabs/dodo-ui';
   import EditActivitySequenceForm from '../Common/HeaderToolbar/BackgoundTools/Edit/Sequence/EditActivitySequenceForm.svelte';
@@ -13,17 +12,9 @@
     data: ActivityGroup[];
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     editMode: boolean;
-    startOfWeek: WeekDays;
   };
 
-  const {
-    class: className = '',
-    planType,
-    data,
-    oncreate,
-    editMode,
-    startOfWeek,
-  }: Props = $props();
+  const { class: className = '', planType, data, oncreate, editMode }: Props = $props();
 
   const classes = $derived(['ActivityFolderMainCreate', className].filter(Boolean));
 

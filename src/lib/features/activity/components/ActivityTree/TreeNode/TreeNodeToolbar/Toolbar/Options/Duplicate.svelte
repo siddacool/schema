@@ -11,9 +11,7 @@
     node: ActivityTreeNodeValue;
   };
 
-  let { onduplicate, data, node }: Props = $props();
-
-  const isBranch = $derived(node.hasChildren);
+  let { onduplicate, data }: Props = $props();
 
   async function handleDuplicate() {
     try {
@@ -32,21 +30,19 @@
   }
 </script>
 
-{#if !isBranch}
-  <DropdownMenuItem
-    onSelect={handleDuplicate}
-    outline
-    class="TreeNodeToolbarDropdownMenuItemDuplicate"
-  >
-    <Text color="primary">
-      <span class="Icon">
-        <Icon icon="ion:duplicate-outline" />
-      </span>
-    </Text>
+<DropdownMenuItem
+  onSelect={handleDuplicate}
+  outline
+  class="TreeNodeToolbarDropdownMenuItemDuplicate"
+>
+  <Text color="primary">
+    <span class="Icon">
+      <Icon icon="ion:duplicate-outline" />
+    </span>
+  </Text>
 
-    Duplicate
-  </DropdownMenuItem>
-{/if}
+  Duplicate
+</DropdownMenuItem>
 
 <style lang="scss">
   :global(.TreeNodeToolbarDropdownMenuItemDuplicate .Icon) {

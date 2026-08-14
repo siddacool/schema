@@ -7,7 +7,7 @@ import {
 import type { ActivityTreeRefvalue } from '../../types';
 
 function processChildrenExpandClose(parentId: string | undefined, data: Activity[]) {
-  const children: Activity[] = getAllChildren(parentId, addHeaderActivityId(data));
+  const children: Activity[] = getAllChildren(parentId, removeHeaderActivityId(data));
   const formatedData: Activity[] = [];
 
   for (const activity of children) {
@@ -45,6 +45,7 @@ export async function activityTreeExpand(
   const updatedActivity: Activity = {
     ...restProps,
     path,
+    expanded: expandState,
   };
 
   // expand open only
@@ -53,7 +54,7 @@ export async function activityTreeExpand(
   }
 
   const children = processChildrenExpandClose(value._id, data);
-  const childrenTree = removeHeaderActivityId(children);
+  const childrenTree = addHeaderActivityId(children);
 
   for (const activity of childrenTree) {
     treeRef.updateNode(activity.path, {

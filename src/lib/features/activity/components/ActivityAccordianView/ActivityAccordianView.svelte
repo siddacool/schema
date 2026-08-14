@@ -86,6 +86,7 @@
       {maxLevels}
       {editMode}
       groups={data}
+      {onbulkupdate}
     />
   {/each}
 </Accordion>

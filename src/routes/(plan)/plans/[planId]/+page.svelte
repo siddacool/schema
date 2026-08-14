@@ -91,6 +91,7 @@
         {onupdate}
         {editMode}
         {ondelete}
+        {onbulkupdate}
         startOfWeek={plan.startOfWeek}
       />
 

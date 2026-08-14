@@ -17,6 +17,8 @@ export function toggleHeaderActivityId(data: Activity[], addHeaderActivity: bool
         headerActivityId: activity.path.slice(0, separatorIndex),
         path: activity.path.slice(separatorIndex + 1),
       });
+
+      console.log('debug:', formattedData);
     }
   } else {
     for (const activity of data) {

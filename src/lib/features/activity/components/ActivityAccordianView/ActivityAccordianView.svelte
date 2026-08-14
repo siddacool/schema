@@ -7,6 +7,7 @@
     ActivityCreateFormData,
     ActivityGroup,
   } from '$lib/features/activity/types';
+  import { processChildrenExpandClose } from '../ActivityTree/utils/crud/expand';
 
   type OnChangeFn<T> = (value: T) => void;
 
@@ -58,11 +59,21 @@
       const targetId = removed[0];
       const target = data.find((item) => item._id === targetId);
 
-      if (target && onupdate) {
-        onupdate({
-          ...target,
-          expanded: false,
-        });
+      if (target && onbulkupdate) {
+        const dataToUpdate: Activity[] = [
+          {
+            ...target,
+            expanded: false,
+          },
+        ];
+
+        const children = processChildrenExpandClose(target._id, target.activity);
+
+        if (children.length) {
+          dataToUpdate.push(...children);
+        }
+
+        onbulkupdate(dataToUpdate);
       }
     }
 

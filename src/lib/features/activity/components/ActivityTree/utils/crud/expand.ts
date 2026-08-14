@@ -6,7 +6,7 @@ import {
 } from '$lib/features/activity/utils/toggle-headerActivityId';
 import type { ActivityTreeRefvalue } from '../../types';
 
-function processChildrenExpandClose(parentId: string | undefined, data: Activity[]) {
+export function processChildrenExpandClose(parentId: string | undefined, data: Activity[]) {
   const children: Activity[] = getAllChildren(parentId, removeHeaderActivityId(data));
   const formatedData: Activity[] = [];
 

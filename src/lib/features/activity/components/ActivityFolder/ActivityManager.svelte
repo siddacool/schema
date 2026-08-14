@@ -36,7 +36,7 @@
   const data = $derived(groupActivity(dataBase, planType, { startOfWeek, dateSortOrder }));
 </script>
 
-<Create {oncreate} {data} {editMode} {startOfWeek} {planType} />
+<Create {oncreate} {data} {editMode} {planType} />
 
 <ActivityAccordianView
   {planType}

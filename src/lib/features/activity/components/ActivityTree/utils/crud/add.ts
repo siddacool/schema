@@ -24,13 +24,13 @@ export async function activityTreeAdd(
     parentPath = '';
   }
 
-  const sublings = treeRef.getChildren(parentPath);
-  const sublingsLength = sublings.length;
-  const lastSiblingSortOrder = sublings.length
-    ? sublings[sublings.length - 1].data?.sortOrder
+  const siblings = treeRef.getChildren(parentPath);
+  const siblingsLength = siblings.length;
+  const lastSiblingSortOrder = siblings.length
+    ? siblings[siblings.length - 1].data?.sortOrder
     : undefined;
 
-  value.sortOrder = (lastSiblingSortOrder || sublingsLength) + 1;
+  value.sortOrder = (lastSiblingSortOrder || siblingsLength) + 1;
 
   const now = Date.now();
   const newNode: Activity = {

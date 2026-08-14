@@ -121,6 +121,8 @@ export async function updateActivityBulk(planId: string, data: Activity[]) {
 
   const ids = await updateActivityBulkDb(data);
 
+  await activityListStore.syncBackup(planId);
+
   return ids;
 }
 

@@ -7,6 +7,7 @@
     ActivityCreateFormData,
     ActivityGroup,
   } from '$lib/features/activity/types';
+  import { processChildrenExpandClose } from '../ActivityTree/utils/crud/expand';
 
   type OnChangeFn<T> = (value: T) => void;
 
@@ -17,6 +18,7 @@
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
+    onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
   };
@@ -27,6 +29,7 @@
     data,
     oncreate,
     onupdate,
+    onbulkupdate,
     ondelete,
     maxLevels,
     editMode,
@@ -56,11 +59,21 @@
       const targetId = removed[0];
       const target = data.find((item) => item._id === targetId);
 
-      if (target && onupdate) {
-        onupdate({
-          ...target,
-          expanded: false,
-        });
+      if (target && onbulkupdate) {
+        const dataToUpdate: Activity[] = [
+          {
+            ...target,
+            expanded: false,
+          },
+        ];
+
+        const children = processChildrenExpandClose(target._id, target.activity);
+
+        if (children.length) {
+          dataToUpdate.push(...children);
+        }
+
+        onbulkupdate(dataToUpdate);
       }
     }
 
@@ -84,6 +97,7 @@
       {maxLevels}
       {editMode}
       groups={data}
+      {onbulkupdate}
     />
   {/each}
 </Accordion>

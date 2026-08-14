@@ -11,6 +11,7 @@
     oncreate?: (data: ActivityCreateFormData) => Promise<void>;
     onupdate?: (data: Activity) => Promise<void>;
     ondelete?: (data: string) => Promise<void>;
+    onexpand: (data: Activity, expandState: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
     node: ActivityTreeNodeValue;
@@ -27,6 +28,7 @@
     editMode,
     node,
     onselect,
+    onexpand,
   }: Props = $props();
 
   const expanded = $derived(node.isExpanded);
@@ -34,7 +36,7 @@
 </script>
 
 <BaseNodeContainer class={classes.join(' ')} {expanded} branch>
-  <HeaderTrigger {onupdate} {node} {data} {onselect} />
+  <HeaderTrigger {onexpand} {node} {data} {onselect} />
 
   {#if expanded}
     <TreeNodeToolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />

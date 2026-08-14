@@ -11,11 +11,13 @@
   import { activityTreeRemove } from './utils/crud/remove';
   import { activityTreeAdd } from './utils/crud/add';
   import type { ActivityTreeNodeValue, ActivityTreeRefvalue } from './types';
+  import { activityTreeExpand } from './utils/crud/expand';
 
   type Props = {
     class?: string;
     group: ActivityGroup;
     oncreate?: (data: ActivityCreateFormData, subActivity?: boolean) => Promise<void>;
+    onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     onupdate?: (data: Activity, subActivity?: boolean) => Promise<void>;
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
@@ -28,6 +30,7 @@
     group,
     oncreate,
     onupdate,
+    onbulkupdate,
     ondelete,
     maxLevels,
     editMode,
@@ -75,8 +78,6 @@
   }
 
   async function onupdateMod(value: Activity) {
-    console.log('Test');
-
     const updatedActivity = await activityTreeUpdate(treeRef, value);
 
     if (onupdate && updatedActivity) {
@@ -89,6 +90,14 @@
 
     if (ondelete && deleteCandidate) {
       await ondelete(deleteCandidate, true);
+    }
+  }
+
+  async function onexpand(value: Activity, expandState: boolean) {
+    const updateCandidates = await activityTreeExpand(treeRef, value, expandState, data);
+
+    if (onbulkupdate && updateCandidates?.length) {
+      await onbulkupdate(updateCandidates, true);
     }
   }
 
@@ -126,6 +135,7 @@
           oncreate={oncreateMod}
           onupdate={onupdateMod}
           ondelete={ondeleteMod}
+          {onexpand}
           {editMode}
           {node}
           {maxLevels}

@@ -6,12 +6,12 @@
   type Props = {
     data: Activity;
     class?: string;
-    onupdate?: (data: Activity) => Promise<void>;
+    onexpand: (data: Activity, expandState: boolean) => Promise<void>;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
   };
 
-  const { class: className = '', node, onselect, onupdate, data }: Props = $props();
+  const { class: className = '', node, onselect, onexpand, data }: Props = $props();
 
   const expanded = $derived(node.isExpanded);
   const classes = $derived(
@@ -33,12 +33,7 @@
 
     onselect(undefined);
 
-    if (onupdate) {
-      onupdate({
-        ...data,
-        expanded: !expanded,
-      });
-    }
+    onexpand(data, !expanded);
   }
 </script>
 

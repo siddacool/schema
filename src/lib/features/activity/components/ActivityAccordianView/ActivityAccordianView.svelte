@@ -47,7 +47,9 @@
 
     if (added.length) {
       const targetId = added[0];
-      const target = data.find((item) => item._id === targetId);
+      /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+      const { activity, ...restProps } = data.find((item) => item._id === targetId) || {};
+      const target = { ...restProps } as Activity | undefined;
 
       if (target && onupdate) {
         onupdate({
@@ -57,7 +59,8 @@
       }
     } else if (removed.length) {
       const targetId = removed[0];
-      const target = data.find((item) => item._id === targetId);
+      const { activity = [], ...restProps } = data.find((item) => item._id === targetId) || {};
+      const target = { ...restProps } as Activity | undefined;
 
       if (target && onbulkupdate) {
         const dataToUpdate: Activity[] = [
@@ -67,7 +70,7 @@
           },
         ];
 
-        const children = processChildrenExpandClose(target._id, target.activity);
+        const children = processChildrenExpandClose(target._id, activity);
 
         if (children.length) {
           dataToUpdate.push(...children);

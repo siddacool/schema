@@ -25,7 +25,7 @@ export async function activityTreeExpand(
   value: Activity,
   expandState: boolean,
   data: Activity[],
-) {
+): Promise<Activity[] | undefined> {
   if (!treeRef) {
     return;
   }

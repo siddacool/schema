@@ -35,15 +35,19 @@
 
     onexpand(data, !expanded);
   }
+
+  function onkeydown(e: KeyboardEvent) {
+    e.stopPropagation();
+  }
 </script>
 
-<button class={classes.join(' ')} {onclick}>
+<div class={classes.join(' ')} {onclick} {onkeydown} role="presentation">
   <spn class="TriggerIcon">
     <Icon icon="weui:arrow-filled" />
   </spn>
 
   <div class="description">{node.data?.description}</div>
-</button>
+</div>
 
 <style lang="scss">
   .HeaderTrigger {
@@ -59,6 +63,7 @@
     min-height: 40px;
     color: inherit;
     font-family: inherit;
+    cursor: pointer;
 
     .description {
       margin: 0;

@@ -53,6 +53,7 @@
     "@flightlesslabs/dodo-ui-bits": "^0.11.8",
     "@flightlesslabs/dodo-ui-date": "^0.4.39",
     "@flightlesslabs/dodo-ui-numeric": "^0.2.36",
+    "@humanspeak/svelte-markdown": "^1.8.6",
     "@iconify/svelte": "^5.2.2",
     "@internationalized/date": "^3.12.3",
     "@keenmate/svelte-treeview": "^4.8.0",

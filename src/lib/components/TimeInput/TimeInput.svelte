@@ -1,16 +1,19 @@
 <script lang="ts">
   import { InputEnclosure, UtilityButton, type InputEnclosureProps } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import { TimeField, type WithoutChildrenOrChild } from 'bits-ui';
+  import { Time } from '@internationalized/date';
+  import { TimeField, type TimeValue, type WithoutChildrenOrChild } from 'bits-ui';
 
   type Props = {
     class?: string;
     clearable?: boolean;
+    isValid?: boolean;
   };
 
   let {
     class: className = '',
     value = $bindable(),
+    isValid = $bindable(),
     placeholder,
     size,
     roundness,
@@ -32,6 +35,28 @@
   function handleBlur() {
     isFocused = false;
   }
+
+  function isTime(value: unknown): value is Time {
+    return value instanceof Time;
+  }
+
+  function validate(time: TimeValue) {
+    if (!isTime(value)) {
+      return 'Invalid time value';
+    }
+
+    return time.hour === 12 ? 'Time cannot be 12:00 PM' : undefined;
+  }
+
+  function onInvalid() {
+    console.log('debug:', 'invalid');
+
+    isValid = false;
+  }
+
+  $effect(() => {
+    console.log('debug:', 'value', value);
+  });
 </script>
 
 <InputEnclosure
@@ -44,7 +69,15 @@
   affixSpacingBefore="tight"
   focused={isFocused}
 >
-  <TimeField.Root bind:value {placeholder} {...restProps} hourCycle={12} {disabled}>
+  <TimeField.Root
+    bind:value
+    {placeholder}
+    {...restProps}
+    hourCycle={12}
+    {disabled}
+    {onInvalid}
+    {validate}
+  >
     <TimeField.Input class="InputBox" onfocus={handleFocus} onblur={handleBlur}>
       {#snippet children({ segments })}
         {#each segments as { part, value }, i (i)}
@@ -83,7 +116,7 @@
     display: flex;
   }
 
-  :global(.ClearButton) {
+  :global(.TimeInput .dodo-ui-UtilityButton.size--normal.ClearButton) {
     font-size: 1.25em;
   }
 

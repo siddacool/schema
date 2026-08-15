@@ -1,4 +1,5 @@
 <script lang="ts">
+  import MarkdownEngine from '$lib/components/MarkdownEngine/MarkdownEngine.svelte';
   import type { Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../types';
   import Icon from '@iconify/svelte';
@@ -35,15 +36,19 @@
 
     onexpand(data, !expanded);
   }
+
+  function onkeydown(e: KeyboardEvent) {
+    e.stopPropagation();
+  }
 </script>
 
-<button class={classes.join(' ')} {onclick}>
+<div class={classes.join(' ')} {onclick} {onkeydown} role="presentation">
   <spn class="TriggerIcon">
     <Icon icon="weui:arrow-filled" />
   </spn>
 
-  <div class="description">{node.data?.description}</div>
-</button>
+  <div class="description"><MarkdownEngine source={node.data?.description || ''} /></div>
+</div>
 
 <style lang="scss">
   .HeaderTrigger {
@@ -51,20 +56,21 @@
     border: 0;
     display: flex;
     width: 100%;
-    align-items: center;
     padding: var(--dodo-ui-space);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex: 1;
     min-height: 40px;
     color: inherit;
     font-family: inherit;
+    cursor: pointer;
 
     .description {
       margin: 0;
       margin-left: var(--dodo-ui-space);
       font-size: 1rem;
       overflow: hidden;
+      margin-top: 2px;
 
       @media (min-width: 600px) {
         font-size: 1.1rem;

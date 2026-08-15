@@ -1,4 +1,5 @@
 <script lang="ts">
+  import MarkdownEngine from '$lib/components/MarkdownEngine/MarkdownEngine.svelte';
   import type { ActivityTreeNodeValue } from '../../types';
   import Icon from '@iconify/svelte';
 
@@ -19,15 +20,21 @@
 
     onselect(node.id as string);
   }
+
+  function onkeydown(e: KeyboardEvent) {
+    e.stopPropagation();
+  }
 </script>
 
-<button class={classes.join(' ')} onclick={selectToggle}>
+<div class={classes.join(' ')} onclick={selectToggle} {onkeydown} role="presentation">
   <spn class="TriggerIcon">
     <Icon icon="icon-park-outline:dot" />
   </spn>
 
-  <div class="description">{node.data?.description}</div>
-</button>
+  <div class="description">
+    <MarkdownEngine source={node.data?.description || ''} />
+  </div>
+</div>
 
 <style lang="scss">
   .HeaderTrigger {
@@ -35,20 +42,21 @@
     border: 0;
     display: flex;
     width: 100%;
-    align-items: center;
     padding: var(--dodo-ui-space);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex: 1;
     min-height: 40px;
     color: inherit;
     font-family: inherit;
+    cursor: default;
 
     .description {
       margin: 0;
       margin-left: 4px;
       font-size: 1rem;
       overflow: hidden;
+      margin-top: 2px;
 
       @media (min-width: 600px) {
         font-size: 1.1rem;
@@ -59,6 +67,7 @@
       font-size: 1rem;
       display: inline-flex;
       align-items: center;
+      margin-top: 3px;
     }
   }
 </style>

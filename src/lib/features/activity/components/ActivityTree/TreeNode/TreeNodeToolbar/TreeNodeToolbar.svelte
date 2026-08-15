@@ -41,6 +41,7 @@
     display: inline-flex;
     align-items: center;
     margin: 0 -3px;
+    margin-top: 3px;
 
     :global(.dodo-ui-Button),
     :global(.dodo-ui-UtilityButton) {

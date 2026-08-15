@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Activity, ActivityCreateFormData } from '$lib/features/activity/types';
-  import { Button, Column, FormField, Grid, TextArea } from '@flightlesslabs/dodo-ui';
+  import { Button, Column, FormField, Grid, Text, TextArea } from '@flightlesslabs/dodo-ui';
   import { Modal } from '@flightlesslabs/dodo-ui-bits';
   import { nanoid } from 'nanoid';
 
@@ -91,7 +91,11 @@
           name="description"
           bind:value={description}
           disabled={loading}
+          class="ActivityTreeEditActivityFormDescription"
         />
+        <Text color="neutral" class="ActivityTreeEditActivityFormDescriptionHelperText">
+          * Markdown formatting like bold, italics and links are supported
+        </Text>
       </FormField>
     </Column>
   </Grid>
@@ -102,3 +106,18 @@
     </Button>
   {/snippet}
 </Modal>
+
+<style lang="scss">
+  :global(.ActivityTreeEditActivityFormDescription textarea) {
+    field-sizing: content;
+    min-height: 100px; /* Optional baseline height */
+    max-height: 300px; /* Optional cap to prevent infinite growth */
+    line-height: 22px;
+  }
+
+  :global(.ActivityTreeEditActivityFormDescriptionHelperText) {
+    margin-top: var(--dodo-ui-space);
+    display: flex;
+    font-size: 0.9rem;
+  }
+</style>

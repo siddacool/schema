@@ -47,7 +47,7 @@
 
     :global(.TreeNodeCard) {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       width: 100%;
       transition:
         background-color 100ms,

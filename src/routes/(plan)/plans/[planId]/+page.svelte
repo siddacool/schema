@@ -93,6 +93,7 @@
         {ondelete}
         {onbulkupdate}
         startOfWeek={plan.startOfWeek}
+        debug
       />
 
       {#if !showActivityFolder}

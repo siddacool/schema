@@ -8,6 +8,7 @@
   import ActivityManager from './ActivityManager.svelte';
   import { debugLog } from '$lib/utils/debug-log';
   import { getParentByPath } from '../../utils/get-parent-by-path';
+  import { activityMiniDbStore } from '../store/activity-mini-db.svelte';
 
   type Props = {
     class?: string;
@@ -41,7 +42,7 @@
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
-  let miniDatabase = $derived<Activity[]>(dataRaw);
+  let miniDatabase = $derived<Activity[]>(activityMiniDbStore.activity);
 
   function syncMiniDatabase() {
     data = [...miniDatabase];
@@ -57,7 +58,7 @@
       ...value,
     };
 
-    miniDatabase = [...cachedData];
+    activityMiniDbStore.update(cachedData);
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -78,7 +79,7 @@
       planId: '',
     };
 
-    miniDatabase = [...miniDatabase, newNode];
+    activityMiniDbStore.update([...miniDatabase, newNode]);
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -111,7 +112,7 @@
       };
     }
 
-    miniDatabase = [...cachedData];
+    activityMiniDbStore.update(cachedData);
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -139,7 +140,7 @@
 
     const cachedData = [...miniDatabase].filter((item) => item._id !== targetData._id);
 
-    miniDatabase = [...cachedData];
+    activityMiniDbStore.update(cachedData);
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -149,6 +150,12 @@
       ondelete(value);
     }
   }
+
+  $effect(() => {
+    if (dataRaw) {
+      activityMiniDbStore.update(dataRaw);
+    }
+  });
 
   $effect(() => {
     if (

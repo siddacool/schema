@@ -20,8 +20,21 @@
     color: inherit;
     font-family: inherit;
 
-    :global(p) {
-      margin: 0;
+    :global(p:first-of-type) {
+      margin-top: 0;
+    }
+
+    :global(p:last-of-type) {
+      margin-bottom: 0;
+    }
+
+    :global(h1),
+    :global(h2),
+    :global(h3),
+    :global(h4),
+    :global(h5),
+    :global(h6) {
+      margin-top: 0;
     }
   }
 </style>

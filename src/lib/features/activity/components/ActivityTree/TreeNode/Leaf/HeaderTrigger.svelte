@@ -42,10 +42,9 @@
     border: 0;
     display: flex;
     width: 100%;
-    align-items: center;
     padding: var(--dodo-ui-space);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex: 1;
     min-height: 40px;
     color: inherit;
@@ -57,6 +56,7 @@
       margin-left: 4px;
       font-size: 1rem;
       overflow: hidden;
+      margin-top: 2px;
 
       @media (min-width: 600px) {
         font-size: 1.1rem;
@@ -67,6 +67,7 @@
       font-size: 1rem;
       display: inline-flex;
       align-items: center;
+      margin-top: 3px;
     }
   }
 </style>

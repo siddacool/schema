@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SvelteMarkdown, { defaultRenderers, excludeHtmlOnly } from '@humanspeak/svelte-markdown';
+  import SvelteMarkdown from '@humanspeak/svelte-markdown';
 
   type Props = {
     source: string;
@@ -9,15 +9,10 @@
   const { class: className = '', source }: Props = $props();
 
   const classes = $derived(['MarkdownEngine', className].filter(Boolean));
-
-  const renderers = {
-    ...defaultRenderers,
-    html: excludeHtmlOnly(['li', 'ul']),
-  };
 </script>
 
 <div class={classes.join(' ')}>
-  <SvelteMarkdown {source} class={classes.join(' ')} {renderers}>
+  <SvelteMarkdown {source} class={classes.join(' ')}>
     {#snippet link({ href, title, children })}
       <a {href} {title} target="_blank" rel="noopener noreferrer">
         {@render children?.()}
@@ -31,12 +26,21 @@
     color: inherit;
     font-family: inherit;
 
-    :global(p:first-of-type) {
+    :global(p:first-of-type),
+    :global(ul:first-of-type),
+    :global(ol:first-of-type) {
       margin-top: 0;
     }
 
-    :global(p:last-of-type) {
+    :global(p:last-of-type),
+    :global(ul:last-of-type),
+    :global(ol:last-of-type) {
       margin-bottom: 0;
+    }
+
+    :global(ul),
+    :global(ol) {
+      padding-left: calc(var(--dodo-ui-space) * 3);
     }
 
     :global(h1),

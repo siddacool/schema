@@ -9,6 +9,8 @@
   import { debugLog } from '$lib/utils/debug-log';
   import { getParentByPath } from '../../utils/get-parent-by-path';
   import { activityMiniDbStore } from '../store/activity-mini-db.svelte';
+  import Tracker from './Tracker/Tracker.svelte';
+  import { onDestroy } from 'svelte';
 
   type Props = {
     class?: string;
@@ -175,6 +177,7 @@
 </script>
 
 <div class={classes.join(' ')}>
+  <Tracker {planType} />
   <ActivityManager
     {data}
     {editMode}

@@ -1,0 +1,1 @@
+import{H as e,it as t,nt as n,ot as r}from"./B_PnqckH.js";import{t as i}from"./CLSgHkkM.js";var a=`PlanActive`,o=i(`local`,a);function s(){let i=r(n(o));return{get activePlan(){return e(i)},updateActivePlan(e){t(i,e,!0)}}}var c=s();export{a as n,c as t};

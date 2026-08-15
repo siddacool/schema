@@ -1,1 +1,0 @@
-import"./D1ngzGQG.js";import{r as e,t}from"./d0PgJYBM.js";import{n}from"./CLSgHkkM.js";var r=function(e){return e.LIGHT=`#ffffff`,e.DARK=`#1d161e`,e}({});function i(r){let i={...t.settings,...r};n(`local`,e,i),t.update(i)}export{r as n,i as t};

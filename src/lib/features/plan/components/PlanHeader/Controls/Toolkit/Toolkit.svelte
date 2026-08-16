@@ -4,6 +4,7 @@
   import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import { updatePlanFields } from '$lib/features/plan/logic/crud.svelte';
   import { page } from '$app/state';
+  import TrackToggle from './TrackToggle.svelte';
 
   const planId = page.params.planId || '';
   const isShow = $derived(activityListStore.activityBackup.length ? true : false);
@@ -22,6 +23,7 @@
 {#if isShow}
   <div class="Toolkit">
     <Card shadow={0} class="ToolkitCard">
+      <TrackToggle />
       <EditModeToggle />
     </Card>
   </div>
@@ -31,21 +33,18 @@
   .Toolkit {
     margin-right: var(--dodo-ui-space);
 
-    :global(.dodo-ui-Button) {
-      margin: 0 6px;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-
     :global(.ToolkitCard) {
       padding: calc(var(--dodo-ui-space) * 0.4);
       background-color: var(--dodo-color-neutral-200);
+      display: flex;
+    }
+
+    :global(.ToolkitCard section) {
+      margin: 0 3px;
+    }
+
+    :global(.ToolkitCard .dodo-ui-Button) {
+      margin: 0;
     }
   }
 </style>

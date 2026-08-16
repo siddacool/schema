@@ -20,7 +20,7 @@
   }
 </script>
 
-<div class="EditModeToggle" class:editMode>
+<section class="EditModeToggle" class:editMode>
   <Button
     aria-label={editMode ? 'Edit mode' : 'Read mode'}
     class="EditModeToggleButton"
@@ -38,7 +38,7 @@
       <Icon icon="ant-design:read-outlined" />
     {/if}
   </Button>
-</div>
+</section>
 
 <style lang="scss">
   .EditModeToggle {

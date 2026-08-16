@@ -17,6 +17,10 @@
   .Track {
     color: var(--dodo-color-primary-500);
     margin-left: var(--dodo-ui-space);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+
+    @media (min-width: 600px) {
+      font-size: 1.25rem;
+    }
   }
 </style>

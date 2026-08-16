@@ -1,15 +1,14 @@
-import type { Activity, ActivityGroup } from '$lib/features/activity/types';
+import type { ActivityGroup } from '$lib/features/activity/types';
 import { createDate } from '$lib/utils/date-time/createDate';
+import { trackGroupItems } from './track-group-items';
 
 export function trackActivityCalendar(data: ActivityGroup[]) {
-  const today = createDate().format('YYYY-MM-DD');
-  let targetMain: Activity | undefined = undefined;
+  const moment = createDate();
+  const today = moment.format('YYYY-MM-DD').toUpperCase();
+  const currentTime = moment.format('HH:mm');
+  let targetMain: ActivityGroup | undefined = undefined;
 
   for (const activity of data) {
-    if (activity.path.includes('.')) {
-      continue;
-    }
-
     if (activity.description !== today) {
       continue;
     }
@@ -22,5 +21,11 @@ export function trackActivityCalendar(data: ActivityGroup[]) {
     return undefined;
   }
 
-  return [targetMain];
+  const groupItems = trackGroupItems(targetMain.activity, currentTime);
+
+  if (!groupItems.length) {
+    return [targetMain];
+  }
+
+  return [targetMain, groupItems[0]];
 }

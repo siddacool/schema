@@ -20,6 +20,8 @@
   function runTask() {
     const value = trackActivity(data, planType);
 
+    console.log('Running', value);
+
     onchange(value);
   }
 

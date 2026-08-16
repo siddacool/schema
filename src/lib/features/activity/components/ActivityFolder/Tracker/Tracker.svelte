@@ -1,24 +1,28 @@
 <script lang="ts">
   import type { Activity } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
-  import { activityMiniDbStore } from '../../store/activity-mini-db.svelte';
+  import { trackActivity } from './utils/track-activity';
 
   type Props = {
     planType: PlanType;
+    data: Activity[];
+    id: string;
+    onchange: (value: string[] | undefined) => void;
   };
 
-  const { planType }: Props = $props();
+  const { planType, data, onchange, id }: Props = $props();
 
-  let miniDatabase = $derived<Activity[]>(activityMiniDbStore.activity);
-
-  function runTask(activity: Activity[]) {
+  function runTask() {
     console.log('Running task');
-    console.log('Latest miniDatabase:', activity);
+
+    const value = trackActivity(data, planType, id);
+
+    onchange(value);
   }
 
   $effect(() => {
     // Run immediately
-    runTask(miniDatabase);
+    runTask();
 
     // Then run every 5 seconds
     const interval = setInterval(runTask, 5000);

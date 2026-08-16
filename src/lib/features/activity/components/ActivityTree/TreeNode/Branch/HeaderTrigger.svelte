@@ -10,11 +10,22 @@
     onexpand: (data: Activity, expandState: boolean) => Promise<void>;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
+    trackedIds: string[] | undefined;
+    track: boolean;
   };
 
-  const { class: className = '', node, onselect, onexpand, data }: Props = $props();
+  const {
+    class: className = '',
+    node,
+    onselect,
+    onexpand,
+    data,
+    trackedIds,
+    track,
+  }: Props = $props();
 
   const expanded = $derived(node.isExpanded);
+  const trackHeader = $derived(track && trackedIds?.includes(node.id as string) ? true : false);
   const classes = $derived(
     ['HeaderTrigger', `${expanded ? 'expanded' : ''}`, className].filter(Boolean),
   );
@@ -46,6 +57,10 @@
   <spn class="TriggerIcon">
     <Icon icon="weui:arrow-filled" />
   </spn>
+
+  {#if trackHeader}
+    T
+  {/if}
 
   <div class="description"><MarkdownEngine source={node.data?.description || ''} /></div>
 </div>

@@ -8,9 +8,12 @@
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
     editMode: boolean;
+    trackedIds: string[] | undefined;
+    track: boolean;
   };
 
-  const { class: className = '', node, onselect, editMode }: Props = $props();
+  const { class: className = '', node, onselect, editMode, track, trackedIds }: Props = $props();
+  const trackHeader = $derived(track && trackedIds?.includes(node.id as string) ? true : false);
   const classes = $derived(['HeaderTrigger', className].filter(Boolean));
 
   function selectToggle() {
@@ -30,6 +33,10 @@
   <spn class="TriggerIcon">
     <Icon icon="icon-park-outline:dot" />
   </spn>
+
+  {#if trackHeader}
+    T
+  {/if}
 
   <div class="description">
     <MarkdownEngine source={node.data?.description || ''} />

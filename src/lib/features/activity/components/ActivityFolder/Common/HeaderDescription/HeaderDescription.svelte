@@ -9,11 +9,16 @@
     class?: string;
     planType: PlanType;
     data: ActivityGroup;
+    trackedIds: string[] | undefined;
+    track: boolean;
   };
 
-  const { class: className = '', planType, data }: Props = $props();
+  const { class: className = '', planType, data, trackedIds, track }: Props = $props();
 
-  const classes = $derived(['HeaderDescription', className].filter(Boolean));
+  const trackHeader = $derived(track && trackedIds?.includes(data._id) ? true : false);
+  const classes = $derived(
+    ['HeaderDescription', `${trackHeader ? 'trackHeader' : ''}`, className].filter(Boolean),
+  );
 </script>
 
 <div class={classes.join(' ')}>
@@ -25,3 +30,12 @@
     <CalendarDescription {data} />
   {/if}
 </div>
+
+<style>
+  .HeaderDescription {
+    &.trackHeader {
+      font-weight: 600;
+      color: var(--dodo-color-primary-500);
+    }
+  }
+</style>

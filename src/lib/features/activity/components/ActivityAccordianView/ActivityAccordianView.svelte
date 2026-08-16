@@ -21,6 +21,8 @@
     onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
+    trackedIds: string[] | undefined;
+    track: boolean;
   };
 
   const {
@@ -33,6 +35,8 @@
     ondelete,
     maxLevels,
     editMode,
+    trackedIds,
+    track,
   }: Props = $props();
 
   const classes = $derived(['ActivityAccordianView', className].filter(Boolean));
@@ -101,6 +105,8 @@
       {editMode}
       groups={data}
       {onbulkupdate}
+      {trackedIds}
+      {track}
     />
   {/each}
 </Accordion>

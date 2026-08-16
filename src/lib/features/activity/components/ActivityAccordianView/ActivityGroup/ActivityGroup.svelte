@@ -23,6 +23,8 @@
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
+    trackedIds: string[] | undefined;
+    track: boolean;
   };
 
   const {
@@ -36,11 +38,15 @@
     editMode,
     groups,
     onbulkupdate,
+    trackedIds,
+    track,
   }: Props = $props();
 
   const theme = $derived(useThemeStore.theme);
 
-  const classes = $derived(['ActivityGroup', `theme--${theme}`, className].filter(Boolean));
+  const classes = $derived(
+    ['ActivityGroup', `ActivityGroup-${data._id}`, `theme--${theme}`, className].filter(Boolean),
+  );
   let treeRef = $derived<ActivityTreeRefvalue | undefined>(undefined);
 
   async function oncreateMain(value: ActivityCreateFormData, subActivity?: boolean) {
@@ -62,7 +68,17 @@
 
 <AccordionItem class={classes.join(' ')} value={data._id}>
   {#snippet customHeaderContent()}
-    <Header {planType} oncreate={oncreateMain} {onupdate} {ondelete} {editMode} {data} {groups} />
+    <Header
+      {planType}
+      oncreate={oncreateMain}
+      {onupdate}
+      {ondelete}
+      {editMode}
+      {data}
+      {groups}
+      {track}
+      {trackedIds}
+    />
   {/snippet}
   <ActivityTree
     bind:treeRef
@@ -73,6 +89,8 @@
     group={data}
     {maxLevels}
     {onbulkupdate}
+    {track}
+    {trackedIds}
   />
 </AccordionItem>
 

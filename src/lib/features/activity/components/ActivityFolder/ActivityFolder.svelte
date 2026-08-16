@@ -8,9 +8,7 @@
   import ActivityManager from './ActivityManager.svelte';
   import { debugLog } from '$lib/utils/debug-log';
   import { getParentByPath } from '../../utils/get-parent-by-path';
-  import { activityMiniDbStore } from '../store/activity-mini-db.svelte';
   import Tracker from './Tracker/Tracker.svelte';
-  import { onDestroy } from 'svelte';
 
   type Props = {
     class?: string;
@@ -25,6 +23,8 @@
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
     debug?: boolean;
+    track?: boolean;
+    id: string;
   };
 
   const {
@@ -40,11 +40,18 @@
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
     debug = false,
+    track = true,
+    id,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
-  let miniDatabase = $derived<Activity[]>(activityMiniDbStore.activity);
+  let miniDatabase = $derived<Activity[]>(dataRaw);
+  let trackedIds = $derived<string[] | undefined>(undefined);
+
+  function updateTrackedIds(value: string[] | undefined) {
+    trackedIds = value;
+  }
 
   function syncMiniDatabase() {
     data = [...miniDatabase];
@@ -60,7 +67,7 @@
       ...value,
     };
 
-    activityMiniDbStore.update(cachedData);
+    miniDatabase = [...cachedData];
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -81,7 +88,7 @@
       planId: '',
     };
 
-    activityMiniDbStore.update([...miniDatabase, newNode]);
+    miniDatabase = [...miniDatabase, newNode];
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -114,7 +121,7 @@
       };
     }
 
-    activityMiniDbStore.update(cachedData);
+    miniDatabase = [...cachedData];
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -142,7 +149,7 @@
 
     const cachedData = [...miniDatabase].filter((item) => item._id !== targetData._id);
 
-    activityMiniDbStore.update(cachedData);
+    miniDatabase = [...cachedData];
 
     if (!subActivity) {
       syncMiniDatabase();
@@ -152,12 +159,6 @@
       ondelete(value);
     }
   }
-
-  $effect(() => {
-    if (dataRaw) {
-      activityMiniDbStore.update(dataRaw);
-    }
-  });
 
   $effect(() => {
     if (
@@ -176,8 +177,10 @@
   });
 </script>
 
-<div class={classes.join(' ')}>
-  <Tracker {planType} />
+<div class={classes.join(' ')} {id}>
+  {#if track}
+    <Tracker {planType} data={miniDatabase} onchange={updateTrackedIds} {id} />
+  {/if}
   <ActivityManager
     {data}
     {editMode}
@@ -189,5 +192,7 @@
     ondelete={ondeleteMod}
     {maxLevels}
     {dateSortOrder}
+    {trackedIds}
+    {track}
   />
 </div>

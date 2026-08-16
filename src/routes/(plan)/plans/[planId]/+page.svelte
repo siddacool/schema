@@ -94,6 +94,7 @@
         {onbulkupdate}
         startOfWeek={plan.startOfWeek}
         debug
+        id="MainActivityFolder"
       />
 
       {#if !showActivityFolder}

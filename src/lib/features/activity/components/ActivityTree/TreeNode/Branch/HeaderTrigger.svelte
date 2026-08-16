@@ -101,6 +101,11 @@
       align-items: center;
     }
 
+    :global(.Track) {
+      margin-left: var(--dodo-ui-space);
+      margin-right: -1px;
+    }
+
     &.expanded {
       :global(.TriggerIcon) {
         rotate: 90deg;

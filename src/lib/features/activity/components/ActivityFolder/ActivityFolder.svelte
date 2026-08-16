@@ -170,7 +170,9 @@
       startOfWeek ||
       dateSortOrder ||
       debug ||
-      debug === false
+      debug === false ||
+      track ||
+      track === false
     ) {
       syncMiniDatabase();
     }

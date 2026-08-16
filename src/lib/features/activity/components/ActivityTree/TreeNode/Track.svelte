@@ -15,8 +15,9 @@
 
 <style lang="scss">
   .Track {
-    color: var(--dodo-color-primary-500);
-    margin-left: var(--dodo-ui-space);
+    color: var(--dodo-color-primary-600);
+    margin-left: 4px;
+    margin-right: 4px;
     font-size: 1.26rem;
     position: relative;
     top: 1px;

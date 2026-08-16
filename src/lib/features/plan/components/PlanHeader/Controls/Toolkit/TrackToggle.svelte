@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/state';
+  import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import { updatePlanFields } from '$lib/features/plan/logic/crud.svelte';
   import { planDetailStore } from '$lib/features/plan/store/detail.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
@@ -17,6 +18,8 @@
     updatePlanFields(planId, {
       track: !track,
     });
+
+    activityListStore.load(planId);
   }
 </script>
 

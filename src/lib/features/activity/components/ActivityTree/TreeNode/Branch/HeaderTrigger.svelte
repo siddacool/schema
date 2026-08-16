@@ -3,6 +3,7 @@
   import type { Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../types';
   import Icon from '@iconify/svelte';
+  import Track from '../Track.svelte';
 
   type Props = {
     data: Activity;
@@ -10,11 +11,24 @@
     onexpand: (data: Activity, expandState: boolean) => Promise<void>;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
+    trackedActivity: Activity[] | undefined;
+    track: boolean;
   };
 
-  const { class: className = '', node, onselect, onexpand, data }: Props = $props();
+  const {
+    class: className = '',
+    node,
+    onselect,
+    onexpand,
+    data,
+    trackedActivity,
+    track,
+  }: Props = $props();
 
   const expanded = $derived(node.isExpanded);
+  const trackHeader = $derived(
+    track && trackedActivity?.some((item) => item._id === (node.id as string)) ? true : false,
+  );
   const classes = $derived(
     ['HeaderTrigger', `${expanded ? 'expanded' : ''}`, className].filter(Boolean),
   );
@@ -46,6 +60,10 @@
   <spn class="TriggerIcon">
     <Icon icon="weui:arrow-filled" />
   </spn>
+
+  {#if trackHeader}
+    <Track />
+  {/if}
 
   <div class="description"><MarkdownEngine source={node.data?.description || ''} /></div>
 </div>
@@ -81,6 +99,11 @@
       font-size: 1.5rem;
       display: inline-flex;
       align-items: center;
+    }
+
+    :global(.Track) {
+      margin-left: var(--dodo-ui-space);
+      margin-right: -1px;
     }
 
     &.expanded {

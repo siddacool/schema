@@ -16,6 +16,8 @@
     onselect: (value: string | undefined) => void;
     selectedNode: string | undefined;
     treeRef: ActivityTreeRefvalue | undefined;
+    trackedActivity: Activity[] | undefined;
+    track: boolean;
   };
 
   let {
@@ -29,6 +31,8 @@
     onselect,
     selectedNode,
     treeRef,
+    trackedActivity,
+    track,
   }: Props = $props();
   const data = $derived(node.data);
 </script>
@@ -46,6 +50,8 @@
       {data}
       {onselect}
       {onexpand}
+      {trackedActivity}
+      {track}
     />
   {:else}
     <Leaf
@@ -58,6 +64,8 @@
       {data}
       {onselect}
       {selectedNode}
+      {trackedActivity}
+      {track}
     />
   {/if}
 {/if}

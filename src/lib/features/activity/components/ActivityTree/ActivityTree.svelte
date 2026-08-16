@@ -23,6 +23,8 @@
     maxLevels: number;
     editMode: boolean;
     treeRef: ActivityTreeRefvalue | undefined;
+    trackedActivity: Activity[] | undefined;
+    track: boolean;
   };
 
   let {
@@ -35,6 +37,8 @@
     maxLevels,
     editMode,
     treeRef = $bindable(),
+    trackedActivity,
+    track,
   }: Props = $props();
 
   const classes = $derived(['ActivityTree', className].filter(Boolean));
@@ -141,6 +145,8 @@
           {maxLevels}
           {selectedNode}
           {onselect}
+          {trackedActivity}
+          {track}
         />
       {/if}
     {/snippet}

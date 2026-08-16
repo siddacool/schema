@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/state';
+  import { activityListStore } from '$lib/features/activity/store/list.svelte';
   import { updatePlanFields } from '$lib/features/plan/logic/crud.svelte';
   import { planDetailStore } from '$lib/features/plan/store/detail.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
@@ -17,10 +18,12 @@
     updatePlanFields(planId, {
       editMode: !editMode,
     });
+
+    activityListStore.load(planId);
   }
 </script>
 
-<div class="EditModeToggle" class:editMode>
+<section class="EditModeToggle" class:editMode>
   <Button
     aria-label={editMode ? 'Edit mode' : 'Read mode'}
     class="EditModeToggleButton"
@@ -38,7 +41,7 @@
       <Icon icon="ant-design:read-outlined" />
     {/if}
   </Button>
-</div>
+</section>
 
 <style lang="scss">
   .EditModeToggle {

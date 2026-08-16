@@ -1,16 +1,30 @@
 <script lang="ts">
   import MarkdownEngine from '$lib/components/MarkdownEngine/MarkdownEngine.svelte';
+  import type { Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../types';
   import Icon from '@iconify/svelte';
+  import Track from '../Track.svelte';
 
   type Props = {
     class?: string;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
     editMode: boolean;
+    trackedActivity: Activity[] | undefined;
+    track: boolean;
   };
 
-  const { class: className = '', node, onselect, editMode }: Props = $props();
+  const {
+    class: className = '',
+    node,
+    onselect,
+    editMode,
+    track,
+    trackedActivity,
+  }: Props = $props();
+  const trackHeader = $derived(
+    track && trackedActivity?.some((item) => item._id === (node.id as string)) ? true : false,
+  );
   const classes = $derived(['HeaderTrigger', className].filter(Boolean));
 
   function selectToggle() {
@@ -30,6 +44,10 @@
   <spn class="TriggerIcon">
     <Icon icon="icon-park-outline:dot" />
   </spn>
+
+  {#if trackHeader}
+    <Track />
+  {/if}
 
   <div class="description">
     <MarkdownEngine source={node.data?.description || ''} />

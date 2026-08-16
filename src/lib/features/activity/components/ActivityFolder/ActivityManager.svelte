@@ -18,6 +18,8 @@
     editMode: boolean;
     startOfWeek: WeekDays;
     dateSortOrder: SortOrder;
+    trackedActivity: Activity[] | undefined;
+    track: boolean;
   };
 
   const {
@@ -31,6 +33,8 @@
     editMode,
     startOfWeek,
     dateSortOrder,
+    trackedActivity,
+    track,
   }: Props = $props();
 
   const data = $derived(groupActivity(dataBase, planType, { startOfWeek, dateSortOrder }));
@@ -47,4 +51,6 @@
   {editMode}
   {data}
   {onbulkupdate}
+  {trackedActivity}
+  {track}
 />

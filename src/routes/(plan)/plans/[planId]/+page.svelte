@@ -22,6 +22,7 @@
   const plan = $derived(planDetailStore.plan);
   const activityList = $derived(activityListStore.activity);
   const editMode = $derived(planDetailStore.plan?.editMode === false ? false : true);
+  const track = $derived(planDetailStore.plan?.track === false ? false : true);
   const showActivityFolder = $derived(activityListStore.activityBackup.length ? true : false);
   const classes = $derived(
     ['PlanListPage', `${showActivityFolder ? 'showActivityFolder' : 'hideActivityFolder'}`].filter(
@@ -93,6 +94,9 @@
         {ondelete}
         {onbulkupdate}
         startOfWeek={plan.startOfWeek}
+        debug
+        id="MainActivityFolder"
+        {track}
       />
 
       {#if !showActivityFolder}

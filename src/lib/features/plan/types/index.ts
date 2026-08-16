@@ -12,6 +12,7 @@ export interface Plan {
   editMode?: boolean;
   startOfWeek?: WeekDays;
   dateSortOrder?: SortOrder;
+  track?: boolean;
 }
 
 export interface PlanCreateData {

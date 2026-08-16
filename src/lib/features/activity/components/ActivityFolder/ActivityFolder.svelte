@@ -8,6 +8,7 @@
   import ActivityManager from './ActivityManager.svelte';
   import { debugLog } from '$lib/utils/debug-log';
   import { getParentByPath } from '../../utils/get-parent-by-path';
+  import Tracker from './Tracker/Tracker.svelte';
 
   type Props = {
     class?: string;
@@ -22,6 +23,8 @@
     startOfWeek?: WeekDays;
     dateSortOrder?: SortOrder;
     debug?: boolean;
+    track?: boolean;
+    id: string;
   };
 
   const {
@@ -37,11 +40,18 @@
     startOfWeek = DEFAULT_START_OF_WEEK,
     dateSortOrder = DEFAULT_DATE_SORT_ORDER,
     debug = false,
+    track = true,
+    id,
   }: Props = $props();
 
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
   let miniDatabase = $derived<Activity[]>(dataRaw);
+  let trackedActivity = $derived<Activity[] | undefined>(undefined);
+
+  function updatetrackedActivity(value: Activity[] | undefined) {
+    trackedActivity = value;
+  }
 
   function syncMiniDatabase() {
     data = [...miniDatabase];
@@ -160,14 +170,25 @@
       startOfWeek ||
       dateSortOrder ||
       debug ||
-      debug === false
+      debug === false ||
+      track ||
+      track === false
     ) {
       syncMiniDatabase();
     }
   });
 </script>
 
-<div class={classes.join(' ')}>
+<div class={classes.join(' ')} {id}>
+  {#if track}
+    <Tracker
+      {planType}
+      data={miniDatabase}
+      onchange={updatetrackedActivity}
+      {startOfWeek}
+      {dateSortOrder}
+    />
+  {/if}
   <ActivityManager
     {data}
     {editMode}
@@ -179,5 +200,7 @@
     ondelete={ondeleteMod}
     {maxLevels}
     {dateSortOrder}
+    {trackedActivity}
+    {track}
   />
 </div>

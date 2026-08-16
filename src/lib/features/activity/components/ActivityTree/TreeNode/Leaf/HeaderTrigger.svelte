@@ -1,5 +1,6 @@
 <script lang="ts">
   import MarkdownEngine from '$lib/components/MarkdownEngine/MarkdownEngine.svelte';
+  import type { Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../types';
   import Icon from '@iconify/svelte';
 
@@ -8,12 +9,21 @@
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
     editMode: boolean;
-    trackedPaths: string[] | undefined;
+    trackedActivity: Activity[] | undefined;
     track: boolean;
   };
 
-  const { class: className = '', node, onselect, editMode, track, trackedPaths }: Props = $props();
-  const trackHeader = $derived(track && trackedPaths?.includes(node.id as string) ? true : false);
+  const {
+    class: className = '',
+    node,
+    onselect,
+    editMode,
+    track,
+    trackedActivity,
+  }: Props = $props();
+  const trackHeader = $derived(
+    track && trackedActivity?.some((item) => item._id === (node.id as string)) ? true : false,
+  );
   const classes = $derived(['HeaderTrigger', className].filter(Boolean));
 
   function selectToggle() {

@@ -47,10 +47,10 @@
   const classes = $derived(['ActivityFolder', className].filter(Boolean));
   let data = $derived<Activity[]>(dataRaw);
   let miniDatabase = $derived<Activity[]>(dataRaw);
-  let trackedPaths = $derived<string[] | undefined>(undefined);
+  let trackedActivity = $derived<Activity[] | undefined>(undefined);
 
-  function updatetrackedPaths(value: string[] | undefined) {
-    trackedPaths = value;
+  function updatetrackedActivity(value: Activity[] | undefined) {
+    trackedActivity = value;
   }
 
   function syncMiniDatabase() {
@@ -179,7 +179,13 @@
 
 <div class={classes.join(' ')} {id}>
   {#if track}
-    <Tracker {planType} data={miniDatabase} onchange={updatetrackedPaths} {id} />
+    <Tracker
+      {planType}
+      data={miniDatabase}
+      onchange={updatetrackedActivity}
+      {startOfWeek}
+      {dateSortOrder}
+    />
   {/if}
   <ActivityManager
     {data}
@@ -192,7 +198,7 @@
     ondelete={ondeleteMod}
     {maxLevels}
     {dateSortOrder}
-    {trackedPaths}
+    {trackedActivity}
     {track}
   />
 </div>

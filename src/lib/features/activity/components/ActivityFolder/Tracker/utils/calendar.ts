@@ -1,10 +1,9 @@
-import type { Activity } from '$lib/features/activity/types';
+import type { Activity, ActivityGroup } from '$lib/features/activity/types';
 import { createDate } from '$lib/utils/date-time/createDate';
-import { trackGroupActivity } from './track-group-activity';
 
-export function trackActivityCalendar(data: Activity[], folderId: string) {
+export function trackActivityCalendar(data: ActivityGroup[]) {
   const today = createDate().format('YYYY-MM-DD');
-  let targetMain: string | undefined = undefined;
+  let targetMain: Activity | undefined = undefined;
 
   for (const activity of data) {
     if (activity.path.includes('.')) {
@@ -15,7 +14,7 @@ export function trackActivityCalendar(data: Activity[], folderId: string) {
       continue;
     }
 
-    targetMain = activity._id;
+    targetMain = activity;
     break;
   }
 
@@ -23,11 +22,5 @@ export function trackActivityCalendar(data: Activity[], folderId: string) {
     return undefined;
   }
 
-  const groupActivity = trackGroupActivity(targetMain, folderId);
-
-  if (!groupActivity) {
-    return [targetMain];
-  }
-
-  return [targetMain, groupActivity];
+  return [targetMain];
 }

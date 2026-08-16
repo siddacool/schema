@@ -1,21 +1,24 @@
 <script lang="ts">
   import type { Activity } from '$lib/features/activity/types';
+  import type { WeekDays } from '$lib/features/activity/types/week';
+  import { groupActivity } from '$lib/features/activity/utils/group-activity/group-activity';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
+  import type { SortOrder } from '$lib/features/shared/types/sort-order';
   import { trackActivity } from './utils/track-activity';
 
   type Props = {
     planType: PlanType;
     data: Activity[];
-    id: string;
-    onchange: (value: string[] | undefined) => void;
+    onchange: (value: Activity[] | undefined) => void;
+    startOfWeek: WeekDays;
+    dateSortOrder: SortOrder;
   };
 
-  const { planType, data, onchange, id }: Props = $props();
+  const { planType, data: dataBase, onchange, startOfWeek, dateSortOrder }: Props = $props();
+  const data = $derived(groupActivity(dataBase, planType, { startOfWeek, dateSortOrder }));
 
   function runTask() {
-    console.log('Running task');
-
-    const value = trackActivity(data, planType, id);
+    const value = trackActivity(data, planType);
 
     onchange(value);
   }

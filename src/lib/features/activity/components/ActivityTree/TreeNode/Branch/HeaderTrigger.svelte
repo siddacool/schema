@@ -10,7 +10,7 @@
     onexpand: (data: Activity, expandState: boolean) => Promise<void>;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
-    trackedPaths: string[] | undefined;
+    trackedActivity: Activity[] | undefined;
     track: boolean;
   };
 
@@ -20,12 +20,14 @@
     onselect,
     onexpand,
     data,
-    trackedPaths,
+    trackedActivity,
     track,
   }: Props = $props();
 
   const expanded = $derived(node.isExpanded);
-  const trackHeader = $derived(track && trackedPaths?.includes(node.id as string) ? true : false);
+  const trackHeader = $derived(
+    track && trackedActivity?.some((item) => item._id === (node.id as string)) ? true : false,
+  );
   const classes = $derived(
     ['HeaderTrigger', `${expanded ? 'expanded' : ''}`, className].filter(Boolean),
   );

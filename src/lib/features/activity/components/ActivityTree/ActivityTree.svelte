@@ -23,7 +23,7 @@
     maxLevels: number;
     editMode: boolean;
     treeRef: ActivityTreeRefvalue | undefined;
-    trackedPaths: string[] | undefined;
+    trackedActivity: Activity[] | undefined;
     track: boolean;
   };
 
@@ -37,7 +37,7 @@
     maxLevels,
     editMode,
     treeRef = $bindable(),
-    trackedPaths,
+    trackedActivity,
     track,
   }: Props = $props();
 
@@ -145,7 +145,7 @@
           {maxLevels}
           {selectedNode}
           {onselect}
-          {trackedPaths}
+          {trackedActivity}
           {track}
         />
       {/if}

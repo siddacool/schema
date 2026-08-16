@@ -37,17 +37,38 @@
 />
 
 <Story name="EditMode" asChild>
-  <ActivityAccordianView data={sequenceData} planType={PlanType.SEQUENCE} editMode maxLevels={3} />
+  <ActivityAccordianView
+    data={sequenceData}
+    planType={PlanType.SEQUENCE}
+    editMode
+    maxLevels={3}
+    trackedActivity={undefined}
+    track
+  />
   <ModalManager />
 </Story>
 
 <Story name="Week" asChild>
-  <ActivityAccordianView data={weekData} planType={PlanType.WEEK} editMode maxLevels={3} />
+  <ActivityAccordianView
+    data={weekData}
+    planType={PlanType.WEEK}
+    editMode
+    maxLevels={3}
+    trackedActivity={undefined}
+    track
+  />
   <ModalManager />
 </Story>
 
 <Story name="Calendar" asChild>
-  <ActivityAccordianView data={calendarData} planType={PlanType.CALENDAR} editMode maxLevels={3} />
+  <ActivityAccordianView
+    data={calendarData}
+    planType={PlanType.CALENDAR}
+    editMode
+    maxLevels={3}
+    trackedActivity={undefined}
+    track
+  />
   <ModalManager />
 </Story>
 
@@ -58,6 +79,8 @@
       planType={PlanType.SEQUENCE}
       editMode
       maxLevels={3}
+      trackedActivity={undefined}
+      track
     />
     <ModalManager />
   </Theme>

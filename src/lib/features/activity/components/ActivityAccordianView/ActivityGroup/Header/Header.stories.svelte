@@ -30,6 +30,8 @@
           planType={PlanType.SEQUENCE}
           editMode
           groups={sequenceData}
+          trackedActivity={undefined}
+          track
         />
       {/snippet}
     </AccordionItem>
@@ -46,6 +48,8 @@
             planType={PlanType.SEQUENCE}
             editMode
             groups={sequenceData}
+            trackedActivity={undefined}
+            track
           />
         {/snippet}
       </AccordionItem>

@@ -1,17 +1,15 @@
-import type { Activity } from '$lib/features/activity/types';
+import type { Activity, ActivityGroup } from '$lib/features/activity/types';
 import { PlanType } from '$lib/features/plan/types/plan-type';
 import { trackActivityCalendar } from './calendar';
 import { trackActivityWeek } from './week';
 
-export function trackActivity(activity: Activity[], planType: PlanType, folderId: string) {
-  let tracked: string[] | undefined = undefined;
-
-  console.log('debug:', activity);
+export function trackActivity(data: ActivityGroup[], planType: PlanType) {
+  let tracked: Activity[] | undefined = undefined;
 
   if (planType === PlanType.WEEK) {
-    tracked = trackActivityWeek(activity, folderId);
+    tracked = trackActivityWeek(data);
   } else if (planType === PlanType.CALENDAR) {
-    tracked = trackActivityCalendar(activity, folderId);
+    tracked = trackActivityCalendar(data);
   }
 
   return tracked;

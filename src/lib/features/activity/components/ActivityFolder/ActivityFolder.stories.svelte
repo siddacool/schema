@@ -26,16 +26,34 @@
 />
 
 <Story name="EditMode" asChild>
-  <ActivityFolder data={activityListMockData} planType={PlanType.SEQUENCE} editMode debug />
+  <ActivityFolder
+    data={activityListMockData}
+    planType={PlanType.SEQUENCE}
+    editMode
+    debug
+    id="MainId"
+  />
   <ModalManager />
 </Story>
 
 <Story name="Week" asChild>
-  <ActivityFolder data={activityListMockDataWeek} planType={PlanType.WEEK} editMode debug />
+  <ActivityFolder
+    data={activityListMockDataWeek}
+    planType={PlanType.WEEK}
+    editMode
+    debug
+    id="MainIdWeek"
+  />
   <ModalManager />
 </Story>
 
 <Story name="Calendar" asChild>
-  <ActivityFolder data={activityListMockDataCalendar} planType={PlanType.CALENDAR} editMode debug />
+  <ActivityFolder
+    data={activityListMockDataCalendar}
+    planType={PlanType.CALENDAR}
+    editMode
+    debug
+    id="MainIdCalendar"
+  />
   <ModalManager />
 </Story>

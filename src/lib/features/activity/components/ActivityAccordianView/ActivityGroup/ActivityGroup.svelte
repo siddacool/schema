@@ -23,7 +23,7 @@
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
-    trackedPaths: string[] | undefined;
+    trackedActivity: Activity[] | undefined;
     track: boolean;
   };
 
@@ -38,7 +38,7 @@
     editMode,
     groups,
     onbulkupdate,
-    trackedPaths,
+    trackedActivity,
     track,
   }: Props = $props();
 
@@ -77,7 +77,7 @@
       {data}
       {groups}
       {track}
-      {trackedPaths}
+      {trackedActivity}
     />
   {/snippet}
   <ActivityTree
@@ -90,7 +90,7 @@
     {maxLevels}
     {onbulkupdate}
     {track}
-    {trackedPaths}
+    {trackedActivity}
   />
 </AccordionItem>
 

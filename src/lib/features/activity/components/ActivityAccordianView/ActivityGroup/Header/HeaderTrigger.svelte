@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ActivityGroup } from '$lib/features/activity/types';
+  import type { Activity, ActivityGroup } from '$lib/features/activity/types';
   import type { PlanType } from '$lib/features/plan/types/plan-type';
   import HeaderDescription from '../../../ActivityFolder/Common/HeaderDescription/HeaderDescription.svelte';
 
@@ -10,11 +10,11 @@
     class?: string;
     planType: PlanType;
     data: ActivityGroup;
-    trackedPaths: string[] | undefined;
+    trackedActivity: Activity[] | undefined;
     track: boolean;
   };
 
-  const { class: className = '', planType, data, trackedPaths, track }: Props = $props();
+  const { class: className = '', planType, data, trackedActivity, track }: Props = $props();
 
   const classes = $derived(['ActivityGroupHeaderTrigger', className].filter(Boolean));
 </script>
@@ -24,7 +24,7 @@
     <Icon icon="weui:arrow-filled" />
   </spn>
 
-  <HeaderDescription {data} {planType} {track} {trackedPaths} />
+  <HeaderDescription {data} {planType} {track} {trackedActivity} />
 </AccordionTrigger>
 
 <style lang="scss">

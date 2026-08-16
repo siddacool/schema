@@ -30,6 +30,8 @@
       data={sequenceData[0]}
       planType={PlanType.SEQUENCE}
       groups={sequenceData}
+      trackedActivity={undefined}
+      track
     />
   </Accordion>
   <ModalManager />
@@ -44,6 +46,8 @@
         data={sequenceData[0]}
         planType={PlanType.SEQUENCE}
         groups={sequenceData}
+        trackedActivity={undefined}
+        track
       />
     </Accordion>
     <ModalManager />
@@ -59,6 +63,8 @@
         data={sequenceData[0]}
         planType={PlanType.SEQUENCE}
         groups={sequenceData}
+        trackedActivity={undefined}
+        track
       />
     </Accordion>
     <ModalManager />

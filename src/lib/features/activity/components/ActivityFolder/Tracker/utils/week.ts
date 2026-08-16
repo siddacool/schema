@@ -1,21 +1,16 @@
-import type { Activity } from '$lib/features/activity/types';
+import type { Activity, ActivityGroup } from '$lib/features/activity/types';
 import { createDate } from '$lib/utils/date-time/createDate';
-import { trackGroupActivity } from './track-group-activity';
 
-export function trackActivityWeek(data: Activity[], folderId: string) {
+export function trackActivityWeek(data: ActivityGroup[]) {
   const today = createDate().format('ddd').toUpperCase();
-  let targetMain: string | undefined = undefined;
+  let targetMain: Activity | undefined = undefined;
 
-  for (const activity of data) {
-    if (activity.path.includes('.')) {
+  for (const item of data) {
+    if (item.description !== today) {
       continue;
     }
 
-    if (activity.description !== today) {
-      continue;
-    }
-
-    targetMain = activity._id;
+    targetMain = item;
     break;
   }
 
@@ -23,11 +18,5 @@ export function trackActivityWeek(data: Activity[], folderId: string) {
     return undefined;
   }
 
-  const groupActivity = trackGroupActivity(targetMain, folderId);
-
-  if (!groupActivity) {
-    return [targetMain];
-  }
-
-  return [targetMain, groupActivity];
+  return [targetMain];
 }

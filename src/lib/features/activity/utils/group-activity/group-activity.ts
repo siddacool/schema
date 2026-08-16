@@ -4,6 +4,7 @@ import type { Activity, ActivityGroup } from '../../types';
 import type { WeekDays } from '../../types/week';
 import { groupActivityTypeCalendar } from './planType/calendar';
 import { groupActivityTypeWeek } from './planType/week';
+import { sortActivitiesByHierarchy } from './sort-by-hierarchy';
 import { splitActivity } from './split-activity';
 
 export type GroupActivityConfig = {
@@ -58,6 +59,10 @@ export function groupActivity(
             path: item.path.slice(separatorIndex + 1),
           },
     );
+  }
+
+  for (const group of activityGroups) {
+    group.activity = sortActivitiesByHierarchy(group.activity);
   }
 
   return activityGroups;

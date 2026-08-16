@@ -16,7 +16,7 @@
     editMode: boolean;
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
-    trackedPaths: string[] | undefined;
+    trackedActivity: Activity[] | undefined;
     track: boolean;
   };
 
@@ -31,7 +31,7 @@
     node,
     onselect,
     onexpand,
-    trackedPaths,
+    trackedActivity,
     track,
   }: Props = $props();
 
@@ -40,7 +40,7 @@
 </script>
 
 <BaseNodeContainer class={classes.join(' ')} {expanded} branch>
-  <HeaderTrigger {onexpand} {node} {data} {onselect} {trackedPaths} {track} />
+  <HeaderTrigger {onexpand} {node} {data} {onselect} {trackedActivity} {track} />
 
   {#if expanded}
     <TreeNodeToolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />

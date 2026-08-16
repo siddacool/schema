@@ -18,7 +18,7 @@
     ondelete?: (data: string, subActivity?: boolean) => Promise<void>;
     editMode: boolean;
     groups: ActivityGroup[];
-    trackedIds: string[] | undefined;
+    trackedPaths: string[] | undefined;
     track: boolean;
   };
 
@@ -31,7 +31,7 @@
     ondelete,
     editMode,
     groups,
-    trackedIds,
+    trackedPaths,
     track,
   }: Props = $props();
 
@@ -42,7 +42,7 @@
 
 <div class={classes.join(' ')}>
   <Card class="ActivityGroupHeaderCard" shadow={0}>
-    <HeaderTrigger {data} {planType} {track} {trackedIds} />
+    <HeaderTrigger {data} {planType} {track} {trackedPaths} />
     <HeaderToolbar {data} {oncreate} {onupdate} {ondelete} {editMode} {planType} {groups} />
   </Card>
 </div>

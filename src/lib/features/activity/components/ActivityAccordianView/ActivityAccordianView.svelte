@@ -21,7 +21,7 @@
     onbulkupdate?: (data: Activity[], subActivity?: boolean) => Promise<void>;
     maxLevels: number;
     editMode: boolean;
-    trackedIds: string[] | undefined;
+    trackedPaths: string[] | undefined;
     track: boolean;
   };
 
@@ -35,7 +35,7 @@
     ondelete,
     maxLevels,
     editMode,
-    trackedIds,
+    trackedPaths,
     track,
   }: Props = $props();
 
@@ -105,7 +105,7 @@
       {editMode}
       groups={data}
       {onbulkupdate}
-      {trackedIds}
+      {trackedPaths}
       {track}
     />
   {/each}

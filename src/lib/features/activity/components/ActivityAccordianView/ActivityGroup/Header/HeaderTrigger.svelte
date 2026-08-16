@@ -10,11 +10,11 @@
     class?: string;
     planType: PlanType;
     data: ActivityGroup;
-    trackedIds: string[] | undefined;
+    trackedPaths: string[] | undefined;
     track: boolean;
   };
 
-  const { class: className = '', planType, data, trackedIds, track }: Props = $props();
+  const { class: className = '', planType, data, trackedPaths, track }: Props = $props();
 
   const classes = $derived(['ActivityGroupHeaderTrigger', className].filter(Boolean));
 </script>
@@ -24,7 +24,7 @@
     <Icon icon="weui:arrow-filled" />
   </spn>
 
-  <HeaderDescription {data} {planType} {track} {trackedIds} />
+  <HeaderDescription {data} {planType} {track} {trackedPaths} />
 </AccordionTrigger>
 
 <style lang="scss">

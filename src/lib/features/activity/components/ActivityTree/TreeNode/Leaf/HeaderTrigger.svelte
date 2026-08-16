@@ -8,12 +8,12 @@
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
     editMode: boolean;
-    trackedIds: string[] | undefined;
+    trackedPaths: string[] | undefined;
     track: boolean;
   };
 
-  const { class: className = '', node, onselect, editMode, track, trackedIds }: Props = $props();
-  const trackHeader = $derived(track && trackedIds?.includes(node.id as string) ? true : false);
+  const { class: className = '', node, onselect, editMode, track, trackedPaths }: Props = $props();
+  const trackHeader = $derived(track && trackedPaths?.includes(node.id as string) ? true : false);
   const classes = $derived(['HeaderTrigger', className].filter(Boolean));
 
   function selectToggle() {

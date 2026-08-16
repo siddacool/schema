@@ -9,13 +9,13 @@
     class?: string;
     planType: PlanType;
     data: ActivityGroup;
-    trackedIds: string[] | undefined;
+    trackedPaths: string[] | undefined;
     track: boolean;
   };
 
-  const { class: className = '', planType, data, trackedIds, track }: Props = $props();
+  const { class: className = '', planType, data, trackedPaths, track }: Props = $props();
 
-  const trackHeader = $derived(track && trackedIds?.includes(data._id) ? true : false);
+  const trackHeader = $derived(track && trackedPaths?.includes(data._id) ? true : false);
   const classes = $derived(
     ['HeaderDescription', `${trackHeader ? 'trackHeader' : ''}`, className].filter(Boolean),
   );

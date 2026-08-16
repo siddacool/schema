@@ -18,7 +18,7 @@
     editMode: boolean;
     startOfWeek: WeekDays;
     dateSortOrder: SortOrder;
-    trackedIds: string[] | undefined;
+    trackedPaths: string[] | undefined;
     track: boolean;
   };
 
@@ -33,7 +33,7 @@
     editMode,
     startOfWeek,
     dateSortOrder,
-    trackedIds,
+    trackedPaths,
     track,
   }: Props = $props();
 
@@ -51,6 +51,6 @@
   {editMode}
   {data}
   {onbulkupdate}
-  {trackedIds}
+  {trackedPaths}
   {track}
 />

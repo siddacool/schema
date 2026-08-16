@@ -17,7 +17,7 @@
     node: ActivityTreeNodeValue;
     onselect: (value: string | undefined) => void;
     selectedNode: string | undefined;
-    trackedIds: string[] | undefined;
+    trackedPaths: string[] | undefined;
     track: boolean;
   };
 
@@ -32,7 +32,7 @@
     node,
     onselect,
     selectedNode,
-    trackedIds,
+    trackedPaths,
     track,
   }: Props = $props();
 
@@ -42,7 +42,7 @@
 
 <BaseNodeContainer class={classes.join(' ')} expanded={editMode && isSelected}>
   <Card class="TreeNodeCard" shadow={0}>
-    <HeaderTrigger {onselect} {node} {editMode} {trackedIds} {track} />
+    <HeaderTrigger {onselect} {node} {editMode} {trackedPaths} {track} />
 
     {#if isSelected}
       <TreeNodeToolbar {oncreate} {onupdate} {ondelete} {maxLevels} {editMode} {node} {data} />

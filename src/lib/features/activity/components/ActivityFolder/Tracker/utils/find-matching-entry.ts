@@ -1,20 +1,20 @@
 import { createDate } from '$lib/utils/date-time/createDate';
 
 type ParsedEntry = {
-  id: string;
+  path: string;
   text: string;
   start: ReturnType<typeof createDate> | null;
   end: ReturnType<typeof createDate> | null;
 };
 
 type FlaggedEntry = {
-  id: string;
+  path: string;
   text: string;
   flagged: boolean;
 };
 
 type Entry = {
-  id: string;
+  path: string;
   content: string;
 };
 
@@ -35,14 +35,14 @@ function parseTimeOnToday(time: string) {
 }
 
 function parseEntry(entry: Entry): ParsedEntry {
-  const { id, content: text } = entry;
+  const { path, content: text } = entry;
 
   // Check for a time range first
   const rangeMatch = text.match(RANGE_REGEX);
 
   if (rangeMatch) {
     return {
-      id,
+      path,
       text,
       start: parseTimeOnToday(rangeMatch[1]),
       end: parseTimeOnToday(rangeMatch[2]),
@@ -54,7 +54,7 @@ function parseEntry(entry: Entry): ParsedEntry {
 
   if (timeMatch) {
     return {
-      id,
+      path,
       text,
       start: parseTimeOnToday(timeMatch[0]),
       end: null,
@@ -62,7 +62,7 @@ function parseEntry(entry: Entry): ParsedEntry {
   }
 
   return {
-    id,
+    path,
     text,
     start: null,
     end: null,
@@ -106,7 +106,7 @@ export function flagMatchingEntries(
     const matched = new Set(strictMatches);
 
     return parsed.map((entry) => ({
-      id: entry.id.split('.').pop() ?? entry.id,
+      path: entry.path.split('.').pop() ?? entry.path,
       text: entry.text,
       flagged: matched.has(entry),
     }));
@@ -120,7 +120,7 @@ export function flagMatchingEntries(
   return parsed.map((entry) => {
     if (!entry.start || entry.end) {
       return {
-        id: entry.id.split('.').pop() ?? entry.id,
+        path: entry.path.split('.').pop() ?? entry.path,
         text: entry.text,
         flagged: false,
       };
@@ -129,7 +129,7 @@ export function flagMatchingEntries(
     const minutesAfterStart = now.diff(entry.start, 'minute');
 
     return {
-      id: entry.id.split('.').pop() ?? entry.id,
+      path: entry.path.split('.').pop() ?? entry.path,
       text: entry.text,
       flagged: minutesAfterStart > 0 && minutesAfterStart <= graceMinutes,
     };

@@ -1,5 +1,11 @@
 # schema
 
+## 1.2.0
+
+### Minor Changes
+
+- Tracking added
+
 ## 1.1.0
 
 ### Minor Changes

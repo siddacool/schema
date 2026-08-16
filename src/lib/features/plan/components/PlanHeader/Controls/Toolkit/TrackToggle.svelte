@@ -32,7 +32,7 @@
     variant="text"
     size="small"
   >
-    <Icon icon="tabler:clock" />
+    <Icon icon="material-symbols:alarm-outline" />
   </Button>
 </section>
 

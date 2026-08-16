@@ -10,17 +10,20 @@
 </script>
 
 <span class={classes.join(' ')}>
-  <Icon icon="tabler:clock" />
+  <Icon icon="material-symbols:alarm-outline" />
 </span>
 
 <style lang="scss">
   .Track {
     color: var(--dodo-color-primary-500);
     margin-left: var(--dodo-ui-space);
-    font-size: 1.2rem;
+    font-size: 1.26rem;
+    position: relative;
+    top: 1px;
 
     @media (min-width: 600px) {
-      font-size: 1.25rem;
+      top: 2px;
+      font-size: 1.28rem;
     }
   }
 </style>

@@ -3,6 +3,7 @@
   import type { Activity } from '$lib/features/activity/types';
   import type { ActivityTreeNodeValue } from '../../types';
   import Icon from '@iconify/svelte';
+  import Track from '../Track.svelte';
 
   type Props = {
     class?: string;
@@ -45,7 +46,7 @@
   </spn>
 
   {#if trackHeader}
-    T
+    <Track />
   {/if}
 
   <div class="description">

@@ -6,6 +6,8 @@ import { trackActivityWeek } from './week';
 export function trackActivity(activity: Activity[], planType: PlanType, folderId: string) {
   let tracked: string[] | undefined = undefined;
 
+  console.log('debug:', activity);
+
   if (planType === PlanType.WEEK) {
     tracked = trackActivityWeek(activity, folderId);
   } else if (planType === PlanType.CALENDAR) {
